@@ -75,10 +75,9 @@ include 'include/navbar.php';
         include 'sessions/delete.php';
     } elseif ($dir == 'sessions' && $page == 'report') {
         include "sessions/report.php";
-    }  
-
-     // START Moth Statistics 
-     if ($dir == 'statistics' && $page == 'add') {
+    }
+    // START Moth Statistics 
+    if ($dir == 'statistics' && $page == 'add') {
         include "statistics/add.php";
     } elseif ($dir == 'statistics' && $page == 'edit') {
         include "statistics/edit.php";
@@ -86,10 +85,29 @@ include 'include/navbar.php';
         include 'statistics/delete.php';
     } elseif ($dir == 'statistics' && $page == 'report') {
         include "statistics/report.php";
-    }  
+    }
+    // START CLIENTS 
 
-
-
+    // START cLIENT CATEGORY
+    if ($dir == 'client_cat' && $page == 'add') {
+        include "client_cat/add.php";
+    } elseif ($dir == 'client_cat' && $page == 'edit') {
+        include "client_cat/edit.php";
+    } elseif ($dir == 'client_cat' && $page == 'delete') {
+        include 'client_cat/delete.php';
+    } elseif ($dir == 'client_cat' && $page == 'report') {
+        include "client_cat/report.php";
+    }
+    // START cLIENTS
+    if ($dir == 'clients' && $page == 'add') {
+        include "clients/add.php";
+    } elseif ($dir == 'clients' && $page == 'edit') {
+        include "clients/edit.php";
+    } elseif ($dir == 'clients' && $page == 'delete') {
+        include 'clients/delete.php';
+    } elseif ($dir == 'clients' && $page == 'report') {
+        include "clients/report.php";
+    }
     ?>
 </div>
 
