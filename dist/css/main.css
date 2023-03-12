@@ -13,3 +13,19 @@
     margin: auto;
     margin-top: 150px;
 }
+
+/* START LOGIN PAGE */
+.login_data{
+margin-top: 40px;
+}
+.login_data img{
+    max-width: 100%;
+}
+.login_data p{
+    margin-top: 20px;
+    font-size: 17px;
+    line-height: 2;
+}
+.main_menu table tr td{
+    min-width: 150px;
+}

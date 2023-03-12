@@ -50,7 +50,7 @@ function getitems($cat_id)
             </div>
             <br>
             <h2 class="bg bg-success" style="font-size: 30px; font-weight:bold; padding:5px"> Menu 2 </h2>
-            <div class="row">
+            <div class="row main_menu">
                 <div class="col-lg-4">
                     <div class="card card-row ">
                         <div class="table1 table-responsive">

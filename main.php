@@ -130,7 +130,16 @@ include 'include/navbar.php';
     } elseif ($dir == 'setting' && $page == 'report_pre') {
         include "setting/report_pre.php";
     }
-
+    // START Login Page
+    if ($dir == 'login_page' && $page == 'add') {
+        include "login_page/add.php";
+    } elseif ($dir == 'login_page' && $page == 'edit') {
+        include "login_page/edit.php";
+    } elseif ($dir == 'login_page' && $page == 'delete') {
+        include 'login_page/delete.php';
+    } elseif ($dir == 'login_page' && $page == 'report') {
+        include "login_page/report.php";
+    }
     ?>
 </div>
 
