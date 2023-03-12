@@ -8,7 +8,6 @@ function getoptions($day, $meal_type, $option_type)
     $alldata = $stmt->fetchAll();
     return $alldata;
 }
-
 function getitems($cat_id)
 {
     include 'connect.php';
@@ -44,535 +43,556 @@ function getitems($cat_id)
     <div class="container-fluid">
         <div class="">
             <br>
-            <div class="flex justify-content-between justify-content-center text-center"> 
+            <div class="flex justify-content-between justify-content-center text-center">
                 <a href="main.php?dir=main_menu&page=report" class="btn btn-info"> Menu 1 </a>
                 <a href="main.php?dir=main_menu&page=report2" class="btn btn-success"> Menu 2 </a>
             </div>
             <br>
             <h2 class="bg bg-info" style="font-size: 30px; font-weight:bold; padding:5px"> Menu 1 </h2>
             <div class="row main_menu">
-                <div class="col-lg-4">
+                <div class="col-lg-12">
                     <div class="card card-row ">
-                        <div class="table1 table-responsive">
-                            <div class="card-header bg bg-secondary">
-                                <p class="card-title"> Breakfast</p>
+                        <form action="" method="post" enctype="multipart/form-data">
+                            <div class="table1 table-responsive">
+                                <div class="card-header bg bg-secondary">
+                                    <p class="card-title"> Breakfast</p>
+                                </div>
+                                <table class="table table-bordered table-responsive card-body">
+                                    <thead>
+                                        <tr>
+                                            <th> Options // Day </th>
+                                            <th> Option 1 </th>
+                                            <th> Option 2 </th>
+                                            <th> Option 3 </th>
+                                            <th> Special orders </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td> Saturday </td>
+                                            <td>
+                                                <?php
+                                                $getoption = getoptions('saturday', 'breakfast', 'option1');
+                                                $alldata =  $getoption;
+                                                ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+
+                                                ?>
+
+                                                    <select name="sabroption1[]" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $getitems =  getitems($data['cat']);
+                                                        $allitems = $getitems;
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value="<?php echo $item['item_name']; ?> "> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                $getoption = getoptions('saturday', 'breakfast', 'option2');
+                                                $alldata =  $getoption;
+                                                ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $getitems =  getitems($data['cat']);
+                                                        $allitems = $getitems;
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                $getoption = getoptions('saturday', 'breakfast', 'option3');
+                                                $alldata =  $getoption;
+                                                ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $getitems =  getitems($data['cat']);
+                                                        $allitems = $getitems;
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Sunday </td>
+                                            <td> <?php
+                                                    $getoption = getoptions('sunday', 'breakfast', 'option1');
+                                                    $alldata =  $getoption;
+                                                    ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
+                                                        $stmt->execute(array($data['cat']));
+                                                        $allitems = $stmt->fetchAll();
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+
+                                                ?>
+                                            </td>
+                                            <td> <?php
+                                                    $getoption = getoptions('sunday', 'breakfast', 'option2');
+                                                    $alldata =  $getoption;
+                                                    ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
+                                                        $stmt->execute(array($data['cat']));
+                                                        $allitems = $stmt->fetchAll();
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+
+                                                ?>
+                                            </td>
+                                            <td> <?php
+                                                    $getoption = getoptions('sunday', 'breakfast', 'option3');
+                                                    $alldata =  $getoption;
+                                                    ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
+                                                        $stmt->execute(array($data['cat']));
+                                                        $allitems = $stmt->fetchAll();
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+
+                                                ?>
+                                            </td>
+                                            <td> option 4 </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Monday </td>
+                                            <td> <?php
+                                                    $getoption = getoptions('monday', 'breakfast', 'option1');
+                                                    $alldata =  $getoption;
+                                                    ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
+                                                        $stmt->execute(array($data['cat']));
+                                                        $allitems = $stmt->fetchAll();
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+
+                                                ?>
+                                            </td>
+                                            <td> <?php
+                                                    $getoption = getoptions('monday', 'breakfast', 'option2');
+                                                    $alldata =  $getoption;
+                                                    ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
+                                                        $stmt->execute(array($data['cat']));
+                                                        $allitems = $stmt->fetchAll();
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+
+                                                ?>
+                                            </td>
+                                            <td> <?php
+                                                    $getoption = getoptions('monday', 'breakfast', 'option3');
+                                                    $alldata =  $getoption;
+                                                    ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
+                                                        $stmt->execute(array($data['cat']));
+                                                        $allitems = $stmt->fetchAll();
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+
+                                                ?>
+                                            </td>
+                                            <td> option 4 </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Tuesday </td>
+                                            <td> <?php
+                                                    $getoption = getoptions('tuesday', 'breakfast', 'option1');
+                                                    $alldata =  $getoption;
+                                                    ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
+                                                        $stmt->execute(array($data['cat']));
+                                                        $allitems = $stmt->fetchAll();
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+
+                                                ?>
+                                            </td>
+                                            <td> <?php
+                                                    $getoption = getoptions('tuesday', 'breakfast', 'option2');
+                                                    $alldata =  $getoption;
+                                                    ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
+                                                        $stmt->execute(array($data['cat']));
+                                                        $allitems = $stmt->fetchAll();
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+
+                                                ?>
+                                            </td>
+                                            <td> <?php
+                                                    $getoption = getoptions('tuesday', 'breakfast', 'option3');
+                                                    $alldata =  $getoption;
+                                                    ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
+                                                        $stmt->execute(array($data['cat']));
+                                                        $allitems = $stmt->fetchAll();
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+
+                                                ?>
+                                            </td>
+                                            <td> option 4 </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Wednesday </td>
+                                            <td> <?php
+                                                    $getoption = getoptions('wednesday', 'breakfast', 'option1');
+                                                    $alldata =  $getoption;
+                                                    ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
+                                                        $stmt->execute(array($data['cat']));
+                                                        $allitems = $stmt->fetchAll();
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+
+                                                ?>
+                                            </td>
+                                            <td> <?php
+                                                    $getoption = getoptions('wednesday', 'breakfast', 'option2');
+                                                    $alldata =  $getoption;
+                                                    ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
+                                                        $stmt->execute(array($data['cat']));
+                                                        $allitems = $stmt->fetchAll();
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+
+                                                ?>
+                                            </td>
+                                            <td> <?php
+                                                    $getoption = getoptions('wednesday', 'breakfast', 'option3');
+                                                    $alldata =  $getoption;
+                                                    ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
+                                                        $stmt->execute(array($data['cat']));
+                                                        $allitems = $stmt->fetchAll();
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+
+                                                ?>
+                                            </td>
+                                            <td> option 4 </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Thursday </td>
+                                            <td>
+                                                <?php
+                                                $getoption = getoptions('thursday', 'breakfast', 'option1');
+                                                $alldata =  $getoption;
+                                                ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $getitems =  getitems($data['cat']);
+                                                        $allitems = $getitems;
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                $getoption = getoptions('thursday', 'breakfast', 'option2');
+                                                $alldata =  $getoption;
+                                                ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $getitems =  getitems($data['cat']);
+                                                        $allitems = $getitems;
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value=""> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <?php
+                                                $getoption = getoptions('thursday', 'breakfast', 'option3');
+                                                $alldata =  $getoption;
+                                                ?>
+                                                <?php
+                                                foreach ($alldata as $data) {
+                                                ?>
+                                                    <select name="" id="" class="select2 form-control">
+                                                        <option value=""> -- Select --</option>
+                                                        <?php
+                                                        $getitems =  getitems($data['cat']);
+                                                        $allitems = $getitems;
+                                                        foreach ($allitems as $item) {
+                                                        ?>
+                                                            <option value="<?php echo $item['item_name']; ?>"> <?php echo $item['item_name']; ?> </option>
+                                                        <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                <?php
+                                                    echo "</br>";
+                                                }
+                                                ?>
+                                            </td>
+                                            <td> option 4 </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <table class="table table-bordered table-responsive card-body">
-                                <thead>
-                                    <tr>
-                                        <th> Options // Day </th>
-                                        <th> Option 1 </th>
-                                        <th> Option 2 </th>
-                                        <th> Option 3 </th>
-                                        <th> Special orders </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td> Saturday </td>
-                                        <td>
-                                            <?php
-                                            $getoption = getoptions('saturday', 'breakfast', 'option1');
-                                            $alldata =  $getoption;
-                                            ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $getitems =  getitems($data['cat']);
-                                                    $allitems = $getitems;
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-                                            ?>
-                                        </td>
-                                        <td>
-                                            <?php
-                                            $getoption = getoptions('saturday', 'breakfast', 'option2');
-                                            $alldata =  $getoption;
-                                            ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $getitems =  getitems($data['cat']);
-                                                    $allitems = $getitems;
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-                                            ?>
-                                        </td>
-                                        <td>
-                                            <?php
-                                            $getoption = getoptions('saturday', 'breakfast', 'option3');
-                                            $alldata =  $getoption;
-                                            ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $getitems =  getitems($data['cat']);
-                                                    $allitems = $getitems;
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-                                            ?>
-                                        </td>
-                                        <td>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Sunday </td>
-                                        <td> <?php
-                                                $getoption = getoptions('sunday', 'breakfast', 'option1');
-                                                $alldata =  $getoption;
-                                                ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
-                                                    $stmt->execute(array($data['cat']));
-                                                    $allitems = $stmt->fetchAll();
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-
-                                            ?>
-                                        </td>
-                                        <td> <?php
-                                                $getoption = getoptions('sunday', 'breakfast', 'option2');
-                                                $alldata =  $getoption;
-                                                ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
-                                                    $stmt->execute(array($data['cat']));
-                                                    $allitems = $stmt->fetchAll();
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-
-                                            ?>
-                                        </td>
-                                        <td> <?php
-                                                $getoption = getoptions('sunday', 'breakfast', 'option3');
-                                                $alldata =  $getoption;
-                                                ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
-                                                    $stmt->execute(array($data['cat']));
-                                                    $allitems = $stmt->fetchAll();
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-
-                                            ?>
-                                        </td>
-                                        <td> option 4 </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Monday </td>
-                                        <td> <?php
-                                                $getoption = getoptions('monday', 'breakfast', 'option1');
-                                                $alldata =  $getoption;
-                                                ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
-                                                    $stmt->execute(array($data['cat']));
-                                                    $allitems = $stmt->fetchAll();
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-
-                                            ?>
-                                        </td>
-                                        <td> <?php
-                                                $getoption = getoptions('monday', 'breakfast', 'option2');
-                                                $alldata =  $getoption;
-                                                ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
-                                                    $stmt->execute(array($data['cat']));
-                                                    $allitems = $stmt->fetchAll();
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-
-                                            ?>
-                                        </td>
-                                        <td> <?php
-                                                $getoption = getoptions('monday', 'breakfast', 'option3');
-                                                $alldata =  $getoption;
-                                                ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
-                                                    $stmt->execute(array($data['cat']));
-                                                    $allitems = $stmt->fetchAll();
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-
-                                            ?>
-                                        </td>
-                                        <td> option 4 </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Tuesday </td>
-                                        <td> <?php
-                                                $getoption = getoptions('tuesday', 'breakfast', 'option1');
-                                                $alldata =  $getoption;
-                                                ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
-                                                    $stmt->execute(array($data['cat']));
-                                                    $allitems = $stmt->fetchAll();
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-
-                                            ?>
-                                        </td>
-                                        <td> <?php
-                                                $getoption = getoptions('tuesday', 'breakfast', 'option2');
-                                                $alldata =  $getoption;
-                                                ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
-                                                    $stmt->execute(array($data['cat']));
-                                                    $allitems = $stmt->fetchAll();
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-
-                                            ?>
-                                        </td>
-                                        <td> <?php
-                                                $getoption = getoptions('tuesday', 'breakfast', 'option3');
-                                                $alldata =  $getoption;
-                                                ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
-                                                    $stmt->execute(array($data['cat']));
-                                                    $allitems = $stmt->fetchAll();
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-
-                                            ?>
-                                        </td>
-                                        <td> option 4 </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Wednesday </td>
-                                        <td> <?php
-                                                $getoption = getoptions('wednesday', 'breakfast', 'option1');
-                                                $alldata =  $getoption;
-                                                ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
-                                                    $stmt->execute(array($data['cat']));
-                                                    $allitems = $stmt->fetchAll();
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-
-                                            ?>
-                                        </td>
-                                        <td> <?php
-                                                $getoption = getoptions('wednesday', 'breakfast', 'option2');
-                                                $alldata =  $getoption;
-                                                ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
-                                                    $stmt->execute(array($data['cat']));
-                                                    $allitems = $stmt->fetchAll();
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-
-                                            ?>
-                                        </td>
-                                        <td> <?php
-                                                $getoption = getoptions('wednesday', 'breakfast', 'option3');
-                                                $alldata =  $getoption;
-                                                ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $stmt = $connect->prepare("SELECT * FROM items WHERE cat_id=?");
-                                                    $stmt->execute(array($data['cat']));
-                                                    $allitems = $stmt->fetchAll();
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-
-                                            ?>
-                                        </td>
-                                        <td> option 4 </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Thursday </td>
-                                        <td>
-                                            <?php
-                                            $getoption = getoptions('thursday', 'breakfast', 'option1');
-                                            $alldata =  $getoption;
-                                            ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $getitems =  getitems($data['cat']);
-                                                    $allitems = $getitems;
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-                                            ?>
-                                        </td>
-                                        <td>
-                                            <?php
-                                            $getoption = getoptions('thursday', 'breakfast', 'option2');
-                                            $alldata =  $getoption;
-                                            ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $getitems =  getitems($data['cat']);
-                                                    $allitems = $getitems;
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-                                            ?>
-                                        </td>
-                                        <td>
-                                            <?php
-                                            $getoption = getoptions('thursday', 'breakfast', 'option3');
-                                            $alldata =  $getoption;
-                                            ?>
-                                            <?php
-                                            foreach ($alldata as $data) {
-                                            ?>
-                                                <select name="" id="" class="select2 form-control">
-                                                    <option value=""> -- Select --</option>
-                                                    <?php
-                                                    $getitems =  getitems($data['cat']);
-                                                    $allitems = $getitems;
-                                                    foreach ($allitems as $item) {
-                                                    ?>
-                                                        <option value=""> <?php echo $item['item_name']; ?> </option>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                </select>
-                                            <?php
-                                                echo "</br>";
-                                            }
-                                            ?>
-                                        </td>
-                                        <td> option 4 </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                            <button type="submit" class="btn btn-primary" name="save1"> save Menu </button>
+                        </form>
+                        <?php
+                        if (isset($_POST['save1'])) {
+                            $options = $_POST['sabroption1'];
+                            foreach ($options as $option) {
+                                $stmt = $connect->prepare("INSERT INTO orders (menu_num, meal_type , day ,option1)
+                                VALUES (:zmenu_num, :zmeal_type, :zday , :zoption1)
+                                ");
+                                $stmt->execute(array(
+                                    "zmenu_num" => 1,
+                                    "zmeal_type" => 'breakfast',
+                                    "zday" => 'السبت',
+                                    "zoption1" => $option,
+                                ));
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-12">
                     <div class="card card-row ">
                         <div class="table1 table-responsive">
                             <div class="card-header bg bg-primary">
@@ -1093,7 +1113,7 @@ function getitems($cat_id)
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-12">
                     <div class="card card-row ">
                         <div class="table1 table-responsive">
                             <div class="card-header bg bg-success">
@@ -1614,8 +1634,8 @@ function getitems($cat_id)
                         </div>
                     </div>
                 </div>
-            <button type="submit" class="btn btn-primary btn-block"> Save Menu <i class="fa fa-save"></i>  </button>
-            
+                <button type="submit" class="btn btn-primary btn-block"> Save Menu <i class="fa fa-save"></i> </button>
+
             </div>
             <!-- /.col -->
         </div>
@@ -1624,5 +1644,5 @@ function getitems($cat_id)
     <!-- /.container-fluid -->
 </section>
 <br>
-            <br>
-            <br>
+<br>
+<br>
