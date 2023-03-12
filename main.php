@@ -98,7 +98,7 @@ include 'include/navbar.php';
     } elseif ($dir == 'client_cat' && $page == 'report') {
         include "client_cat/report.php";
     }
-    // START cLIENTS
+    // START cLIENTS (patients)
     if ($dir == 'clients' && $page == 'add') {
         include "clients/add.php";
     } elseif ($dir == 'clients' && $page == 'edit') {
@@ -108,6 +108,29 @@ include 'include/navbar.php';
     } elseif ($dir == 'clients' && $page == 'report') {
         include "clients/report.php";
     }
+
+    // START SETTING
+    // START EMPLOYEE
+    if ($dir == 'setting' && $page == 'add_emp') {
+        include "setting/add_emp.php";
+    } elseif ($dir == 'setting' && $page == 'edit_emp') {
+        include "setting/edit_emp.php";
+    } elseif ($dir == 'setting' && $page == 'delete_emp') {
+        include 'setting/delete_emp.php';
+    } elseif ($dir == 'setting' && $page == 'report_emp') {
+        include "setting/report_emp.php";
+    }
+    // START Presentation (الموردين )
+    if ($dir == 'setting' && $page == 'add_pre') {
+        include "setting/add_pre.php";
+    } elseif ($dir == 'setting' && $page == 'edit_pre') {
+        include "setting/edit_pre.php";
+    } elseif ($dir == 'setting' && $page == 'delete_pre') {
+        include 'setting/delete_pre.php';
+    } elseif ($dir == 'setting' && $page == 'report_pre') {
+        include "setting/report_pre.php";
+    }
+
     ?>
 </div>
 
