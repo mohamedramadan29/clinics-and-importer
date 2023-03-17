@@ -1,39 +1,80 @@
+<!-------------------------- START TEST -------------------------->
 <?php
-if (isset($_POST['add_option'])) {
-    $name = $_POST['name'];
-    $menu_num = $_POST['menu_num'];
-    $meal_type = $_POST['meal_type'];
-    $day = $_POST['day'];
-    $option_type = $_POST['option_type'];
-    $cat = $_POST['cat'];
-    $special_desc = $_POST['special_desc'];
-    $formerror = [];
-    if (empty($name) || empty($menu_num) || empty($meal_type) || empty($day) || empty($option_type) || empty($cat)) {
-        $formerror[] = '  من فضلك ادخل جميع المعلومات  ';
-    }
-    if (empty($formerror)) {
-        $stmt = $connect->prepare("INSERT INTO options (name, menu_num,meal_type,day,option_type,cat,special_desc)
-        VALUES (:zname,:zmenu_num,:zmeal_type,:zday,:zoption_type,:zcat,:special_desc)");
-        $stmt->execute(array(
-            "zname" => $name,
-            "zmenu_num" => $menu_num,
-            "zmeal_type" => $meal_type,
-            "zday" => $day,
-            "zoption_type" => $option_type,
-            "zcat" => $cat,
-            "special_desc" => $special_desc,
-        ));
-        if ($stmt) {
-            $_SESSION['success_message'] = " Added successfully ";
-            header('Location:main?dir=menus&page=report');
+$days = array("saturday", "sunday", "monday", "tuesday", "wednesday", "thursday");
+if (isset($_POST['save1'])) {
+    foreach ($days as $day) {
+        $special = $_POST[$day . '_special'];
+        $special2 = $_POST[$day . '_special2'];
+        $special3 = $_POST[$day . '_special3'];
+        if (isset($_POST[$day . '_option1'])) {
+            $option1 = implode(',', $_POST[$day . '_option1']);
+        } else {
+            $option1 = '';
         }
-    } else {
-        foreach ($formerror as $error) {
-?>
-            <li class="alert alert-danger"> <?php echo $error; ?> </li>
-<?php
+        if ($_POST[$day . '_option2']) {
+            $option2 = implode(',', $_POST[$day . '_option2']);
+        } else {
+            $option2 = '';
         }
+        if ($_POST[$day . '_option3']) {
+            $option3 = implode(',', $_POST[$day . '_option3']);
+        } else {
+            $option3 = '';
+        }
+        if ($_POST[$day . '_option4']) {
+            $option4 = implode(',', $_POST[$day . '_option4']);
+        } else {
+            $option4 = '';
+        }
+        if ($_POST[$day . '_option5']) {
+            $option5 = implode(',', $_POST[$day . '_option5']);
+        } else {
+            $option5 = '';
+        }
+        if ($_POST[$day . '_option6']) {
+            $option6 = implode(',', $_POST[$day . '_option6']);
+        } else {
+            $option6 = '';
+        }
+        if ($_POST[$day . '_option7']) {
+            $option7 = implode(',', $_POST[$day . '_option7']);
+        } else {
+            $option7 = '';
+        }
+        if ($_POST[$day . '_option8']) {
+            $option8 = implode(',', $_POST[$day . '_option8']);
+        } else {
+            $option8 = '';
+        }
+        if ($_POST[$day . '_option9']) {
+            $option9 = implode(',', $_POST[$day . '_option9']);
+        } else {
+            $option9 = '';
+        }
+        $option1_qt = $_POST[$day . '_option1_qt'];
+        $option2_qt = $_POST[$day . '_option2_qt'];
+        $option3_qt = $_POST[$day . '_option3_qt'];
+        $option4_qt = $_POST[$day . '_option4_qt'];
+        $option5_qt = $_POST[$day . '_option5_qt'];
+        $option6_qt = $_POST[$day . '_option6_qt'];
+        $option7_qt = $_POST[$day . '_option7_qt'];
+        $option8_qt = $_POST[$day . '_option8_qt'];
+        $option9_qt = $_POST[$day . '_option9_qt'];
+        $stmt = $connect->prepare("INSERT INTO breakfast_order (menu_num,meal_type,day,option1,option1_qt,
+        option2,option2_qt,option3,option3_qt,special,option4,option4_qt,option5,option5_qt,option6,option6_qt,special2
+        ,option7,option7_qt,option8,option8_qt,option9,option9_qt,special3,order_date_from,order_date_to,emp_id,pres_id)
+         value(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        $stmt->execute([
+            1, 'breakfast', $day, $option1, $option1_qt, $option2, $option2_qt,
+            $option3, $option3_qt, $special, $option4, $option4_qt, $option5, $option5_qt, $option6, $option6_qt, $special2, $option7, $option7_qt,
+            $option8, $option8_qt, $option9, $option9_qt, $special3, 20 / 2 / 2023, 26 / 2 / 2023, 1, 1
+        ]);
     }
+    if ($stmt) {
+        $_SESSION['success_message'] = " Order Added ";
+        header('Location:main?dir=main_menu&page=report');
+    }
+    //header("location:main.php?dir=main_menu&page=report");
 }
 
 
