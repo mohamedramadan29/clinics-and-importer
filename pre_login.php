@@ -6,13 +6,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['user_name'];
     $password = $_POST['password'];
     $stmt = $connect->prepare(
-        'SELECT * FROM admin WHERE user_name=? AND password=?'
+        'SELECT * FROM presentions WHERE name=? AND password=?'
     );
     $stmt->execute([$username, $password]);
     $data = $stmt->fetchColumn();
     $count = $stmt->rowCount();
     if ($count > 0) {
-        $_SESSION['admin_id'] = $data['id'];
+        $_SESSION['supp_id'] = $data['id'];
         header('Location:main.php?dir=dashboard&page=dashboard');
         exit();
     }
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <a href="index" class="h1"><b>Clinic</b>System</a>
                         </div>
                         <div class="card-body">
-                            <p class="login-box-msg">Sign in as Admin</p>
+                            <p class="login-box-msg">Sign in as Pre</p>
                             <form action="" method="post">
                                 <div class="input-group mb-3">
                                     <input type="text" name="user_name" class="form-control" placeholder="UserName">
