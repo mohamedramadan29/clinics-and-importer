@@ -269,6 +269,40 @@
          </li>
          <li class="nav-item">
            <a href="#" class="nav-link">
+             <i class="nav-icon fa fa-bell"></i>
+             <p>
+               Goals
+               <i class="fas fa-angle-left right"></i>
+             </p>
+           </a>
+           <ul class="nav nav-treeview">
+             <li class="nav-item">
+               <a href="main.php?dir=goals&page=report" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p> All goals </p>
+               </a>
+             </li>
+           </ul>
+         </li>
+         <li class="nav-item">
+           <a href="#" class="nav-link">
+             <i class="nav-icon fa fa-book"></i>
+             <p>
+               Pdf Files 
+               <i class="fas fa-angle-left right"></i>
+             </p>
+           </a>
+           <ul class="nav nav-treeview">
+             <li class="nav-item">
+               <a href="main.php?dir=pdf_files&page=report" class="nav-link">
+                 <i class="far fa-circle nav-icon"></i>
+                 <p> All files </p>
+               </a>
+             </li>
+           </ul>
+         </li>
+         <li class="nav-item">
+           <a href="#" class="nav-link">
              <i class="nav-icon fas fa-edit"></i>
              <p>
                Setting

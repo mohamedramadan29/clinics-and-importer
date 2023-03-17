@@ -144,7 +144,26 @@ include 'include/navbar.php';
     if ($dir == 'calculator' && $page == 'report') {
         include "calculator/report.php";
     }
-
+    // START Goals 
+    if ($dir == 'goals' && $page == 'add') {
+        include "goals/add.php";
+    } elseif ($dir == 'goals' && $page == 'edit') {
+        include "goals/edit.php";
+    } elseif ($dir == 'goals' && $page == 'delete') {
+        include 'goals/delete.php';
+    } elseif ($dir == 'goals' && $page == 'report') {
+        include "goals/report.php";
+    }
+    // START Pdf Files  
+    if ($dir == 'pdf_files' && $page == 'add') {
+        include "pdf_files/add.php";
+    } elseif ($dir == 'pdf_files' && $page == 'edit') {
+        include "pdf_files/edit.php";
+    } elseif ($dir == 'pdf_files' && $page == 'delete') {
+        include 'pdf_files/delete.php';
+    } elseif ($dir == 'pdf_files' && $page == 'report') {
+        include "pdf_files/report.php";
+    }
     ?>
 
 </div>
