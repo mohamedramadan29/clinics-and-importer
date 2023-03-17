@@ -140,7 +140,13 @@ include 'include/navbar.php';
     } elseif ($dir == 'login_page' && $page == 'report') {
         include "login_page/report.php";
     }
+    // START CALCULATOR
+    if ($dir == 'calculator' && $page == 'report') {
+        include "calculator/report.php";
+    }
+
     ?>
+
 </div>
 
 </div>

@@ -260,6 +260,14 @@
            </ul>
          </li>
          <li class="nav-item">
+           <a href="main.php?dir=calculator&page=report" class="nav-link">
+             <i class="fa fa-calculator"></i>
+             <p>
+               calculator
+             </p>
+           </a>
+         </li>
+         <li class="nav-item">
            <a href="#" class="nav-link">
              <i class="nav-icon fas fa-edit"></i>
              <p>
@@ -277,7 +285,7 @@
              <li class="nav-item">
                <a href="main.php?dir=setting&page=report_pre" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
-                 <p>Presentations</p>
+                 <p>Suppliers</p>
                </a>
              </li>
              <li class="nav-item">
