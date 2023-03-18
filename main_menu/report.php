@@ -62,7 +62,7 @@ function getitems($cat_id)
             </div>
             <br>
             <h2 class="bg bg-info" style="font-size: 30px; font-weight:bold; padding:5px"> Menu 1 </h2>
-            <form action="main.php?dir=main_menu&page=add" method="post" enctype="multipart/form-data">
+            <form autocomplete="off" action="main.php?dir=main_menu&page=add" method="post" enctype="multipart/form-data">
                 <div class="card">
 
                     <div class="card-body">
@@ -71,13 +71,13 @@ function getitems($cat_id)
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="Company-2" class="block">Date From</label>
-                                    <input type="text" id="" name="date_from" class="datepicker form-control" placeholder="Select Start Date">
+                                    <input required type="text" id="" name="date_from" class="datepicker form-control" placeholder="Select Start Date">
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="Company-2" class="block">Date To</label>
-                                    <input type="text" id="" name="date_to" class="datepicker form-control" placeholder="Select End Date">
+                                    <input required type="text" id="" name="date_to" class="datepicker form-control" placeholder="Select End Date">
                                 </div>
                             </div>
                             <div class="col-4">

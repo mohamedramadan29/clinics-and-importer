@@ -8,6 +8,16 @@ if (isset($_GET['to'])) {
 ?>
 <!-- START FUNCTION  -->
 <?php
+// functions to get date and day name for each record
+
+function getdaydata($date_from,$date_to,$day)
+{
+    include "connect.php";
+    $stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE order_date_from=? AND order_date_to=? AND day= ?");
+    $stmt->execute(array($date_from,$date_to,$day));
+    $option_data = $stmt->fetch();
+    return $option_data;
+}
 function getoptions($day, $meal_type, $option_type)
 {
     include 'connect.php';
@@ -69,7 +79,7 @@ function getitems($cat_id)
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="Company-2" class="block">Date From</label>
-                                    <input type="text" disabled id="" name="date_from" class="datepicker form-control" value="<?php echo $date_from ?>" >
+                                    <input type="text" disabled id="" name="date_from" class="datepicker form-control" value="<?php echo $date_from ?>">
                                 </div>
                             </div>
                             <div class="col-4">

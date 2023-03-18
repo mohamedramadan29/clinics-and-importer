@@ -17,6 +17,11 @@
                 <td> Saturday </td>
                 <td>
                     <?php
+                    // test
+                    $daydata = getdaydata($date_from, $date_to, 'saturday');
+                    $option1 = $daydata['option1'];
+                    $options1 = explode(",", $option1);
+                    //end test
                     $getoption = getoptions('saturday', 'breakfast', 'option1');
                     $alldata =  $getoption;
                     if (count($getoption) > 0) {
@@ -28,8 +33,9 @@
                                 $getitems =  getitems($data['cat']);
                                 $allitems = $getitems;
                                 foreach ($allitems as $item) {
+                                    $selected = in_array($item['id'], $options1) ? 'selected' : '';
                                 ?>
-                                    <option value="<?php echo $item['id']; ?> "> <?php echo $item['item_name']; ?> </option>
+                                    <option <?php echo $selected; ?> value="<?php echo $item['id']; ?>"> <?php echo $item['item_name']; ?> </option>
                                 <?php
                                 }
                                 ?>
@@ -38,13 +44,18 @@
                             echo "</br>";
                         }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option1_qt">
+                        <input placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option1_qt" value="<?php echo $daydata['option1_qt']; ?>">
                     <?php
                     }
                     ?>
                 </td>
                 <td>
                     <?php
+                    // test
+                    $daydata = getdaydata($date_from, $date_to, 'saturday');
+                    $option1 = $daydata['option2'];
+                    $options1 = explode(",", $option1);
+                    //end test
                     $getoption = getoptions('saturday', 'breakfast', 'option2');
                     $alldata =  $getoption;
                     if (count($getoption) > 0) {
@@ -56,8 +67,9 @@
                                 $getitems =  getitems($data['cat']);
                                 $allitems = $getitems;
                                 foreach ($allitems as $item) {
+                                    $selected = in_array($item['id'], $options1) ? 'selected' : '';
                                 ?>
-                                    <option value="<?php echo $item['id']; ?> "> <?php echo $item['item_name']; ?> </option>
+                                    <option <?php echo $selected; ?> value="<?php echo $item['id']; ?>"> <?php echo $item['item_name']; ?> </option>
                                 <?php
                                 }
                                 ?>
@@ -66,12 +78,17 @@
                             echo "</br>";
                         }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option2_qt">
+                        <input placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option2_qt" value="<?php echo $daydata['option2_qt']; ?>">
                     <?php
                     } ?>
                 </td>
                 <td>
                     <?php
+                    // test
+                    $daydata = getdaydata($date_from, $date_to, 'saturday');
+                    $option1 = $daydata['option3'];
+                    $options1 = explode(",", $option1);
+                    //end test
                     $getoption = getoptions('saturday', 'breakfast', 'option3');
                     $alldata =  $getoption;
                     if (count($getoption) > 0) {
@@ -83,8 +100,9 @@
                                 $getitems =  getitems($data['cat']);
                                 $allitems = $getitems;
                                 foreach ($allitems as $item) {
+                                    $selected = in_array($item['id'], $options1) ? 'selected' : '';
                                 ?>
-                                    <option value="<?php echo $item['id']; ?> "> <?php echo $item['item_name']; ?> </option>
+                                    <option <?php echo $selected; ?> value="<?php echo $item['id']; ?>"> <?php echo $item['item_name']; ?> </option>
                                 <?php
                                 }
                                 ?>
@@ -93,40 +111,60 @@
                             echo "</br>";
                         }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option3_qt">
+                        <input placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option3_qt" value="<?php echo $daydata['option3_qt'] ?>">
                     <?php } ?>
                 </td>
                 <td>
-                    <textarea name="saturday_special" placeholder="Enter Special Order" class="form-control"></textarea>
+                    <textarea name="saturday_special" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special']; ?></textarea>
                 </td>
             </tr>
             <tr>
                 <td> Sunday </td>
-                <td> <?php
-                        $getoption = getoptions('sunday', 'breakfast', 'option1');
-                        $alldata =  $getoption;
-                        if (count($getoption) > 0) {
-                            foreach ($alldata as $data) {
-                        ?>
+                <td>
+                    <?php
+                    // test
+                    $stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE order_date_from=? AND order_date_to=? AND day='sunday'");
+                    $stmt->execute(array($date_from, $date_to));
+                    $option_data = $stmt->fetch();
+                    $option1 = $option_data['option1'];
+                    $options1 = explode(",", $option1);
+                    //end test
+                    $getoption = getoptions('sunday', 'breakfast', 'option1');
+                    $alldata =  $getoption;
+                    if (count($getoption) > 0) {
+                        foreach ($alldata as $data) {
+                    ?>
                             <select name="sunday_option1[]" id="" class="select2 form-control">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
                                 $allitems = $getitems;
+                                /*
+                                foreach($options1 as $option){
                                 foreach ($allitems as $item) {
+                                
+                                    ?>
+                                    <option <?php if($option == $item['id']) echo 'selected' ?> value="<?php echo $item['id']; ?> "> <?php echo $item['item_name']; ?> </option>
+                                    <?php
+                                }
+                                    
+                                }
+                                */
+                                foreach ($allitems as $item) {
+                                    $selected = in_array($item['id'], $options1) ? 'selected' : '';
                                 ?>
-                                    <option value="<?php echo $item['id']; ?> "> <?php echo $item['item_name']; ?> </option>
+                                    <option <?php echo $selected; ?> value="<?php echo $item['id']; ?>"> <?php echo $item['item_name']; ?> </option>
                                 <?php
                                 }
                                 ?>
                             </select>
                         <?php
-                                echo "</br>";
-                            }
-                        ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="sunday_option1_qt">
-                    <?php
+                            echo "</br>";
                         }
+                        ?>
+                        <input placeholder="Enter Quantity" type="number" class="form-control" name="sunday_option1_qt" value="<?php echo $option_data['option1_qt']; ?>">
+                    <?php
+                    }
                     ?>
                 </td>
                 <td> <?php
