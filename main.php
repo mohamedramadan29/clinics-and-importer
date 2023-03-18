@@ -5,10 +5,15 @@ session_start();
 include 'init.php';
 if (isset($_SESSION["emp_id"])) {
     include 'include/emp_navbar.php';
-} elseif (isset($_SESSION['supp_id'])) {
-} else {
+}
+if (isset($_SESSION['supp_id'])) {
+    include 'include/supp_navbar.php';
+}
+if (isset($_SESSION['admin_id'])) {
     include 'include/navbar.php';
 }
+
+echo $_SESSION['supp_id'];
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -181,6 +186,17 @@ if (isset($_SESSION["emp_id"])) {
         include "pdf_files/report.php";
     } elseif ($dir == 'pdf_files' && $page == 'download') {
         include "pdf_files/download.php";
+    }
+    // START SUPPLIERS 
+    // START Pdf Files  
+    if ($dir == 'supp_dash' && $page == 'add') {
+        include "supp_dash/add.php";
+    } elseif ($dir == 'supp_dash' && $page == 'order_details') {
+        include "supp_dash/order_details.php";
+    } elseif ($dir == 'supp_dash' && $page == 'delete') {
+        include 'supp_dash/delete.php';
+    } elseif ($dir == 'supp_dash' && $page == 'report') {
+        include "supp_dash/report.php";
     }
     ?>
 

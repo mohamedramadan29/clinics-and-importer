@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'SELECT * FROM presentions WHERE name=? AND password=?'
     );
     $stmt->execute([$username, $password]);
-    $data = $stmt->fetchColumn();
+    $data = $stmt->fetch();
     $count = $stmt->rowCount();
     if ($count > 0) {
         $_SESSION['supp_id'] = $data['id'];
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <a href="index" class="h1"><b>Clinic</b>System</a>
                         </div>
                         <div class="card-body">
-                            <p class="login-box-msg">Sign in as Pre</p>
+                            <p class="login-box-msg">Sign in as employee</p>
                             <form action="" method="post">
                                 <div class="input-group mb-3">
                                     <input type="text" name="user_name" class="form-control" placeholder="UserName">
