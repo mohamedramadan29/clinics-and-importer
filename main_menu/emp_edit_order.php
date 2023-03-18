@@ -72,7 +72,7 @@ function getitems($cat_id)
             }
             ?>
             <h2 class="bg bg-info" style="font-size: 30px; font-weight:bold; padding:5px"> Menu 1 </h2>
-            <form action="main.php?dir=main_menu&page=add" method="post" enctype="multipart/form-data">
+            <form action="main.php?dir=main_menu&page=edit_order" method="post" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
@@ -80,12 +80,14 @@ function getitems($cat_id)
                                 <div class="form-group">
                                     <label for="Company-2" class="block">Date From</label>
                                     <input type="text" disabled id="" name="date_from" class="datepicker form-control" value="<?php echo $date_from ?>">
+                                    <input type="hidden" id="" name="date_from" class="datepicker form-control" value="<?php echo $date_from ?>">
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="Company-2" class="block">Date To</label>
                                     <input type="text" id="" disabled name="date_to" class="datepicker form-control" value="<?php echo $date_to ?>">
+                                    <input type="hidden" id="" name="date_to" class="datepicker form-control" value="<?php echo $date_to ?>">
                                 </div>
                             </div>
                             <div class="col-4">

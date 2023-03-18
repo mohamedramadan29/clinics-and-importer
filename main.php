@@ -77,6 +77,8 @@ if (isset($_SESSION["emp_id"])) {
         include "main_menu/emp_orders.php";
     } elseif ($dir == 'main_menu' && $page == 'emp_edit_order') {
         include "main_menu/emp_edit_order.php";
+    } elseif ($dir == 'main_menu' && $page == 'edit_order') {
+        include "main_menu/edit_order.php";
     } elseif ($dir == 'main_menu' && $page == 'delete_order') {
         include "main_menu/delete_order.php";
     }
