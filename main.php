@@ -71,11 +71,14 @@ if (isset($_SESSION["emp_id"])) {
     } elseif ($dir == 'main_menu' && $page == 'report2') {
         include "main_menu/report2.php";
     }
+
     // EMPLOYEER
     elseif ($dir == 'main_menu' && $page == 'emp_orders') {
         include "main_menu/emp_orders.php";
     } elseif ($dir == 'main_menu' && $page == 'emp_edit_order') {
         include "main_menu/emp_edit_order.php";
+    } elseif ($dir == 'main_menu' && $page == 'delete_order') {
+        include "main_menu/delete_order.php";
     }
     // START sessions 
     if ($dir == 'sessions' && $page == 'add') {

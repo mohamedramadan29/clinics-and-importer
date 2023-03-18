@@ -51,8 +51,8 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $stmt = $connect->prepare("SELECT order_date_from,order_date_to, menu_num,pres_id FROM breakfast_order GROUP BY order_date_from,order_date_to,menu_num,pres_id");
-                                            $stmt->execute();
+                                            $stmt = $connect->prepare("SELECT order_date_from,order_date_to, menu_num,pres_id FROM breakfast_order  WHERE emp_id=? GROUP BY order_date_from,order_date_to,menu_num,pres_id");
+                                            $stmt->execute(array($_SESSION['emp_id']));
                                             $allorders = $stmt->fetchAll();
                                             $i = 0;
                                             foreach ($allorders as $order) {
