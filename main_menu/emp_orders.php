@@ -59,13 +59,14 @@
                                                 $i++;
                                             ?>
                                                 <tr>
-                                                    <td> <?php echo $i; ?> </td> 
+                                                    <td> <?php echo $i; ?> </td>
                                                     <td> <?php echo  $order['menu_num']; ?> </td>
-                                                    <td> <?php echo  $order['pres_id']; ?> </td> 
+                                                    <td> <?php echo  $order['pres_id']; ?> </td>
                                                     <td> <?php echo  $order['order_date_from']; ?> </td>
                                                     <td> <?php echo  $order['order_date_to']; ?> </td>
                                                     <td>
-                                                        <a href="main.php?dir=main_menu&page=emp_edit_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>" class="btn btn-warning"> Edit Order  <i class='fa fa-pen'></i> </a>
+                                                        <a href="main.php?dir=main_menu&page=emp_edit_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>" class="btn btn-warning btn-sm"> Edit Order <i class='fa fa-pen'></i> </a>
+                                                        <a href="main.php?dir=main_menu&page=delete_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>" class="btn btn-danger btn-sm"> Delete Order <i class='fa fa-trash'></i> </a>
                                                     </td>
                                                 </tr>
                                             <?php
