@@ -1,3 +1,11 @@
+<?php
+if (isset($_GET['from'])) {
+    $date_from = $_GET['from'];
+}
+if (isset($_GET['to'])) {
+    $date_to = $_GET['to'];
+}
+?>
 <!-- START FUNCTION  -->
 <?php
 function getoptions($day, $meal_type, $option_type)
@@ -19,20 +27,18 @@ function getitems($cat_id)
     return $allitems;
 }
 ?>
-
 <!-- END FUNCTION -->
-
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1> Menus </h1>
+                <h1> Edit Order </h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active"> Menus </li>
+                    <li class="breadcrumb-item active"> Edit Order </li>
                 </ol>
             </div>
         </div>
@@ -55,29 +61,21 @@ function getitems($cat_id)
             <?php
             }
             ?>
-            <br>
-            <div class="flex justify-content-between justify-content-center text-center">
-                <a href="main.php?dir=main_menu&page=report" class="btn btn-info"> Menu 1 </a>
-                <a href="main.php?dir=main_menu&page=report2" class="btn btn-success"> Menu 2 </a>
-            </div>
-            <br>
             <h2 class="bg bg-info" style="font-size: 30px; font-weight:bold; padding:5px"> Menu 1 </h2>
             <form action="main.php?dir=main_menu&page=add" method="post" enctype="multipart/form-data">
                 <div class="card">
-
                     <div class="card-body">
                         <div class="row">
-
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="Company-2" class="block">Date From</label>
-                                    <input type="text" id="" name="date_from" class="datepicker form-control" placeholder="Select Start Date">
+                                    <input type="text" disabled id="" name="date_from" class="datepicker form-control" value="<?php echo $date_from ?>" >
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="Company-2" class="block">Date To</label>
-                                    <input type="text" id="" name="date_to" class="datepicker form-control" placeholder="Select End Date">
+                                    <input type="text" id="" disabled name="date_to" class="datepicker form-control" value="<?php echo $date_to ?>">
                                 </div>
                             </div>
                             <div class="col-4">
@@ -100,7 +98,7 @@ function getitems($cat_id)
                 <div class="row main_menu">
                     <div class="col-lg-12">
                         <div class="card card-row ">
-                            <?php include "breakfast.php"; ?>
+                            <?php include "emp_breakfast.php"; ?>
                         </div>
                     </div>
                     <div class="col-lg-12">
@@ -115,8 +113,7 @@ function getitems($cat_id)
                     </div>
                 </div>
                 <div class="flex text-center">
-                    <button type="submit" class="btn btn-primary" name="save1"> save Order <i class="fa fa-save"></i> </button>
-                    <button type="submit" class="btn btn-warning" name="save1"> Save a draft <i class="fa fa-save"></i> </button>
+                    <button type="submit" class="btn btn-primary" name="save1"> Edit Order <i class="fa fa-save"></i> </button>
                 </div>
                 <br>
                 <br>

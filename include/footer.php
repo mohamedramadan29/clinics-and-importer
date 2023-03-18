@@ -1,15 +1,14 @@
-
 <footer class="main-footer">
-    <strong>Copyright &copy; 2023 <a href="">Clinic System </a>.</strong>
-    All rights reserved.
-  
-  </footer>
+  <strong>Copyright &copy; 2023 <a href="">Clinic System </a>.</strong>
+  All rights reserved.
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+</footer>
+
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Control sidebar content goes here -->
+</aside>
+<!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
@@ -59,22 +58,35 @@
 <script src="plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- Select2 -->
 <script src="plugins/select2/js/select2.full.min.js"></script>
+<!--  START TIME PICKER -->
+
+<!-- jQuery UI -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+
+<!-- jQuery Timepicker Addon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.13.0/jquery.timepicker.min.css" integrity="sha512-wlq3zFYkFJpXnb4v4A4p4KUJ10C4sB6xv2Sxum+8RLGhLXb/VyMDvQJH7DN/GvtJzGZcY+JrSErV7LmGm/ZuEg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.13.0/jquery.timepicker.min.js" integrity="sha512-vQYMD3qZh+pcpxmAHXcQT/rO9LJWmp4ev4vM6UzWWBb/ty6WTEfg8TQxLyRGJ/l1+m0NkV7n8a2zEdV7Jg+1eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<!-- End Time Picker -->
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
- 
+
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
 <script src="dist/js/pages/main.js"></script>
 <!-- Page specific script -->
 <script>
-  $(function () {
+  $(function() {
     //Initialize Select2 Elements
     $('.select2').select2()
-    
+
     $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-    //  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        "buttons": ["excel", "pdf"]
+      "responsive": true,
+      "lengthChange": false,
+      "autoWidth": false,
+      //  "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      "buttons": ["excel", "pdf"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#my_table').DataTable({
       "paging": true,
@@ -86,10 +98,20 @@
       //"responsive": true,
     });
   });
-  $(function () {
-  bsCustomFileInput.init();
-});
+  $(function() {
+    bsCustomFileInput.init();
+  });
+</script>
+
+<script>
+  $(function() {
+    // Datepicker
+    $(".datepicker").datepicker({
+      dateFormat: "DD d MM yy"
+    });
+  });
 </script>
 
 </body>
+
 </html>

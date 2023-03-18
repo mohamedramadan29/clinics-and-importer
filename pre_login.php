@@ -1,6 +1,7 @@
 <?php
 $pagetitle = '  Login  ';
 ob_start();
+session_start();
 include 'init.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['user_name'];

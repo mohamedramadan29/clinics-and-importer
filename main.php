@@ -3,7 +3,12 @@ ob_start();
 $pagetitle = 'Home';
 session_start();
 include 'init.php';
-include 'include/navbar.php';
+if (isset($_SESSION["emp_id"])) {
+    include 'include/emp_navbar.php';
+} elseif (isset($_SESSION['supp_id'])) {
+} else {
+    include 'include/navbar.php';
+}
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -65,6 +70,12 @@ include 'include/navbar.php';
         include "main_menu/report.php";
     } elseif ($dir == 'main_menu' && $page == 'report2') {
         include "main_menu/report2.php";
+    }
+    // EMPLOYEER
+    elseif ($dir == 'main_menu' && $page == 'emp_orders') {
+        include "main_menu/emp_orders.php";
+    } elseif ($dir == 'main_menu' && $page == 'emp_edit_order') {
+        include "main_menu/emp_edit_order.php";
     }
     // START sessions 
     if ($dir == 'sessions' && $page == 'add') {

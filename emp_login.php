@@ -1,6 +1,7 @@
 <?php
 $pagetitle = '  Login  ';
 ob_start();
+session_start();
 include 'init.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['user_name'];
@@ -9,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'SELECT * FROM emplyees WHERE emp_name=? AND emp_password=?'
     );
     $stmt->execute([$username, $password]);
-    $data = $stmt->fetchColumn();
+    $data = $stmt->fetch();
     $count = $stmt->rowCount();
     if ($count > 0) {
         $_SESSION['emp_id'] = $data['id'];
