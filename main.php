@@ -163,6 +163,8 @@ include 'include/navbar.php';
         include 'pdf_files/delete.php';
     } elseif ($dir == 'pdf_files' && $page == 'report') {
         include "pdf_files/report.php";
+    } elseif ($dir == 'pdf_files' && $page == 'download') {
+        include "pdf_files/download.php";
     }
     ?>
 

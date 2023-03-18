@@ -3,12 +3,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Goals </h1>
+                        <h1>Files </h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Goals</li>
+                            <li class="breadcrumb-item active">Files</li>
                         </ol>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#add-Modal"> Add New Goal <i class="fa fa-plus"></i> </button>
+                                <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#add-Modal"> Add New file <i class="fa fa-plus"></i> </button>
                             </div>
                             <?php
                             if (isset($_SESSION['success_message'])) {
@@ -32,7 +32,6 @@
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                     <h5><i class="icon fas fa-check"></i><?php echo $message; ?></th5>
                                 </div>
-
                             <?php
                             }
                             ?>
@@ -42,59 +41,32 @@
                                         <thead>
                                             <tr>
                                                 <th> # </th>
-                                                <th> description</th>
-                                                <th> date </th>
+                                                <th> File Name </th>
+                                                <th> Desc </th>
                                                 <th> Action </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $stmt = $connect->prepare("SELECT * FROM goals");
+                                            $stmt = $connect->prepare("SELECT * FROM files");
                                             $stmt->execute();
-                                            $allgoals = $stmt->fetchAll();
+                                            $allfiles = $stmt->fetchAll();
                                             $i = 0;
-                                            foreach ($allgoals as $goal) {
+                                            foreach ($allfiles as $file) {
                                                 $i++;
                                             ?>
                                                 <tr>
                                                     <td> <?php echo $i; ?> </td>
-                                                    <td> <?php echo  $goal['goal_desc']; ?> </td>
-                                                    <td> <?php echo  $goal['date']; ?> </td>
+                                                    <td> <?php echo  $file['name']; ?> </td>
+                                                    <td> <?php echo  $file['file_desc']; ?> </td>
                                                     <td>
-                                                        <button type="button" class="btn btn-success btn-sm waves-effect" data-toggle="modal" data-target="#edit-Modal_<?php echo $goal['id']; ?>"> Edit <i class='fa fa-pen'></i> </button>
+
+                                                        <a href="uploads/files/<?php echo $file['file']; ?>" target="_blank" class="btn btn-warning btn-sm"> View <i class='fa fa-eye'></i> </a>
+                                                        <a href="main.php?dir=pdf_file&page=download&file=<?php echo urlencode($file['file']); ?>" class="btn btn-success btn-sm">Download <i class="fa fa-download"></i></a>
                                                         <a href="main.php?dir=goals&page=delete&goal_id=<?php echo $goal['id']; ?>" class="confirm btn btn-danger btn-sm"> Delete <i class='fa fa-trash'></i> </a>
                                                     </td>
                                                 </tr>
-                                                <!-- EDIT NEW CATEGORY MODAL   -->
-                                                <div class="modal fade" id="edit-Modal_<?php echo $goal['id']; ?>" tabindex="-1" role="dialog">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h4 class="modal-title"> edit Goal </h4>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <form action="main.php?dir=goals&page=edit" method="post" enctype="multipart/form-data">
-                                                                <div class="modal-body">
-                                                                    <div class="form-group">
-                                                                        <input type="hidden" name="goal_id" value="<?php echo $goal['id']; ?>">
-                                                                        <label for="Company-2" class="block">Goal </label>
-                                                                        <textarea name="desc" id="" class="form-control"><?php echo $goal['goal_desc']; ?></textarea>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label for="Company-2" class="block">Date</label>
-                                                                        <input required id="Company-2" name="date" type="date" value="<?php echo $goal['date']; ?>" class="form-control required">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
-                                                                    <button type="submit" name="edit_cat" class="btn btn-primary waves-effect waves-light ">Save</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
                                             <?php
                                             }
                                             ?>
@@ -102,27 +74,34 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- ADD NEW CATEGORY MODAL   -->
                         <div class="modal fade" id="add-Modal" tabindex="-1" role="dialog">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title"> Add Goal </h4>
+                                        <h4 class="modal-title"> Add File </h4>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="main.php?dir=goals&page=add" method="post" enctype="multipart/form-data">
+                                    <form action="main.php?dir=pdf_files&page=add" method="post" enctype="multipart/form-data">
                                         <div class="modal-body">
-
                                             <div class="form-group">
-                                                <label for="Company-2" class="block">Goal </label>
+                                                <label for="Company-2" class="block">name </label>
+                                                <input required id="Company-2" name="name" type="text" class="form-control required">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Company-2" class="block">Desc</label>
                                                 <textarea name="desc" id="" class="form-control"></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label for="Company-2" class="block">Date</label>
-                                                <input required id="Company-2" name="date" type="date" class="form-control required">
+                                                <label for="exampleInputFile">Upload file</label>
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <input required type="file" class="custom-file-input" name="file" id="exampleInputFile">
+                                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
