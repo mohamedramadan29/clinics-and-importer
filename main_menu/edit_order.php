@@ -15,7 +15,15 @@ if (isset($_POST['save1'])) {
         exit;
     }
     foreach ($days as $day) {
-        
+        /*switch ($day) {
+            case 'saturday':
+                $option1 = 'option1_value_for_saturday';
+                $option1_qt = 'option1_qt_value_for_saturday';
+                $option2 = 'option2_value_for_saturday';
+                $option2_qt = 'option2_qt_value_for_saturday';
+                break;
+        }*/
+
         $special = isset($_POST[$day . '_special']) ? $_POST[$day . '_special'] : '';
         $special2 = isset($_POST[$day . '_special2']) ? $_POST[$day . '_special2'] : '';
         $special3 = isset($_POST[$day . '_special3']) ? $_POST[$day . '_special3'] : '';

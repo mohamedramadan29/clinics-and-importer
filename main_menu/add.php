@@ -3,11 +3,11 @@
 $days = array("saturday", "sunday", "monday", "tuesday", "wednesday", "thursday");
 if (isset($_POST['save1'])) {
     $date_from = $_POST['date_from'];
-        $date_to = $_POST['date_to'];
-        $supp_id = $_POST['supp_id'];
-        $emp_id = $_SESSION['emp_id'];
+    $date_to = $_POST['date_to'];
+    $supp_id = $_POST['supp_id'];
+    $emp_id = $_SESSION['emp_id'];
     foreach ($days as $day) {
-        
+        $new_date = date('Y-m-d', strtotime($date_from . ' +1 day'));
         $special = $_POST[$day . '_special'];
         $special2 = $_POST[$day . '_special2'];
         $special3 = $_POST[$day . '_special3'];
@@ -67,12 +67,12 @@ if (isset($_POST['save1'])) {
         $option9_qt = $_POST[$day . '_option9_qt'];
         $stmt = $connect->prepare("INSERT INTO breakfast_order (menu_num,meal_type,day,option1,option1_qt,
         option2,option2_qt,option3,option3_qt,special,option4,option4_qt,option5,option5_qt,option6,option6_qt,special2
-        ,option7,option7_qt,option8,option8_qt,option9,option9_qt,special3,order_date_from,order_date_to,emp_id,pres_id)
-         value(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        ,option7,option7_qt,option8,option8_qt,option9,option9_qt,special3,order_date_from,order_date_to,emp_id,pres_id,date_day)
+         value(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
         $stmt->execute([
             1, 'breakfast', $day, $option1, $option1_qt, $option2, $option2_qt,
             $option3, $option3_qt, $special, $option4, $option4_qt, $option5, $option5_qt, $option6, $option6_qt, $special2, $option7, $option7_qt,
-            $option8, $option8_qt, $option9, $option9_qt, $special3, $date_from,$date_to, $emp_id, $supp_id
+            $option8, $option8_qt, $option9, $option9_qt, $special3, $date_from, $date_to, $emp_id, $supp_id, $new_date
         ]);
     }
     if ($stmt) {
