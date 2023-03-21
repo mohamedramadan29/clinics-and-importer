@@ -64,23 +64,23 @@ function getitems($cat_id)
             <h2 class="bg bg-info" style="font-size: 30px; font-weight:bold; padding:5px"> Menu 1 </h2>
             <form autocomplete="off" action="main.php?dir=main_menu&page=add" method="post" enctype="multipart/form-data">
                 <div class="card">
-
                     <div class="card-body">
                         <div class="row">
-
-                            <div class="col-4">
+                            <div class="col-6">
                                 <div class="form-group">
-                                    <label for="Company-2" class="block">Date From</label>
-                                    <input required type="text" id="" name="date_from" class="datepicker form-control" placeholder="Select Start Date">
+                                    <label for="Company-2" class="block">Week Start Date :: </label>
+                                    <input required type="text" id="date_from" name="date_from" class="datepicker form-control" placeholder="Select Start Date">
                                 </div>
                             </div>
+                            <!--
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="Company-2" class="block">Date To</label>
-                                    <input required type="text" id="" name="date_to" class="datepicker form-control" placeholder="Select End Date">
+                                    <input required type="text" id="date_to" name="date_to" class="form-control" placeholder="Select End Date">
                                 </div>
                             </div>
-                            <div class="col-4">
+        -->
+                            <div class="col-6">
                                 <?php
                                 $stmt = $connect->prepare("SELECT * FROM emplyees
             INNER JOIN presentions ON presentions.id = emplyees.pres_id

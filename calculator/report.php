@@ -27,19 +27,19 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="Company-2" class="block">Age (Years)</label>
-                                            <input type="number" name="age" class="form-control" id="age" value="<?php if (isset($_REQUEST['age'])) echo $_REQUEST['age']; ?>">
+                                            <input required type="number" name="age" class="form-control" id="age" value="<?php if (isset($_REQUEST['age'])) echo $_REQUEST['age']; ?>">
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="Company-2" class="block">Height (Cm)</label>
-                                            <input type="number" name="height" class="form-control" id="height" value="<?php if (isset($_REQUEST['height'])) echo $_REQUEST['height']; ?>">
+                                            <input required type="number" name="height" class="form-control" id="height" value="<?php if (isset($_REQUEST['height'])) echo $_REQUEST['height']; ?>">
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="Company-2" class="block">Weight (Kg)</label>
-                                            <input type="number" name="weight" class="form-control" id="weight" value="<?php if (isset($_REQUEST['weight'])) echo $_REQUEST['weight']; ?>">
+                                            <input required type="number" name="weight" class="form-control" id="weight" value="<?php if (isset($_REQUEST['weight'])) echo $_REQUEST['weight']; ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -161,60 +161,65 @@
                         }
                     ?>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="Company-2" class="block">BMI (Kg/M2)</label>
-                                        <input type="number" name="bmi" class="form-control" id="bmi" value="<?php echo $equation1; ?>">
+                            <form action="" method="post">
+                                <div class="row">
+
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="Company-2" class="block">BMI (Kg/M2)</label>
+                                            <input type="number" name="bmi" class="form-control" id="bmi" value="<?php echo $equation1; ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="Company-2" class="block">Proten Needs (g/day)</label>
+                                            <input type="number" name="proten_need" class="form-control" id="proten_need" value="<?php echo $equation2 ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="Company-2" class="block">colories Need (colors/ day)</label>
+                                            <input type="number" name="colors" class="form-control" id="colors" value="<?php echo $equation3; ?>">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="Company-2" class="block">Proten Needs (g/day)</label>
-                                        <input type="number" name="proten_need" class="form-control" id="proten_need" value="<?php echo $equation2 ?>">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="Company-2" class="block">Calssification</label>
+                                            <input type="text" name="class" class="form-control" id="classification" value="<?php echo $class; ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="Company-2" class="block"> IBW (KG)</label>
+                                            <input type="number" name="ibw" class="form-control" id="ibw" value="<?php echo $equation4 ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="Company-2" class="block"> Adg.BW (KG)</label>
+                                            <input type="number" name="adg" class="form-control" id="adg" value="<?php echo $equation5; ?>">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="Company-2" class="block">colories Need (colors/ day)</label>
-                                        <input type="number" name="colors" class="form-control" id="colors" value="<?php echo $equation3; ?>">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="Company-2" class="block"> Weight Loss (%)</label>
+                                            <input type="number" name="loss" class="form-control" id="loss" value="<?php echo $equation6; ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label for="Company-2" class="block"> Daily Fluids Limit (L/day)</label>
+                                            <input type="number" name="daily_fluid" class="form-control" id="daily_fluid" value="<?php echo $equation7; ?>">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="Company-2" class="block">Calssification</label>
-                                        <input type="text" name="class" class="form-control" id="class" value="<?php echo $class; ?>">
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="Company-2" class="block"> IBW (KG)</label>
-                                        <input type="number" name="ibw" class="form-control" id="ibw" value="<?php echo $equation4 ?>">
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="Company-2" class="block"> Adg.BW (KG)</label>
-                                        <input type="number" name="adg" class="form-control" id="colors" value="<?php echo $equation5; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="Company-2" class="block"> Weight Loss (%)</label>
-                                        <input type="number" name="loss" class="form-control" id="loss" value="<?php echo $equation6; ?>">
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <div class="form-group">
-                                        <label for="Company-2" class="block"> Daily Fluids Limit (L/day)</label>
-                                        <input type="number" name="loss" class="form-control" id="daily_fluid" value="<?php echo $equation7; ?>">
-                                    </div>
-                                </div>
-                            </div>
+                                <button type="button" id="copy_inputs" name="copy_inputs" style="text-align: center; margin: auto; display: block;" class="btn btn-primary"> Copy <i class="fa fa-copy"></i> </button>
+                            </form>
+
                         </div>
                     <?php
                     }
@@ -224,3 +229,26 @@
             </div>
             <!-- /.container-fluid -->
         </section>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $("#copy_inputs").click(function() {
+                var bmi = document.getElementById('bmi').value;
+                var proten_need = document.getElementById('proten_need').value;
+                var colors = document.getElementById('colors').value;
+                var classification = document.getElementById('classification').value;
+                var ibw = document.getElementById('ibw').value;
+                var adg = document.getElementById('adg').value;
+                var loss = document.getElementById('loss').value;
+                var daily_fluid = document.getElementById('daily_fluid').value;
+                var textToCopy = "BMI : " + bmi + "(Kg/M2)" + "\n" + "Proten Needs : " + proten_need + "(g/day)" + "\n" +
+                    "colories Need : " + colors + " (colors/ day)" + "\n" + "Calssification : " + classification + "\n" +
+                    "IBW : " + ibw + " (KG)" + "\n" + "Adg.BW : " + adg + "(KG)" + "\n" + "Weight Loss : " + loss + "(%)" + "\n" +
+                    "Daily Fluids Limit : " + daily_fluid + "(L/day)";;
+                // نسخ النص إلى الحافظة
+                navigator.clipboard.writeText(textToCopy).then(function() {
+                    alert(' Copy completed successfully ! ');
+                }, function() {
+                    console.log('فشل في نسخ النص!');
+                });
+            });
+        </script>

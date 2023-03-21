@@ -12,8 +12,6 @@ if (isset($_SESSION['supp_id'])) {
 if (isset($_SESSION['admin_id'])) {
     include 'include/navbar.php';
 }
-
-echo $_SESSION['supp_id'];
 ?>
 
 <!-- Content Wrapper. Contains page content -->
@@ -210,6 +208,9 @@ echo $_SESSION['supp_id'];
 </div>
 </div>
 
+
+
 <?php
 include $tem . "footer.php";
 ?>
+ 

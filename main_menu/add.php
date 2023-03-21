@@ -3,7 +3,11 @@
 $days = array("saturday", "sunday", "monday", "tuesday", "wednesday", "thursday");
 if (isset($_POST['save1'])) {
     $date_from = $_POST['date_from'];
-    $date_to = $_POST['date_to'];
+    $date = $date_from;
+    $date_timestamp = strtotime($date); // تحويل التاريخ إلى الصيغة الداخلية للتاريخ في PHP
+    $new_date_timestamp = strtotime("+5 day", $date_timestamp); // زيادة 5 أيام على التاريخ المحدد
+    $new_date = date("l j F Y", $new_date_timestamp); // إعادة تنسيق التاريخ بالصيغة المطلوبة
+    $date_to = $new_date;
     $supp_id = $_POST['supp_id'];
     $emp_id = $_SESSION['emp_id'];
     foreach ($days as $day) {

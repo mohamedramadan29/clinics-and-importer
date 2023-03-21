@@ -104,14 +104,27 @@
 </script>
 
 <script>
+  /*
   $(function() {
     // Datepicker
     $(".datepicker").datepicker({
       dateFormat: "DD d MM yy"
     });
   });
+  */
 </script>
-
+<script>
+  $(function() {
+    $(".datepicker").datepicker({
+      dateFormat: "DD d MM yy",
+      beforeShowDay: function(date) {
+        var day = date.getDay();
+        // إظهار يوم السبت فقط
+        return [day == 6, ""];
+      }
+    });
+  });
+</script>
 </body>
 
 </html>
