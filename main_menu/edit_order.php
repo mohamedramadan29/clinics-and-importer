@@ -15,20 +15,6 @@ if (isset($_POST['save1'])) {
         exit;
     }
     foreach ($days as $day) {
-        /*switch ($day) {
-            case 'saturday':
-                $option1 = 'option1_value_for_saturday';
-                $option1_qt = 'option1_qt_value_for_saturday';
-                $option2 = 'option2_value_for_saturday';
-                $option2_qt = 'option2_qt_value_for_saturday';
-                break;
-        }*/
-
-        $special = isset($_POST[$day . '_special']) ? $_POST[$day . '_special'] : '';
-        $special2 = isset($_POST[$day . '_special2']) ? $_POST[$day . '_special2'] : '';
-        $special3 = isset($_POST[$day . '_special3']) ? $_POST[$day . '_special3'] : '';
-        echo $special;
-        echo $special2;
         $option1 = isset($_POST[$day . '_option1']) ? implode(',', $_POST[$day . '_option1']) : '';
         $option2 = isset($_POST[$day . '_option2']) ? implode(',', $_POST[$day . '_option2']) : '';
         $option3 = isset($_POST[$day . '_option3']) ? implode(',', $_POST[$day . '_option3']) : '';
@@ -38,7 +24,6 @@ if (isset($_POST['save1'])) {
         $option7 = isset($_POST[$day . '_option7']) ? implode(',', $_POST[$day . '_option7']) : '';
         $option8 = isset($_POST[$day . '_option8']) ? implode(',', $_POST[$day . '_option8']) : '';
         $option9 = isset($_POST[$day . '_option9']) ? implode(',', $_POST[$day . '_option9']) : '';
-
         $option1_qt = isset($_POST[$day . '_option1_qt']) ? $_POST[$day . '_option1_qt'] : '';
         $option2_qt = isset($_POST[$day . '_option2_qt']) ? $_POST[$day . '_option2_qt'] : '';
         $option3_qt = isset($_POST[$day . '_option3_qt']) ? $_POST[$day . '_option3_qt'] : '';
@@ -48,14 +33,32 @@ if (isset($_POST['save1'])) {
         $option7_qt = isset($_POST[$day . '_option7_qt']) ? $_POST[$day . '_option7_qt'] : '';
         $option8_qt = isset($_POST[$day . '_option8_qt']) ? $_POST[$day . '_option8_qt'] : '';
         $option9_qt = isset($_POST[$day . '_option9_qt']) ? $_POST[$day . '_option9_qt'] : '';
+        if (isset($_POST[$day . '_special'])) {
+            $special = $_POST[$day . '_special'];
+        } else {
+        }
+        if (isset($_POST[$day . '_special2'])) {
+            $special2 = $_POST[$day . '_special2'];
+        } else {
+        }
+        if (isset($_POST[$day . '_special3'])) {
+            $special3 = $_POST[$day . '_special3'];
+        } else {
+        }/*
+        if (isset($_POST[$day . '_special'])) {
+            $special = $_POST[$day . '_special'];
+        } else {
+            $special = $current_special_value; // Use the existing value if there's no input
+        }*/
 
-        $stmt = $connect->prepare("UPDATE breakfast_order SET menu_num=?,meal_type=?,day=?,option1=?,option1_qt=?,
-        option2=?,option2_qt=?,option3=?,option3_qt=?,special=?,option4=?,option4_qt=?,option5=?,option5_qt=?,option6=?,option6_qt=?,special2=?
-        ,option7=?,option7_qt=?,option8=?,option8_qt=?,option9=?,option9_qt=?,special3=? WHERE order_date_from=? AND order_date_to=? AND emp_id=?");
+
+
+        $stmt = $connect->prepare("UPDATE breakfast_order SET option1=?,option1_qt=?,option2=?,option2_qt=?,option3=?,option3_qt=?,special=?,option4=?,option4_qt=?,option5=?,option5_qt=?,option6=?,option6_qt=?,special2=?
+        ,option7=?,option7_qt=?,option8=?,option8_qt=?,option9=?,option9_qt=?,special3=? WHERE order_date_from=? AND order_date_to=? AND day=? AND emp_id=?");
         $stmt->execute([
-            1, 'breakfast', $day, $option1, $option1_qt, $option2, $option2_qt,
+            $option1, $option1_qt, $option2, $option2_qt,
             $option3, $option3_qt, $special, $option4, $option4_qt, $option5, $option5_qt, $option6, $option6_qt, $special2, $option7, $option7_qt,
-            $option8, $option8_qt, $option9, $option9_qt, $special3, $date_from, $date_to, $emp_id
+            $option8, $option8_qt, $option9, $option9_qt, $special3, $date_from, $date_to, $day, $emp_id
         ]);
     }
     if ($stmt) {

@@ -115,7 +115,7 @@
                     <?php } ?>
                 </td>
                 <td>
-                    <textarea name="saturday_special" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special3']; ?></textarea>
+                    <textarea name="saturday_special3" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special3']; ?></textarea>
                 </td>
             </tr>
             <tr>
@@ -223,7 +223,7 @@
                     ?>
                 </td>
                 <td>
-                    <textarea name="sunday_special" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special3']; ?></textarea>
+                    <textarea name="sunday_special3" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special3']; ?></textarea>
                 </td>
             </tr>
             <tr>
@@ -330,7 +330,7 @@
                     ?>
                 </td>
                 <td>
-                    <textarea name="monday_special" placeholder="Enter Special Order" class="form-control"> <?php echo $daydata['special3']; ?> </textarea>
+                    <textarea name="monday_special3" placeholder="Enter Special Order" class="form-control"> <?php echo $daydata['special3']; ?> </textarea>
                 </td>
             </tr>
 
@@ -434,7 +434,7 @@
                     <?php } ?>
                 </td>
                 <td>
-                    <textarea name="tuesday_special" placeholder="Enter Special Order" class="form-control"> <?php echo $daydata['special3']; ?> </textarea>
+                    <textarea name="tuesday_special3" placeholder="Enter Special Order" class="form-control"> <?php echo $daydata['special3']; ?> </textarea>
                 </td>
             </tr>
 
@@ -537,7 +537,7 @@
                     <?php } ?>
                 </td>
                 <td>
-                    <textarea name="wednesday_special" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special3']; ?></textarea>
+                    <textarea name="wednesday_special3" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special3']; ?></textarea>
                 </td>
             </tr>
             <tr>
@@ -635,7 +635,7 @@
                     <?php } ?>
                 </td>
                 <td>
-                    <textarea name="thursday_special" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special3']; ?></textarea>
+                    <textarea name="thursday_special3" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special3']; ?></textarea>
                 </td>
             </tr>
         </tbody>
