@@ -146,11 +146,11 @@
                  <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
              </div>
              <div class="info">
-                <?php
-                $stmt = $connect->prepare("SELECT * FROM emplyees WHERE id=?");
-                $stmt->execute(array($_SESSION['emp_id']));
-                $emp_data = $stmt->fetch();
-                ?>
+                 <?php
+                    $stmt = $connect->prepare("SELECT * FROM emplyees WHERE id=?");
+                    $stmt->execute(array($_SESSION['emp_id']));
+                    $emp_data = $stmt->fetch();
+                    ?>
                  <a href="#" class="d-block"> <?php echo $emp_data['emp_name']; ?> </a>
              </div>
          </div>
@@ -198,6 +198,23 @@
                              <a href="main.php?dir=main_menu&page=emp_orders" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p> All Orders </p>
+                             </a>
+                         </li>
+                     </ul>
+                 </li>
+                 <li class="nav-item">
+                     <a href="#" class="nav-link">
+                         <i class="nav-icon fas fa-users"></i>
+                         <p>
+                             Clients
+                             <i class="fas fa-angle-left right"></i>
+                         </p>
+                     </a>
+                     <ul class="nav nav-treeview">
+                         <li class="nav-item">
+                             <a href="main.php?dir=clients&page=report" class="nav-link">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p>Clients </p>
                              </a>
                          </li>
                      </ul>
