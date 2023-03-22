@@ -1,21 +1,31 @@
 <?php
 if (isset($_POST['add_cat'])) {
-    $client_name = $_POST['client_name'];
-    $client_email = $_POST['client_email'];
-    $client_phone = $_POST['client_phone'];
-    $client_address = $_POST['client_address'];
+    $patient_name = $_POST['patient_name'];
+    $smart_goals = $_POST['smart_goals'];
+    $artifation_measure = $_POST['artifation_measure'];
+    $willingness = $_POST['willingness'];
+    $days_required = $_POST['days_required'];
+    $goal_progress = $_POST['goal_progress'];
+    $emp_id = $_SESSION['emp_id'];
     $formerror = [];
-    if (empty($client_name) || empty($client_email) || empty($client_phone) || empty($client_address)) {
+    if (
+        empty($patient_name) || empty($smart_goals) || empty($artifation_measure) ||
+        empty($willingness) || empty($days_required) || empty($goal_progress)
+    ) {
         $formerror[] = 'من فضلك ادخل  جميع البيانات  ';
     }
     if (empty($formerror)) {
-        $stmt = $connect->prepare("INSERT INTO clients (client_name,client_email ,client_phone , client_address)
-        VALUES (:zname,:zemail,:zphone,:zaddress)");
+        $stmt = $connect->prepare("INSERT INTO clients (patient_name,smart_goals ,artifation_measure ,
+        willingness , days_required , goal_progress,emp_id)
+        VALUES (:zpatient_name,:zsmart_goals,:zart_measure,:zwillinges,:zday_required,:zgoal_progress,:zemp_id)");
         $stmt->execute(array(
-            "zname" => $client_name,
-            "zemail" => $client_email,
-            "zphone" => $client_phone,
-            "zaddress" => $client_address,
+            "zpatient_name"  => $patient_name,
+            "zsmart_goals"   => $smart_goals,
+            "zart_measure"   => $artifation_measure,
+            "zwillinges"     => $willingness,
+            "zday_required"  => $days_required,
+            "zgoal_progress" => $goal_progress,
+            "zemp_id" => $emp_id,
         ));
         if ($stmt) {
             $_SESSION['success_message'] = " Added successfully ";
