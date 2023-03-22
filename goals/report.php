@@ -44,13 +44,14 @@
                                                 <th> # </th>
                                                 <th> description</th>
                                                 <th> date </th>
+                                                <th> status </th>
                                                 <th> Action </th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $stmt = $connect->prepare("SELECT * FROM goals");
-                                            $stmt->execute();
+                                            $stmt = $connect->prepare("SELECT * FROM goals WHERE client_id=?");
+                                            $stmt->execute(array($_SESSION['emp_id']));
                                             $allgoals = $stmt->fetchAll();
                                             $i = 0;
                                             foreach ($allgoals as $goal) {
@@ -60,6 +61,20 @@
                                                     <td> <?php echo $i; ?> </td>
                                                     <td> <?php echo  $goal['goal_desc']; ?> </td>
                                                     <td> <?php echo  $goal['date']; ?> </td>
+                                                    <td>
+                                                        <?php
+                                                        if ($goal['status'] == 0) {
+                                                        ?>
+                                                            <span class="bg bg-danger"> Not Complete</span>
+                                                        <?php
+                                                        } else {
+                                                        ?>
+                                                            <span class="bg bg-success"> Completed </span>
+                                                        <?php
+                                                        }
+
+                                                        ?>
+                                                    </td>
                                                     <td>
                                                         <button type="button" class="btn btn-success btn-sm waves-effect" data-toggle="modal" data-target="#edit-Modal_<?php echo $goal['id']; ?>"> Edit <i class='fa fa-pen'></i> </button>
                                                         <a href="main.php?dir=goals&page=delete&goal_id=<?php echo $goal['id']; ?>" class="confirm btn btn-danger btn-sm"> Delete <i class='fa fa-trash'></i> </a>
@@ -85,6 +100,14 @@
                                                                     <div class="form-group">
                                                                         <label for="Company-2" class="block">Date</label>
                                                                         <input required id="Company-2" name="date" type="date" value="<?php echo $goal['date']; ?>" class="form-control required">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="Company-2" class="block">Status</label>
+                                                                        <select name="status" class="form-control" id="">
+                                                                            <option value=""> -- Select Status -- </option>
+                                                                            <option <?php if($goal['status'] == 1) echo "selected" ?> value="1"> Complete </option>
+                                                                            <option <?php if($goal['status'] == 0) echo "selected" ?> value="0">Not Complete </option>
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                                 <div class="modal-footer">
