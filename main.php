@@ -173,6 +173,15 @@ if (isset($_SESSION['admin_id'])) {
     } elseif ($dir == 'goals' && $page == 'report') {
         include "goals/report.php";
     }
+    if ($dir == 'items_desc' && $page == 'add') {
+        include "items_desc/add.php";
+    } elseif ($dir == 'items_desc' && $page == 'edit') {
+        include "items_desc/edit.php";
+    } elseif ($dir == 'items_desc' && $page == 'delete') {
+        include 'items_desc/delete.php';
+    } elseif ($dir == 'items_desc' && $page == 'report') {
+        include "items_desc/report.php";
+    }
     // START Pdf Files  
     if ($dir == 'pdf_files' && $page == 'add') {
         include "pdf_files/add.php";
@@ -185,8 +194,7 @@ if (isset($_SESSION['admin_id'])) {
     } elseif ($dir == 'pdf_files' && $page == 'download') {
         include "pdf_files/download.php";
     }
-    // START SUPPLIERS 
-    // START Pdf Files  
+    // START SUPPLIERS   
     if ($dir == 'supp_dash' && $page == 'add') {
         include "supp_dash/add.php";
     } elseif ($dir == 'supp_dash' && $page == 'order_details') {
@@ -195,6 +203,8 @@ if (isset($_SESSION['admin_id'])) {
         include 'supp_dash/delete.php';
     } elseif ($dir == 'supp_dash' && $page == 'report') {
         include "supp_dash/report.php";
+    } elseif ($dir == 'supp_dash' && $page == 'day_details') {
+        include "supp_dash/day_details.php";
     }
     ?>
 
@@ -213,4 +223,3 @@ if (isset($_SESSION['admin_id'])) {
 <?php
 include $tem . "footer.php";
 ?>
- 

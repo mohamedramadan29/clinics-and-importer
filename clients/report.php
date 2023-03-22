@@ -144,7 +144,7 @@
                                             <div class="form-group">
                                                 <label for="Company-2" class="block">Address</label>
                                                 <input required id="Company-2" name="client_address" type="text" class="form-control required">
-                                            </div> 
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>

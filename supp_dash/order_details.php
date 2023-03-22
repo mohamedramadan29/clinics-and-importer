@@ -38,19 +38,29 @@
                             }
                             ?>
                             <div class="card-body">
+                                <div class="row" style="margin-bottom: 15px;">
+                                    <div class="col-6">
+                                        <div>
+                                            <label for=""> Start Date :: </label>
+                                            <input disabled type="text" class="form-control" value="<?php echo $from; ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div>
+                                            <label for=""> End Date :: </label>
+                                            <input disabled type="text" class="form-control" value="<?php echo $to; ?>">
+                                        </div>
+                                    </div>
+
+
+                                </div>
                                 <div class="table-responsive">
                                     <table id="my_table" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                 <th> # </th>
-                                                <th>Day </th>
-                                                <th>option1</th>
-                                                <th>option1_qt</th>
-                                                <th>option2</th>
-                                                <th>option2_qt</th>
-                                                <th>option3</th>
-                                                <th>option3_qt</th>
-                                                <th>Special</th>
+                                                <th> Day </th>
+                                                <th> Date </th>
                                                 <th>Action </th>
                                             </tr>
                                         </thead>
@@ -67,15 +77,9 @@
                                                     <?php  ?>
                                                     <td> <?php echo $i; ?> </td>
                                                     <td> <?php echo $order['day']; ?> </td>
-                                                    <td> <?php echo $order['option1']; ?> </td>
-                                                    <td> <?php echo $order['option1_qt']; ?> </td>
-                                                    <td> <?php echo $order['option2']; ?> </td>
-                                                    <td> <?php echo $order['option2_qt']; ?> </td>
-                                                    <td> <?php echo $order['option3']; ?> </td>
-                                                    <td> <?php echo $order['option3_qt']; ?> </td>
-                                                    <td> <?php echo $order['special']; ?> </td>
+                                                    <td>  </td>
                                                     <td>
-                                                        <a href="main.php?dir=main_menu&page=emp_edit_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>" class="btn btn-warning btn-sm"> View Details <i class='fa fa-eye'></i> </a>
+                                                        <a href="main.php?dir=supp_dash&page=day_details&id=<?php echo $order['id']; ?>" class="btn btn-info btn-sm"> Day Details <i class='fa fa-eye'></i> </a>
                                                     </td>
                                                 </tr>
                                             <?php
