@@ -10,8 +10,10 @@ if (isset($_POST['save1'])) {
     $date_to = $new_date;
     $supp_id = $_POST['supp_id'];
     $emp_id = $_SESSION['emp_id'];
+    $new_date = $date_from;
     foreach ($days as $day) {
-        $new_date = date('Y-m-d', strtotime($date_from . ' +1 day'));
+        // $new_date = date('Y-m-d', strtotime($new_date . ' +1 day'));
+        $new_date = ($day == 'saturday') ? $new_date : date('l j F Y', strtotime($new_date . ' +1 day'));
         $special = $_POST[$day . '_special'];
         $special2 = $_POST[$day . '_special2'];
         $special3 = $_POST[$day . '_special3'];

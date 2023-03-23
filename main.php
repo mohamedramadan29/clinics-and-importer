@@ -73,6 +73,8 @@ if (isset($_SESSION['admin_id'])) {
         include "main_menu/report.php";
     } elseif ($dir == 'main_menu' && $page == 'report2') {
         include "main_menu/report2.php";
+    } elseif ($dir == 'main_menu' && $page == 'send_order') {
+        include "main_menu/send_order.php";
     }
 
     // EMPLOYEER

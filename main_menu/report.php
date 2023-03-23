@@ -116,7 +116,6 @@ function getitems($cat_id)
                 </div>
                 <div class="flex text-center">
                     <button type="submit" class="btn btn-primary" name="save1"> save Order <i class="fa fa-save"></i> </button>
-                    <button type="submit" class="btn btn-warning" name="save1"> Save a draft <i class="fa fa-save"></i> </button>
                 </div>
                 <br>
                 <br>

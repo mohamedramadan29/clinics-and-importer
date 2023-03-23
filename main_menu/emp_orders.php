@@ -51,7 +51,7 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $stmt = $connect->prepare("SELECT order_date_from,order_date_to, menu_num,pres_id FROM breakfast_order  WHERE emp_id=? GROUP BY order_date_from,order_date_to,menu_num,pres_id");
+                                            $stmt = $connect->prepare("SELECT order_date_from,order_date_to, menu_num,pres_id,pres_show FROM breakfast_order WHERE emp_id=? GROUP BY order_date_from,order_date_to,menu_num,pres_id,pres_show");
                                             $stmt->execute(array($_SESSION['emp_id']));
                                             $allorders = $stmt->fetchAll();
                                             $i = 0;
@@ -65,6 +65,20 @@
                                                     <td> <?php echo  $order['order_date_from']; ?> </td>
                                                     <td> <?php echo  $order['order_date_to']; ?> </td>
                                                     <td>
+                                                        <?php
+                                                        if($order['pres_show'] == 0){
+                                                            ?>
+                                                            <a href="main.php?dir=main_menu&page=send_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>" class="btn btn-primary btn-sm"> 
+                                                            Send Order <i class='fa fa-plane'></i> </a>
+                                                            <?php
+                                                        }else{
+                                                            ?>
+                                                            <button class="btn btn-success btn-sm"> Success Send <i class="fa fa-check"></i> </button>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                        
+                                                        
                                                         <a href="main.php?dir=main_menu&page=emp_edit_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>" class="btn btn-warning btn-sm"> Edit Order <i class='fa fa-pen'></i> </a>
                                                         <a href="main.php?dir=main_menu&page=delete_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>" class="btn btn-danger btn-sm"> Delete Order <i class='fa fa-trash'></i> </a>
                                                     </td>
