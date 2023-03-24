@@ -20,6 +20,7 @@
                     // test
                     $daydata = getdaydata($date_from, $date_to, 'saturday');
                     $option1 = $daydata['option4'];
+                    $status = $daydata['status'];
                     $options1 = explode(",", $option1);
                     //end test
                     $getoption = getoptions('saturday', 'lunch', 'option1');
@@ -27,7 +28,10 @@
                     if (count($getoption) > 0) {
                         foreach ($alldata as $data) {
                     ?>
-                            <select name="saturday_option4[]" id="" class="select2 form-control">
+                            <select <?php if ($status == 1 || $status == 2) {
+                                    ?> class="form-control read_only" <?php
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                            } ?> name="saturday_option4[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -44,7 +48,7 @@
                             echo "</br>";
                         }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option4_qt" value="<?php echo $daydata['option4_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option4_qt" value="<?php echo $daydata['option4_qt']; ?>">
                     <?php
                     }
                     ?>
@@ -54,6 +58,7 @@
                     // test
                     $daydata = getdaydata($date_from, $date_to, 'saturday');
                     $option1 = $daydata['option5'];
+                    $status = $daydata['status'];
                     $options1 = explode(",", $option1);
                     //end test
                     $getoption = getoptions('saturday', 'lunch', 'option2');
@@ -61,7 +66,10 @@
                     if (count($getoption) > 0) {
                         foreach ($alldata as $data) {
                     ?>
-                            <select name="saturday_option5[]" id="" class="select2 form-control">
+                            <select <?php if ($status == 1 || $status == 2) {
+                                    ?> class="form-control read_only" <?php
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                            } ?> name="saturday_option5[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -78,7 +86,7 @@
                             echo "</br>";
                         }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option5_qt" value="<?php echo $daydata['option5_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option5_qt" value="<?php echo $daydata['option5_qt']; ?>">
                     <?php
                     } ?>
                 </td>
@@ -87,6 +95,7 @@
                     // test
                     $daydata = getdaydata($date_from, $date_to, 'saturday');
                     $option1 = $daydata['option6'];
+                    $status = $daydata['status'];
                     $options1 = explode(",", $option1);
                     //end test
                     $getoption = getoptions('saturday', 'lunch', 'option3');
@@ -94,7 +103,10 @@
                     if (count($getoption) > 0) {
                         foreach ($alldata as $data) {
                     ?>
-                            <select name="saturday_option6[]" id="" class="select2 form-control">
+                            <select <?php if ($status == 1 || $status == 2) {
+                                    ?> class="form-control read_only" <?php
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                            } ?> name="saturday_option6[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -111,11 +123,11 @@
                             echo "</br>";
                         }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option6_qt" value="<?php echo $daydata['option6_qt'] ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option6_qt" value="<?php echo $daydata['option6_qt'] ?>">
                     <?php } ?>
                 </td>
                 <td>
-                    <textarea name="saturday_special2" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special2']; ?></textarea>
+                    <textarea <?php if ($status == 1 || $status == 2) echo "readonly"; ?> name="saturday_special2" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special2']; ?></textarea>
                 </td>
             </tr>
             <tr>
@@ -125,6 +137,7 @@
                     // test
                     $daydata = getdaydata($date_from, $date_to, 'sunday');
                     $option1 = $daydata['option4'];
+                    $status = $daydata['status'];
                     $options1 = explode(",", $option1);
                     //end test
                     $getoption = getoptions('sunday', 'lunch', 'option1');
@@ -132,7 +145,10 @@
                     if (count($getoption) > 0) {
                         foreach ($alldata as $data) {
                     ?>
-                            <select name="sunday_option4[]" id="" class="select2 form-control">
+                            <select name="sunday_option4[]" id="" <?php if ($status == 1 || $status == 2) {
+                                                                    ?> class="form-control read_only" <?php
+                                                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                                                            } ?>>
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -150,7 +166,7 @@
                             echo "</br>";
                         }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="sunday_option4_qt" value="<?php echo $daydata['option4_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="sunday_option4_qt" value="<?php echo $daydata['option4_qt']; ?>">
                     <?php
                     }
                     ?>
@@ -159,6 +175,7 @@
                         // test
                         $daydata = getdaydata($date_from, $date_to, 'sunday');
                         $option1 = $daydata['option5'];
+                        $status = $daydata['status'];
                         $options1 = explode(",", $option1);
                         //end test
                         $getoption = getoptions('sunday', 'lunch', 'option2');
@@ -167,7 +184,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select name="sunday_option5[]" id="" class="select2 form-control">
+                            <select name="sunday_option5[]" id="" <?php if ($status == 1 || $status == 2) {
+                                                                    ?> class="form-control read_only" <?php
+                                                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                                                            } ?>>
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -184,7 +204,7 @@
                                 echo "</br>";
                             }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="sunday_option5_qt" value="<?php echo $daydata['option5_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="sunday_option5_qt" value="<?php echo $daydata['option5_qt']; ?>">
                     <?php }
                     ?>
                 </td>
@@ -192,6 +212,7 @@
                         // test
                         $daydata = getdaydata($date_from, $date_to, 'sunday');
                         $option1 = $daydata['option6'];
+                        $status = $daydata['status'];
                         $options1 = explode(",", $option1);
                         //end test
                         $getoption = getoptions('sunday', 'lunch', 'option3');
@@ -200,7 +221,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select name="sunday_option6[]" id="" class="select2 form-control">
+                            <select name="sunday_option6[]" id="" <?php if ($status == 1 || $status == 2) {
+                                                                    ?> class="form-control read_only" <?php
+                                                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                                                            } ?>>
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -217,13 +241,13 @@
                                 echo "</br>";
                             }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="sunday_option6_qt" value="<?php echo $daydata['option6_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="sunday_option6_qt" value="<?php echo $daydata['option6_qt']; ?>">
                     <?php
                         }
                     ?>
                 </td>
                 <td>
-                    <textarea name="sunday_special2" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special2']; ?></textarea>
+                    <textarea <?php if ($status == 1 || $status == 2) echo "readonly"; ?> name="sunday_special2" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special2']; ?></textarea>
                 </td>
             </tr>
             <tr>
@@ -232,6 +256,7 @@
                         // test
                         $daydata = getdaydata($date_from, $date_to, 'monday');
                         $option1 = $daydata['option4'];
+                        $status = $daydata['status'];
                         $options1 = explode(",", $option1);
                         //end test
                         $getoption = getoptions('monday', 'lunch', 'option1');
@@ -240,7 +265,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select name="monday_option4[]" id="" class="select2 form-control">
+                            <select name="monday_option4[]" id="" <?php if ($status == 1 || $status == 2) {
+                                                                    ?> class="form-control read_only" <?php
+                                                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                                                            } ?>>
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -257,7 +285,7 @@
                                 echo "</br>";
                             }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="monday_option4_qt" value="<?php echo $daydata['option4_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="monday_option4_qt" value="<?php echo $daydata['option4_qt']; ?>">
                     <?php
                         }
                     ?>
@@ -266,6 +294,7 @@
                         // test
                         $daydata = getdaydata($date_from, $date_to, 'monday');
                         $option1 = $daydata['option5'];
+                        $status = $daydata['status'];
                         $options1 = explode(",", $option1);
                         //end test
                         $getoption = getoptions('monday', 'lunch', 'option2');
@@ -274,7 +303,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select name="monday_option5[]" id="" class="select2 form-control">
+                            <select name="monday_option5[]" id="" <?php if ($status == 1 || $status == 2) {
+                                                                    ?> class="form-control read_only" <?php
+                                                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                                                            } ?>>
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -291,7 +323,7 @@
 
                             }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="monday_option5_qt" value="<?php echo $daydata['option5_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="monday_option5_qt" value="<?php echo $daydata['option5_qt']; ?>">
                     <?php }
                     ?>
                 </td>
@@ -299,6 +331,7 @@
                         // test
                         $daydata = getdaydata($date_from, $date_to, 'monday');
                         $option1 = $daydata['option6'];
+                        $status = $daydata['status'];
                         $options1 = explode(",", $option1);
                         //end test
                         $getoption = getoptions('monday', 'lunch', 'option3');
@@ -307,7 +340,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select name="monday_option6[]" id="" class="select2 form-control">
+                            <select name="monday_option6[]" id="" <?php if ($status == 1 || $status == 2) {
+                                                                    ?> class="form-control read_only" <?php
+                                                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                                                            } ?>>
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -324,13 +360,13 @@
                                 echo "</br>";
                             }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="monday_option6_qt" value="<?php echo $daydata['option6_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="monday_option6_qt" value="<?php echo $daydata['option6_qt']; ?>">
                     <?php
                         }
                     ?>
                 </td>
                 <td>
-                    <textarea name="monday_special2" placeholder="Enter Special Order" class="form-control"> <?php echo $daydata['special2']; ?> </textarea>
+                    <textarea <?php if ($status == 1 || $status == 2) echo "readonly"; ?> name="monday_special2" placeholder="Enter Special Order" class="form-control"> <?php echo $daydata['special2']; ?> </textarea>
                 </td>
             </tr>
 
@@ -340,6 +376,7 @@
                         // test
                         $daydata = getdaydata($date_from, $date_to, 'tuesday');
                         $option1 = $daydata['option4'];
+                        $status = $daydata['status'];
                         $options1 = explode(",", $option1);
                         //end test
                         $getoption = getoptions('tuesday', 'lunch', 'option1');
@@ -348,7 +385,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select name="tuesday_option4[]" id="" class="select2 form-control">
+                            <select name="tuesday_option4[]" id="" <?php if ($status == 1 || $status == 2) {
+                                                                    ?> class="form-control read_only" <?php
+                                                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                                                            } ?>>
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -364,7 +404,7 @@
                         <?php
                             }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="tuesday_option4_qt" value="<?php echo $daydata['option4_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="tuesday_option4_qt" value="<?php echo $daydata['option4_qt']; ?>">
                     <?php
                         }
                     ?>
@@ -373,6 +413,7 @@
                         // test
                         $daydata = getdaydata($date_from, $date_to, 'tuesday');
                         $option1 = $daydata['option5'];
+                        $status = $daydata['status'];
                         $options1 = explode(",", $option1);
                         //end test
                         $getoption = getoptions('tuesday', 'lunch', 'option2');
@@ -381,7 +422,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select name="tuesday_option5[]" id="" class="select2 form-control">
+                            <select name="tuesday_option5[]" id="" <?php if ($status == 1 || $status == 2) {
+                                                                    ?> class="form-control read_only" <?php
+                                                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                                                            } ?>>
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -398,7 +442,7 @@
                                 echo "</br>";
                             }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="tuesday_option5_qt" value="<?php echo $daydata['option5_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="tuesday_option5_qt" value="<?php echo $daydata['option5_qt']; ?>">
                     <?php }
                     ?>
                 </td>
@@ -406,6 +450,7 @@
                         // test
                         $daydata = getdaydata($date_from, $date_to, 'tuesday');
                         $option1 = $daydata['option6'];
+                        $status = $daydata['status'];
                         $options1 = explode(",", $option1);
                         //end test
                         $getoption = getoptions('tuesday', 'lunch', 'option3');
@@ -414,7 +459,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select name="tuesday_option6[]" id="" class="select2 form-control">
+                            <select name="tuesday_option6[]" id="" <?php if ($status == 1 || $status == 2) {
+                                                                    ?> class="form-control read_only" <?php
+                                                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                            } ?>>
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -430,11 +478,11 @@
                         <?php
                             }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="tuesday_option6_qt" value="<?php echo $daydata['option6_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="tuesday_option6_qt" value="<?php echo $daydata['option6_qt']; ?>">
                     <?php } ?>
                 </td>
                 <td>
-                    <textarea name="tuesday_special2" placeholder="Enter Special Order" class="form-control"> <?php echo $daydata['special2']; ?> </textarea>
+                    <textarea <?php if ($status == 1 || $status == 2) echo "readonly"; ?> name="tuesday_special2" placeholder="Enter Special Order" class="form-control"> <?php echo $daydata['special2']; ?> </textarea>
                 </td>
             </tr>
 
@@ -444,6 +492,7 @@
                         // test
                         $daydata = getdaydata($date_from, $date_to, 'wednesday');
                         $option1 = $daydata['option4'];
+                        $status = $daydata['status'];
                         $options1 = explode(",", $option1);
                         //end test
                         $getoption = getoptions('wednesday', 'lunch', 'option1');
@@ -452,7 +501,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select name="wednesday_option4[]" id="" class="select2 form-control">
+                            <select name="wednesday_option4[]" id="" <?php if ($status == 1 || $status == 2) {
+                                                                        ?> class="form-control read_only" <?php
+                                                                                                        } else { ?> class="form-control select2" <?php
+                                                                                                                } ?>>
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -469,13 +521,14 @@
                                 echo "</br>";
                             }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="wednesday_option4_qt" value="<?php echo $daydata['option4_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="wednesday_option4_qt" value="<?php echo $daydata['option4_qt']; ?>">
                     <?php } ?>
                 </td>
                 <td> <?php
                         // test
                         $daydata = getdaydata($date_from, $date_to, 'wednesday');
                         $option1 = $daydata['option5'];
+                        $status = $daydata['status'];
                         $options1 = explode(",", $option1);
                         //end test
                         $getoption = getoptions('wednesday', 'lunch', 'option2');
@@ -484,7 +537,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select name="wednesday_option5[]" id="" class="select2 form-control">
+                            <select name="wednesday_option5[]" id="" <?php if ($status == 1 || $status == 2) {
+                                                                        ?> class="form-control read_only" <?php
+                                                                                                        } else { ?> class="form-control select2" <?php
+                                                                                                                } ?>>
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -501,13 +557,14 @@
                                 echo "</br>";
                             }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="wednesday_option5_qt" value="<?php echo $daydata['option5_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="wednesday_option5_qt" value="<?php echo $daydata['option5_qt']; ?>">
                     <?php } ?>
                 </td>
                 <td> <?php
                         // test
                         $daydata = getdaydata($date_from, $date_to, 'wednesday');
                         $option1 = $daydata['option6'];
+                        $status = $daydata['status'];
                         $options1 = explode(",", $option1);
                         //end test
                         $getoption = getoptions('wednesday', 'lunch', 'option3');
@@ -516,7 +573,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select name="wednesday_option6[]" id="" class="select2 form-control">
+                            <select name="wednesday_option6[]" id="" <?php if ($status == 1 || $status == 2) {
+                                                                        ?> class="form-control read_only" <?php
+                                                                                                        } else { ?> class="form-control select2" <?php
+                                                                                                                } ?>>
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -533,11 +593,11 @@
 
                             }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="wednesday_option6_qt" value="<?php echo $daydata['option6_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="wednesday_option6_qt" value="<?php echo $daydata['option6_qt']; ?>">
                     <?php } ?>
                 </td>
                 <td>
-                    <textarea name="wednesday_special2" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special2']; ?></textarea>
+                    <textarea <?php if ($status == 1 || $status == 2) echo "readonly"; ?> name="wednesday_special2" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special2']; ?></textarea>
                 </td>
             </tr>
             <tr>
@@ -546,6 +606,7 @@
                         // test
                         $daydata = getdaydata($date_from, $date_to, 'thursday');
                         $option1 = $daydata['option4'];
+                        $status = $daydata['status'];
                         $options1 = explode(",", $option1);
                         //end test
                         $getoption = getoptions('thursday', 'lunch', 'option1');
@@ -554,7 +615,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select name="thursday_option4[]" id="" class="select2 form-control">
+                            <select name="thursday_option4[]" id="" <?php if ($status == 1 || $status == 2) {
+                                                                    ?> class="form-control read_only" <?php
+                                                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                            } ?>>
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -570,13 +634,14 @@
                         <?php
                             }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="thursday_option4_qt" value="<?php echo $daydata['option4_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="thursday_option4_qt" value="<?php echo $daydata['option4_qt']; ?>">
                     <?php } ?>
                 </td>
                 <td> <?php
                         // test
                         $daydata = getdaydata($date_from, $date_to, 'thursday');
                         $option1 = $daydata['option5'];
+                        $status = $daydata['status'];
                         $options1 = explode(",", $option1);
                         //end test
                         $getoption = getoptions('thursday', 'lunch', 'option2');
@@ -584,7 +649,10 @@
                         if (count($getoption) > 0) {
                             foreach ($alldata as $data) {
                         ?>
-                            <select name="thursday_option5[]" id="" class="select2 form-control">
+                            <select name="thursday_option5[]" id="" <?php if ($status == 1 || $status == 2) {
+                                                                    ?> class="form-control read_only" <?php
+                                                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                            } ?>>
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -600,13 +668,14 @@
                         <?php
                             }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="thursday_option5_qt" value="<?php echo $daydata['option5_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="thursday_option5_qt" value="<?php echo $daydata['option5_qt']; ?>">
                     <?php } ?>
                 </td>
                 <td> <?php
                         // test
                         $daydata = getdaydata($date_from, $date_to, 'thursday');
                         $option1 = $daydata['option6'];
+                        $status = $daydata['status'];
                         $options1 = explode(",", $option1);
                         //end test
                         $getoption = getoptions('thursday', 'lunch', 'option3');
@@ -615,7 +684,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select name="thursday_option6[]" id="" class="select2 form-control">
+                            <select name="thursday_option6[]" id="" <?php if ($status == 1 || $status == 2) {
+                                                                    ?> class="form-control read_only" <?php
+                                                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                            } ?>>
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -632,11 +704,11 @@
 
                             }
                         ?>
-                        <input placeholder="Enter Quantity" type="number" class="form-control" name="thursday_option6_qt" value="<?php echo $daydata['option6_qt']; ?>">
+                        <input <?php if ($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="thursday_option6_qt" value="<?php echo $daydata['option6_qt']; ?>">
                     <?php } ?>
                 </td>
                 <td>
-                    <textarea name="thursday_special2" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special2']; ?></textarea>
+                    <textarea <?php if ($status == 1 || $status == 2) echo "readonly"; ?> name="thursday_special2" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special2']; ?></textarea>
                 </td>
             </tr>
         </tbody>

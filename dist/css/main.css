@@ -30,3 +30,9 @@ margin-top: 40px;
 .main_menu table tr td{
     min-width: 150px;
 }
+.read_only{
+    opacity: 0.5;
+    pointer-events: none;
+    background-color: #e9ecef;
+    opacity: 1;
+}
