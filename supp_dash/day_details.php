@@ -32,6 +32,35 @@ if (isset($_GET["id"]) && is_numeric($_GET['id'])) {
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
+                    <?php
+                    if (isset($_POST['accept_order'])) {
+                        $stmt = $connect->prepare("UPDATE breakfast_order SET status = 1 WHERE id=?");
+                        $stmt->execute(array($day_id));
+                        if ($stmt) {
+                    ?>
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <p> <i class="icon fas fa-check"></i> Accepted </p>
+                            </div>
+                        <?php
+                        }
+                    }
+
+                    if (isset($_POST['send_reason'])) {
+                        $reason = $_POST['reject_reason'];
+                        $stmt = $connect->prepare("UPDATE breakfast_order SET status = 2 ,  reject_reason = ?  WHERE id=?");
+                        $stmt->execute(array($reason, $day_id));
+                        if ($stmt) {
+                        ?>
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <p> <i class="icon fas fa-check"></i> Reason Send </p>
+                            </div>
+                    <?php
+                        }
+                    }
+
+                    ?>
                     <div class="col-12">
                         <!-- Main content -->
                         <div class="invoice p-3 mb-3" id="print">
@@ -45,7 +74,7 @@ if (isset($_GET["id"]) && is_numeric($_GET['id'])) {
                                         $supp_data = $stmt->fetch();
                                         ?>
                                         <i class="fas fa-user"></i> <?php echo $supp_data['name']; ?>
-                                        <small class="float-right">Day : <?php echo $day_details['day']; ?> </small>
+                                        <small class="float-right">Day : <?php echo $day_details['day']; ?> => (<?php echo $day_details['date_day']; ?>) </small>
                                     </h4>
                                 </div>
                             </div>
@@ -298,11 +327,40 @@ if (isset($_GET["id"]) && is_numeric($_GET['id'])) {
 
                             <div class="row no-print">
                                 <div class="col-12">
-                                    <button class="btn btn-primary" id="print_Button" onclick="printDiv()"> <i class="fa fa-print"></i>Print</button>
+                                    <?php
+                                    // تاريخ اليوم
+                                    $today = time();
+
+                                    // تاريخ الموعد
+                                    $appointment_date = strtotime($day_details['date_day']);
+
+                                    // حساب الفرق بين التاريخين بالثواني
+                                    $difference = $appointment_date - $today;
+
+                                    // حساب عدد الساعات المتبقية حتى الموعد
+                                    $hours_remaining = floor($difference / (60 * 60));
+
+                                    // عرض الزر فقط إذا كانت الفترة المتبقية أقل من 12 ساعة
+                                    ?>
+                                    <form action="" method="post">
+                                        <button class="btn btn-primary" id="print_Button" onclick="printDiv()"> <i class="fa fa-print"></i>Print</button>
+                                        <?php if ($day_details['status'] == 0 && $hours_remaining <= 12) { ?>
+                                            <button class="btn btn-success" type="submit" name="accept_order"> Accept Order </button>
+                                            <button class="btn btn-danger" type="button" name="" id="reject_order"> Reject Order </button>
+                                            <br>
+                                            <div class="reject_reason" id="reject_reason" style="display: none;">
+                                                <br>
+                                                <textarea name="reject_reason" class="form-control" placeholder="Please Enter Reason"></textarea>
+                                                <br>
+                                                <button required type="submit" class="btn btn-primary" name="send_reason"> Send Reason </button>
+                                            </div>
+                                        <?php
+                                        } ?>
+                                    </form>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -326,4 +384,14 @@ if (isset($_GET["id"]) && is_numeric($_GET['id'])) {
         document.body.innerHTML = originalContents;
         location.reload();
     }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $("document").ready(function() {
+        $("#reject_order").click(function() {
+            $("#reject_reason").show();
+        })
+    });
 </script>

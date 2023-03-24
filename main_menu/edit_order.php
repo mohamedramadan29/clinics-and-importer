@@ -63,7 +63,7 @@ if (isset($_POST['save1'])) {
     }
     if ($stmt) {
         $_SESSION['success_message'] = " Order Updated ";
-        // header('Location:main?dir=main_menu&page=report');
+         header('Location:main?dir=main_menu&page=emp_orders');
     }
     //header("location:main.php?dir=main_menu&page=report");
 }

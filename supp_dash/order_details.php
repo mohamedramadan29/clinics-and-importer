@@ -61,6 +61,7 @@
                                                 <th> # </th>
                                                 <th> Day </th>
                                                 <th> Date </th>
+                                                <th> Status </th>
                                                 <th>Action </th>
                                             </tr>
                                         </thead>
@@ -77,7 +78,24 @@
                                                     <?php  ?>
                                                     <td> <?php echo $i; ?> </td>
                                                     <td> <?php echo $order['day']; ?> </td>
-                                                    <td>  </td>
+                                                    <td> <?php echo $order['date_day']; ?>  </td>
+                                                    <td> <?php
+                                                    if($order['status'] == 0){
+                                                        ?>
+                                                        <button class="btn btn-warning btn-sm"> Not approved yet </button>
+                                                        <?php
+                                                    }elseif($order['status'] == 1){?>
+                                                    <button class="btn btn-success btn-sm"> approved </button>
+                                                    <?php
+                                                    }else{
+                                                        ?>
+                                                    <button class="btn btn-danger btn-sm"> Rejected </button>
+                                                    <p> <?php echo $order['reject_reason']; ?> </p>
+
+                                                        <?php
+                                                    }
+
+                                                    ?> </td>
                                                     <td>
                                                         <a href="main.php?dir=supp_dash&page=day_details&id=<?php echo $order['id']; ?>" class="btn btn-info btn-sm"> Day Details <i class='fa fa-eye'></i> </a>
                                                     </td>
