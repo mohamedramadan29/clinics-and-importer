@@ -35,11 +35,12 @@
                                     <select required name="year" class="form-control select2" style="min-width: 150px;">
                                         <?php
                                         // Set the start year and end year for the dropdown
-                                        $startYear = date('Y') - 10;
+                                        $startYear = date('Y');
                                         $endYear = date('Y') + 10;
                                         // Loop through each year and add it as an option in the dropdown
-                                        for ($i = $startYear; $i <= $endYear; $i++) {
-                                            echo '<option value="' . $i . '">' . $i . '</option>';
+                                        for ($i = $startYear; $i <= $endYear; $i++) { ?>
+                                            <option value="<?php echo $i; ?>"> <?php echo $i; ?> </option>
+                                        <?php
                                         }
                                         ?>
                                     </select>
@@ -50,7 +51,11 @@
                                         <?php
                                         for ($i = 1; $i <= 12; $i++) {
                                             $month = date('F', mktime(0, 0, 0, $i, 1));
-                                            echo '<option value="' . $i . '">' . $month . '</option>';
+                                        ?>
+
+                                            <option value="<?php echo $i; ?>"> <?php echo $month; ?> </option>
+
+                                        <?php
                                         }
                                         ?>
                                     </select>
@@ -65,6 +70,7 @@
                     if (isset($_POST['select_year_month'])) {
                         $year = $_POST['year'];
                         $month = $_POST['month'];
+
                         // Get the number of days in the selected month
                         $numDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
                     ?>
@@ -82,16 +88,13 @@
                                 <tbody>
                                     <?php
                                     for ($day = 1; $day <= $numDays; $day++) {
-                                        $year = $_POST['year'];
-                                        $month = $_POST['month'];
                                         $date = date_create("$year-$month-$day");
                                         $dayName = date_format($date, "l"); // Get the day name
                                         $dateDay = date_format($date, "d-m-Y"); // Get the date day in the format "d-m-Y"
                                     ?>
                                         <tr>
-                                            <td> <input type="text" name="day_name[]" class="form-control" value="<?php echo $dayName ?>">
-                                                <input type="hidden" name="year[]" value="<?php echo $year ?>">
-                                                <input type="hidden" name="month[]" value="<?php echo $month ?>">
+                                            <td>
+                                                <input type="text" name="day_name[]" class="form-control" value="<?php echo $dayName ?>">
                                             </td>
                                             <td> <input type="text" name="date_day[]" class="form-control" value="<?php echo $dateDay ?>"> </td>
                                             <td> <input type="text" name="break_session[]" class="form-control"> </td>
@@ -115,8 +118,6 @@
                     <br>
                     <?php
                     if (isset($_POST['insert_days'])) {
-                        $year = $_POST['year'];
-                        $month = $_POST['month'];
                         $day_name = $_POST['day_name'];
                         $date_day = $_POST['date_day'];
                         $break_session = $_POST['break_session'];
@@ -125,8 +126,6 @@
                         $data = array();
                         for ($i = 0; $i < count($day_name); $i++) {
                             $row = array(
-                                'year' => $year[$i],
-                                'month' => $month[$i],
                                 'day_name' => $day_name[$i],
                                 'date_day' => $date_day[$i],
                                 'break_session' => $break_session[$i],
@@ -136,24 +135,27 @@
                             array_push($data, $row);
                         }
                         foreach ($data as $row) {
-                            $year = $row['year'];
-                            $month = $row['month'];
                             $day_name = $row['day_name'];
                             $date_day = $row['date_day'];
+                            $date_string = $date_day;
+                            $date = DateTime::createFromFormat('d-m-Y', $date_string);
+                            $year = $date->format('Y');
+                            $month = $date->format('m');
                             $break_session = $row['break_session'];
                             $lunch_session = $row['lunch_session'];
                             $dinner_session = $row['dinner_session'];
-                            $stmt = $connect->prepare('INSERT INTO sessions (session_year,session_month,day_name,day_date,break_session,lunch_session,dinner_session)
-                            VALUES(:zyear,:zmonth,:zday_name,:zday_date,:zbreak,:zlunch,:zdinner)
+                            $stmt = $connect->prepare('INSERT INTO sessions (session_month,day_name,day_date,break_session,lunch_session,dinner_session,emp_id,year)
+                            VALUES(:zmonth,:zday_name,:zday_date,:zbreak,:zlunch,:zdinner,:zemp_id,:zyear)
                             ');
                             $stmt->execute(array(
-                                'zyear' => $yaer,
                                 'zmonth' => $month,
                                 'zday_name' => $day_name,
                                 'zday_date' => $date_day,
                                 'zbreak' => $break_session,
                                 'zlunch' => $lunch_session,
                                 'zdinner' => $dinner_session,
+                                'zemp_id' => $_SESSION['emp_id'],
+                                'zyear' => $year,
                             ));
                         }
                         if ($stmt) {

@@ -96,6 +96,8 @@ if (isset($_SESSION['admin_id'])) {
         include 'sessions/delete.php';
     } elseif ($dir == 'sessions' && $page == 'report') {
         include "sessions/report.php";
+    } elseif ($dir == 'sessions' && $page == 'session_details') {
+        include "sessions/session_details.php";
     }
     // START Moth Statistics 
     if ($dir == 'statistics' && $page == 'add') {

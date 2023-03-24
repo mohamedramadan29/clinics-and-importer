@@ -233,7 +233,6 @@
                  <p>Month satistics </p>
                </a>
              </li>
-
            </ul>
          </li>
          <li class="nav-item">
