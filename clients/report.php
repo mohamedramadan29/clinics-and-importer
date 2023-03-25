@@ -63,15 +63,39 @@
                                                     <td> <?php echo $i; ?> </td>
                                                     <td> <?php echo  $client['patient_name']; ?> </td>
                                                     <td>
+                                                        <?php
+                                                        if ($client['goal_progress'] == "The Patient Has Not Started Yet") {
+                                                            $progress = 0;
+                                                        } elseif ($client['goal_progress'] == "Patient start - monitor Progress") {
+                                                            $progress = 20;
+                                                        } elseif ($client['goal_progress'] == "Patient started working on the goal - stage of encouragement & monitoring") {
+                                                            $progress = 40;
+                                                        } elseif ($client['goal_progress'] == "Patient achieved 50% of the smart goals") {
+                                                            $progress = 60;
+                                                        } elseif ($client['goal_progress'] == "Almost all goals were achieved by the patient") {
+                                                            $progress = 80;
+                                                        } elseif ($client['goal_progress'] == "Smart goals done - Maintaning behaviours and pushing further") {
+                                                            $progress = 100;
+                                                        }
+                                                        ?>
+                                                        <span style="font-weight: bold;"><?php echo $progress; ?> % </span>
                                                         <div class="progress">
-                                                            <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                                <span class="sr-only">40% Complete (success)</span>
+                                                            <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $progress; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $progress; ?>%">
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td>
+                                                        <?php
+                                                        $days_required = $client['days_required'];
+                                                        $average = 100  / $days_required;
+                                                        $step = $average;
+                                                        for($i = 1; $i<= $days_required;$i++){
+                                                            $newrecord = $i * $step;
+                                                        } 
+                                                        ?>
+                                                        <span style="font-weight: bold;"><?php echo $step; ?> % </span>
                                                         <div class="progress">
-                                                            <div class="progress-bar bg-warning progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+                                                            <div class="progress-bar bg-warning progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $step; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $step; ?>%">
                                                                 <span class="sr-only">70% Complete (success)</span>
                                                             </div>
                                                         </div>

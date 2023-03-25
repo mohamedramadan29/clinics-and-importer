@@ -14,7 +14,6 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
     <section class="content">
         <div class="container-fluid">
 
@@ -24,11 +23,11 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="info">
-                                <?php
-                                $stmt = $connect->prepare("SELECT * FROM meal_value WHERE id = 1");
-                                $stmt->execute();
-                                $price = $stmt->fetch();
 
+                                <?php
+                                $stmt = $connect->prepare("SELECT * FROM meal_value WHERE emp_id=?");
+                                $stmt->execute(array($_SESSION['emp_id']));
+                                $price = $stmt->fetch();
                                 ?>
                                 <form action="" method="post">
                                     <table class="table table-bordered">
@@ -54,13 +53,27 @@
                                     $break_value = $_POST['break_value'];
                                     $lunch_value = $_POST['lunch_value'];
                                     $dinner_value = $_POST['dinner_value'];
-                                    $stmt = $connect->prepare("UPDATE meal_value SET break_value=?, lunch_value=?, dinner_value=?");
-                                    $stmt->execute(array($break_value, $lunch_value, $dinner_value));
+                                    $stm = $connect->prepare('SELECT * FROM meal_value WHERE emp_id=?');
+                                    $stmt->execute(array($_SESSION['emp_id']));
+                                    $count = $stmt->rowCount();
+                                    if ($count > 0) {
+                                        $stmt = $connect->prepare("UPDATE meal_value SET break_value=?, lunch_value=?, dinner_value=? WHERE emp_id=?");
+                                        $stmt->execute(array($break_value, $lunch_value, $dinner_value, $_SESSION['emp_id']));
+                                    } else {
+                                        $stmt = $connect->prepare("INSERT INTO meal_value (break_value, lunch_value, dinner_value , emp_id) 
+                                        VALUES (:zbreak,:zlunch,:zdinner,:zemp_id)");
+                                        $stmt->execute(array(
+                                            'zbreak' => $break_value,
+                                            'zlunch' => $lunch_value,
+                                            'zdinner' => $dinner_value,
+                                            'zemp_id' => $_SESSION['emp_id'],
+                                        ));
+                                    }
+
                                     if ($stmt) {
                                         header('Location:main?dir=statistics&page=report');
                                     }
                                 }
-
                                 ?>
                             </div>
                         </div>
@@ -74,7 +87,7 @@
                                                 <select required name="year" class="form-control select2" style="min-width: 120px;">
                                                     <?php
                                                     // Set the start year and end year for the dropdown
-                                                    $startYear = date('Y') - 10;
+                                                    $startYear = date('Y');
                                                     $endYear = date('Y') + 10;
                                                     // Loop through each year and add it as an option in the dropdown
                                                     for ($i = $startYear; $i <= $endYear; $i++) {
@@ -109,10 +122,12 @@
                     if (isset($_POST['select_year_month'])) {
                         $year = $_POST['year'];
                         $month = $_POST['month'];
+                        $month = sprintf('%02d', $month);
+                        echo $month;
                     ?>
                         <div class="card-body">
                             <div class="table-responsive dt-responsive">
-                                <table id="example1" class="table table-striped table-bordered">
+                                <table id="my_table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th> # </th>
@@ -131,8 +146,8 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $stmt = $connect->prepare("SELECT * FROM sessions WHERE session_month=? ");
-                                        $stmt->execute(array($month));
+                                        $stmt = $connect->prepare("SELECT * FROM sessions WHERE session_month=? AND year = ? ");
+                                        $stmt->execute(array($month, $year));
                                         $alloption = $stmt->fetchAll();
                                         $i = 0;
                                         foreach ($alloption as $option) {
