@@ -109,6 +109,10 @@ if (isset($_SESSION['admin_id'])) {
     } elseif ($dir == 'statistics' && $page == 'report') {
         include "statistics/report.php";
     }
+    // START REPORT 
+    if ($dir == 'reports' && $page == 'report') {
+        include "reports/report.php";
+    }
     // START CLIENTS 
 
     // START cLIENT CATEGORY

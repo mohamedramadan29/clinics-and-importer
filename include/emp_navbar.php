@@ -223,6 +223,12 @@
                                  <p>Month satistics </p>
                              </a>
                          </li>
+                         <li class="nav-item">
+                             <a href="main.php?dir=reports&page=report" class="nav-link">
+                                 <i class="far fa-circle nav-icon"></i>
+                                 <p> Reports </p>
+                             </a>
+                         </li>
                      </ul>
                  </li>
                  <li class="nav-item">
