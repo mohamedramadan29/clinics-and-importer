@@ -3,7 +3,7 @@ $pagetitle = '  Login  ';
 ob_start();
 session_start();
 include 'init.php';
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['select_permision'] == 'admin') {
     $username = $_POST['user_name'];
     $password = $_POST['password'];
     $stmt = $connect->prepare(
@@ -15,6 +15,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($count > 0) {
         $_SESSION['admin_id'] = $data['id'];
         header('Location:main.php?dir=dashboard&page=dashboard');
+        exit();
+    }
+} elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['select_permision'] == 'emp') {
+    $username = $_POST['user_name'];
+    $password = $_POST['password'];
+    $stmt = $connect->prepare(
+        'SELECT * FROM emplyees WHERE emp_name=? AND emp_password=?'
+    );
+    $stmt->execute([$username, $password]);
+    $data = $stmt->fetch();
+    $count = $stmt->rowCount();
+    if ($count > 0) {
+        $_SESSION['emp_id'] = $data['id'];
+        header('Location:main.php?dir=dashboard&page=emp_dashboard');
+        exit();
+    }
+} elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['select_permision'] == 'supp') {
+    $username = $_POST['user_name'];
+    $password = $_POST['password'];
+    $stmt = $connect->prepare(
+        'SELECT * FROM presentions WHERE name=? AND password=?'
+    );
+    $stmt->execute([$username, $password]);
+    $data = $stmt->fetch();
+    $count = $stmt->rowCount();
+    if ($count > 0) {
+        $_SESSION['supp_id'] = $data['id'];
+        header('Location:main.php?dir=dashboard&page=sup_dashboard');
         exit();
     }
 }
@@ -75,6 +103,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         </div>
                                     </div>
                                 </div>
+                                <div class="input-group mb-3">
+                                    <select name="select_permision" id="" class="form-control select2">
+                                        <option value=""> -- Select Permission -- </option>
+                                        <option value="admin"> Admin </option>
+                                        <option value="emp"> Employee </option>
+                                        <option value="supp"> Supplier </option>
+                                    </select>
+                                </div>
                                 <div class="row">
                                     <div class="col-8">
                                         <div class="icheck-primary">
@@ -92,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div>
                             </form>
                             <p class="mb-1">
-                                <a href="forgot-password.html">I forgot my password</a>
+                                <!-- <a href="forgot-password.html">I forgot my password</a> -->
                             </p>
                         </div>
 

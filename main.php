@@ -28,6 +28,11 @@ if (isset($_SESSION['admin_id'])) {
     // STRAT DASHBAORD
     if ($dir == 'dashboard' && $page == 'dashboard') {
         include 'dashboard.php';
+    }elseif($dir == 'dashboard' && $page == 'emp_dashboard'){
+        include 'emp_dashboard.php';
+    }
+    elseif($dir == 'dashboard' && $page == 'sup_dashboard'){
+        include 'sup_dashboard.php';
     }
     // END DASHBAORD
     // START Category

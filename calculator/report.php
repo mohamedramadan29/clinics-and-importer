@@ -167,13 +167,13 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="Company-2" class="block">BMI (Kg/M2)</label>
-                                            <input type="number" name="bmi" class="form-control" id="bmi" value="<?php echo $equation1; ?>">
+                                            <input type="number" name="bmi" class="form-control" id="bmi" value="<?php echo number_format($equation1,2); ?>">
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="Company-2" class="block">Proten Needs (g/day)</label>
-                                            <input type="number" name="proten_need" class="form-control" id="proten_need" value="<?php echo $equation2 ?>">
+                                            <input type="number" name="proten_need" class="form-control" id="proten_need" value="<?php echo number_format($equation2,2) ?>">
                                         </div>
                                     </div>
                                     <div class="col-4">
@@ -193,7 +193,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="Company-2" class="block"> IBW (KG)</label>
-                                            <input type="number" name="ibw" class="form-control" id="ibw" value="<?php echo $equation4 ?>">
+                                            <input type="number" name="ibw" class="form-control" id="ibw" value="<?php echo number_format($equation4,2) ?>">
                                         </div>
                                     </div>
                                     <div class="col-4">
