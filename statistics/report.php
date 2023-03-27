@@ -70,7 +70,6 @@
                                             'zemp_id' => $_SESSION['emp_id'],
                                         ));
                                     }
-
                                     if ($stmt) {
                                         header('Location:main?dir=statistics&page=report');
                                     }
@@ -125,145 +124,203 @@
                         $month = $_POST['month'];
                         $month = sprintf('%02d', $month);
                     ?>
-                        <div class="card-body">
-                            <div class="table-responsive dt-responsive">
-                                <table id="" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th> # </th>
-                                            <th> Day </th>
-                                            <th> Sum Breakfast Num </th>
-                                            <th> Sum Morning Session </th>
-                                            <th> Sum Lunch Num </th>
-                                            <th> Sum Noo Sessions </th>
-                                            <th> Sum Dinner Num </th>
-                                            <th> Sum Dinner Sessions</th>
-                                            <th> Sum Meal </th>
-                                            <th> Sum Sessions</th>
-                                            <th> Total </th>
-                                            <th> Gap </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                        <div id="print">
+                            <div class="row">
+                                <div class="col-6">
+                                    <table class="table table-bordered">
                                         <?php
-                                        // تعريف المتغيرات الرئيسية
-                                        $breakfast_total = 0;
-                                        $lunch_total = 0;
-                                        $dinner_total = 0;
-                                        $break_session_total = 0;
-                                        $lunch_session_total = 0;
-                                        $dinner_session_total = 0;
-                                        $sum_meal_total = 0;
-                                        $sum_session_total = 0;
-                                        $all_price_total = 0;
-                                        $gpa_total = 0;
-                                        $stm = $connect->prepare('SELECT * FROM meal_value WHERE emp_id=?');
+                                        $stmt = $connect->prepare("SELECT * FROM emplyees WHERE id=?");
                                         $stmt->execute(array($_SESSION['emp_id']));
-                                        $meal_data = $stmt->fetch();
-                                        // START MEAL VALUE
-                                        $break_value = $meal_data['break_value'];
-                                        $lunch_value = $meal_data['lunch_value'];
-                                        $dinner_value = $meal_data['dinner_value'];
-                                        // END MEAL VALUE 
-                                        $emp_id = $_SESSION['emp_id'];
-                                        $stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE MONTH(STR_TO_DATE(date_day, '%W %d %M %Y')) = ? AND emp_id=?");
-                                        $stmt->execute(array($month, $emp_id));
-                                        $result = $stmt->fetchAll();
-                                        $stmt = $connect->prepare("SELECT * FROM sessions WHERE session_month=? AND year = ? ");
-                                        $stmt->execute(array($month, $year));
-                                        $alloption = $stmt->fetchAll();
-                                        $i = 0;
-                                        foreach ($alloption as $option) {
-                                            $i++;
+                                        $emp_data = $stmt->fetch();
                                         ?>
+                                        <tbody>
                                             <tr>
-                                                <td><?php echo $i; ?></td>
-                                                <td><?php echo $option['day_date']; ?></td>
-                                                <?php
-                                                // عرض نتائج الطلبات في الصف الحالي إذا تطابق التاريخ
-                                                $found_data = false; // تعيين متغير لتحديد ما إذا كانت هناك بيانات في الصف الحالي
-                                                foreach ($result as $order) {
-                                                    $date_day = date('d-m-Y', strtotime($order['date_day']));
-                                                    if ($date_day == $option['day_date']) {
-                                                        $found_data = true; // تحديث متغير العثور على البيانات إلى "صحيح"
-                                                        $breakfast_sum = intval($order['option1_qt']) + intval($order['option2_qt']) + intval($order['option3_qt']);
-                                                        $lunch_sum = intval($order['option4_qt']) + intval($order['option5_qt']) + intval($order['option6_qt']);
-                                                        $dinner_sum = intval($order['option7_qt']) + intval($order['option8_qt']) + intval($order['option9_qt']);
-                                                        $sum_meal = $breakfast_sum + $lunch_sum + $dinner_sum;
-                                                        $sum_session = intval($option['break_session']) + intval($option['lunch_session']) + intval($option['dinner_session']);
-                                                        $gpa = $sum_meal - $sum_session;
-                                                        // get total price
-                                                        $break_price = $breakfast_sum * $break_value;
-                                                        $lunch_price = $lunch_sum * $lunch_value;
-                                                        $dinner_price = $dinner_sum * $dinner_value;
-                                                        $all_price = $break_price + $lunch_price + $dinner_price;
-                                                        // حساب مجموعات العمود
-                                                        $breakfast_total += $breakfast_sum;
-                                                        $lunch_total += $lunch_sum;
-                                                        $dinner_total += $dinner_sum;
-                                                        $break_session_total += intval($option['break_session']);
-                                                        $lunch_session_total += intval($option['lunch_session']);
-                                                        $dinner_session_total += intval($option['dinner_session']);
-                                                        $sum_meal_total += $sum_meal;
-                                                        $sum_session_total += $sum_session;
-                                                        $all_price_total += $all_price;
-                                                        $gpa_total += $gpa;
-                                                ?>
-                                                        <td><?php echo $breakfast_sum; ?></td>
-                                                        <td><?php echo $option['break_session']; ?></td>
-                                                        <td><?php echo $lunch_sum; ?></td>
-                                                        <td><?php echo $option['lunch_session']; ?></td>
-                                                        <td><?php echo $dinner_sum; ?></td>
-                                                        <td><?php echo $option['dinner_session']; ?></td>
-                                                        <td><?php echo $sum_meal; ?></td>
-                                                        <td><?php echo $sum_session ?></td>
-                                                        <td><?php echo $all_price; ?></td>
-                                                        <td><?php echo $gpa; ?></td>
+                                                <th> Clinic Name : </th>
+                                                <th> <?php echo $emp_data['clinic_name']; ?> </th>
+                                            </tr>
+                                            <tr>
+                                                <th> Code : </th>
+                                                <th> <?php echo $emp_data['clinic_code']; ?> </th>
+                                            </tr>
+                                            <tr>
+                                                <th> Month : </th>
+                                                <th> <?php echo $month; ?> </th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-6">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <th> Breakfast : </th>
+                                                <th> <?php echo $price['break_value']; ?> </th>
+                                            </tr>
+                                            <tr>
+                                                <th> Lunch : </th>
+                                                <th> <?php echo $price['lunch_value']; ?> </th>
+                                            </tr>
+                                            <tr>
+                                                <th> Dinner : </th>
+                                                <th> <?php echo $price['dinner_value']; ?> </th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive dt-responsive">
+                                    <table id="" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th> # </th>
+                                                <th> Day </th>
+                                                <th> Sum Breakfast Num </th>
+                                                <th> Sum Morning Session </th>
+                                                <th> Sum Lunch Num </th>
+                                                <th> Sum Noo Sessions </th>
+                                                <th> Sum Dinner Num </th>
+                                                <th> Sum Dinner Sessions</th>
+                                                <th> Sum Meal </th>
+                                                <th> Sum Sessions</th>
+                                                <th> Total </th>
+                                                <th> Gap </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            // تعريف المتغيرات الرئيسية
+                                            $breakfast_total = 0;
+                                            $lunch_total = 0;
+                                            $dinner_total = 0;
+                                            $break_session_total = 0;
+                                            $lunch_session_total = 0;
+                                            $dinner_session_total = 0;
+                                            $sum_meal_total = 0;
+                                            $sum_session_total = 0;
+                                            $all_price_total = 0;
+                                            $gpa_total = 0;
+                                            // START MEAL VALUE
+                                            $break_value = $price['break_value'];
+                                            $lunch_value = $price['lunch_value'];
+                                            $dinner_value = $price['dinner_value'];
+                                            // END MEAL VALUE 
+                                            $emp_id = $_SESSION['emp_id'];
+                                            $stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE MONTH(STR_TO_DATE(date_day, '%W %d %M %Y')) = ? AND emp_id=?");
+                                            $stmt->execute(array($month, $emp_id));
+                                            $result = $stmt->fetchAll();
+                                            $stmt = $connect->prepare("SELECT * FROM sessions WHERE session_month=? AND year = ? ");
+                                            $stmt->execute(array($month, $year));
+                                            $alloption = $stmt->fetchAll();
+                                            $i = 0;
+                                            foreach ($alloption as $option) {
+                                                $i++;
+                                            ?>
+                                                <tr>
+                                                    <td><?php echo $i; ?></td>
+                                                    <td><?php echo $option['day_date']; ?></td>
+                                                    <?php
+                                                    // عرض نتائج الطلبات في الصف الحالي إذا تطابق التاريخ
+                                                    $found_data = false; // تعيين متغير لتحديد ما إذا كانت هناك بيانات في الصف الحالي
+                                                    foreach ($result as $order) {
+                                                        $date_day = date('d-m-Y', strtotime($order['date_day']));
+                                                        if ($date_day == $option['day_date']) {
+                                                            $found_data = true; // تحديث متغير العثور على البيانات إلى "صحيح"
+                                                            $breakfast_sum = intval($order['option1_qt']) + intval($order['option2_qt']) + intval($order['option3_qt']);
+                                                            $lunch_sum = intval($order['option4_qt']) + intval($order['option5_qt']) + intval($order['option6_qt']);
+                                                            $dinner_sum = intval($order['option7_qt']) + intval($order['option8_qt']) + intval($order['option9_qt']);
+                                                            $sum_meal = $breakfast_sum + $lunch_sum + $dinner_sum;
+                                                            $sum_session = intval($option['break_session']) + intval($option['lunch_session']) + intval($option['dinner_session']);
+                                                            $gpa = $sum_meal - $sum_session;
+                                                            // get total price
+                                                            $break_price = $breakfast_sum * $break_value;
+                                                            $lunch_price = $lunch_sum * $lunch_value;
+                                                            $dinner_price = $dinner_sum * $dinner_value;
+                                                            $all_price = $break_price + $lunch_price + $dinner_price;
+                                                            // حساب مجموعات العمود
+                                                            $breakfast_total += $breakfast_sum;
+                                                            $lunch_total += $lunch_sum;
+                                                            $dinner_total += $dinner_sum;
+                                                            $break_session_total += intval($option['break_session']);
+                                                            $lunch_session_total += intval($option['lunch_session']);
+                                                            $dinner_session_total += intval($option['dinner_session']);
+                                                            $sum_meal_total += $sum_meal;
+                                                            $sum_session_total += $sum_session;
+                                                            $all_price_total += $all_price;
+                                                            $gpa_total += $gpa;
+                                                    ?>
+                                                            <td><?php echo $breakfast_sum; ?></td>
+                                                            <td><?php echo $option['break_session']; ?></td>
+                                                            <td><?php echo $lunch_sum; ?></td>
+                                                            <td><?php echo $option['lunch_session']; ?></td>
+                                                            <td><?php echo $dinner_sum; ?></td>
+                                                            <td><?php echo $option['dinner_session']; ?></td>
+                                                            <td><?php echo $sum_meal; ?></td>
+                                                            <td><?php echo $sum_session ?></td>
+                                                            <td><?php echo $all_price; ?></td>
+                                                            <td><?php echo $gpa; ?></td>
+                                                        <?php
+                                                        }
+                                                    }
+                                                    if (!$found_data) { // إذا لم يتم العثور على البيانات، قم بإضافة الأعمدة الفارغة
+                                                        ?>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
                                                     <?php
                                                     }
-                                                }
-                                                if (!$found_data) { // إذا لم يتم العثور على البيانات، قم بإضافة الأعمدة الفارغة
                                                     ?>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                <?php
-                                                }
-                                                ?>
-                                            </tr>
-                                            <!-- إظهار مجموعات العمود في النهاية -->
+                                                </tr>
+                                                <!-- إظهار مجموعات العمود في النهاية -->
 
-                                    <?php
-                                        }
+                                            <?php
+                                            }
+                                            ?>
+                                            <tr>
+                                                <td colspan="2" style="font-weight: bold;">Total:</td>
+                                                <td style="font-weight: bold;"><?php echo $breakfast_total; ?></td>
+                                                <td style="font-weight: bold;"><?php echo $break_session_total; ?></td>
+                                                <td style="font-weight: bold;"><?php echo $lunch_total; ?></td>
+                                                <td style="font-weight: bold;"><?php echo $lunch_session_total; ?></td>
+                                                <td style="font-weight: bold;"><?php echo $dinner_total; ?></td>
+                                                <td style="font-weight: bold;"><?php echo $dinner_session_total; ?></td>
+                                                <td style="font-weight: bold;"><?php echo $sum_meal_total; ?></td>
+                                                <td style="font-weight: bold;"><?php echo $sum_session_total; ?></td>
+                                                <td style="font-weight: bold;"><?php echo $all_price_total; ?></td>
+                                                <td style="font-weight: bold;"><?php echo $gpa_total; ?></td>
+                                            </tr>
+                                        <?php
                                     }
-                                    ?>
-                                    <tr>
-                                        <td colspan="2" style="font-weight: bold;">Total:</td>
-                                        <td  style="font-weight: bold;"><?php echo $breakfast_total; ?></td>
-                                        <td  style="font-weight: bold;"><?php echo $break_session_total; ?></td>
-                                        <td  style="font-weight: bold;"><?php echo $lunch_total; ?></td>
-                                        <td  style="font-weight: bold;"><?php echo $lunch_session_total; ?></td>
-                                        <td  style="font-weight: bold;"><?php echo $dinner_total; ?></td>
-                                        <td  style="font-weight: bold;"><?php echo $dinner_session_total; ?></td>
-                                        <td  style="font-weight: bold;"><?php echo $sum_meal_total; ?></td>
-                                        <td  style="font-weight: bold;"><?php echo $sum_session_total; ?></td>
-                                        <td  style="font-weight: bold;"><?php echo $all_price_total; ?></td>
-                                        <td  style="font-weight: bold;"><?php echo $gpa_total; ?></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                        ?>
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
+                        <button class="btn btn-primary text-center" id="print_Button" onclick="printDiv()"> <i class="fa fa-print"></i> Export As Pdf  </button>
+                        <button class="btn btn-warning text-center" id="print_Button" onclick="printDiv()"> <i class="fa fa-print"></i> Export As Excel  </button>
                 </div>
             </div>
             <!-- /.col -->
         </div>
         <!-- /.container-fluid -->
     </section>
+
+    <script type="text/javascript">
+        function printDiv() {
+            var printContents = document.getElementById('print').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            location.reload();
+        }
+    </script>
