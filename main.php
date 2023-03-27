@@ -213,6 +213,8 @@ if (isset($_SESSION['admin_id'])) {
         include "supp_dash/report.php";
     } elseif ($dir == 'supp_dash' && $page == 'day_details') {
         include "supp_dash/day_details.php";
+    } elseif ($dir == 'supp_dash' && $page == 'print_order') {
+        include "supp_dash/print_order.php";
     }
     ?>
 

@@ -63,6 +63,7 @@
                                                     <td> <?php echo  $order['order_date_to']; ?> </td>
                                                     <td>
                                                         <a href="main.php?dir=supp_dash&page=order_details&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>&sup_id=<?php echo $order['pres_id']; ?>" class="btn btn-warning btn-sm"> View Details <i class='fa fa-eye'></i> </a>
+                                                        <!--   <a href="main.php?dir=supp_dash&page=print_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>&sup_id=<?php echo $order['pres_id']; ?>" class="btn btn-warning btn-sm"> Print Weekly Order <i class='fa fa-eye'></i> </a> -->
                                                     </td>
                                                 </tr>
                                             <?php

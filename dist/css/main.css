@@ -36,3 +36,23 @@ margin-top: 40px;
     background-color: #e9ecef;
     opacity: 1;
 }
+.report2{
+
+}
+.report2 table{
+    padding: 0;
+    margin: 0;
+}
+.report2 .col-4{
+    padding: 0;
+    margin: 0;
+}
+.report2 .card-header{
+    border: none;
+    border-radius: 0;
+    text-align: center;
+}
+.report2 .card-header p{
+    text-align:center !important;
+    float:none;
+}
