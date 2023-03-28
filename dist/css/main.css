@@ -56,3 +56,7 @@ margin-top: 40px;
     text-align:center !important;
     float:none;
 }
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+    background-color: #e0612a;
+    color: #fff;
+}

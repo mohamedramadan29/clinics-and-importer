@@ -80,12 +80,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['select_permision'] == 'admin
             </div>
             <div class="col-lg-6">
                 <div class="login-box">
-                    <div class="card card-outline card-primary">
-                        <div class="card-header text-center">
-                            <a href="index" class="h1"><b>Clinic</b>System</a>
+                    <div class="card card-outline card-primary" style="border-top-color: #e0612a;">
+                        <img style="width: 100px; margin:auto" src="uploads/new_logo.png" alt="">
+                       <!-- <div class="card-header text-center">
+                            <a href="index" class="h1"><b>Di-</b>Tech</a>
                         </div>
+-->
                         <div class="card-body">
-                            <p class="login-box-msg">Sign in as Admin</p>
                             <form action="" method="post">
                                 <div class="input-group mb-3">
                                     <input type="text" name="user_name" class="form-control" placeholder="UserName">
