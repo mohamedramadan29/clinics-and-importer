@@ -64,38 +64,36 @@ function getitems($cat_id)
             <h2 class="bg bg-info" style="font-size: 30px; font-weight:bold; padding:5px"> Menu 1 </h2>
             <form autocomplete="off" action="main.php?dir=main_menu&page=add" method="post" enctype="multipart/form-data">
                 <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="Company-2" class="block">Week Start Date :: </label>
-                                    <input required type="text" id="date_from" name="date_from" class="datepicker form-control" placeholder="Select Start Date">
+                    <?php
+                    if (isset($_SESSION['emp_id'])) {
+                    ?>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="Company-2" class="block">Week Start Date :: </label>
+                                        <input required type="text" id="date_from" name="date_from" class="datepicker form-control" placeholder="Select Start Date">
+                                    </div>
                                 </div>
-                            </div>
-                            <!--
-                            <div class="col-4">
-                                <div class="form-group">
-                                    <label for="Company-2" class="block">Date To</label>
-                                    <input required type="text" id="date_to" name="date_to" class="form-control" placeholder="Select End Date">
-                                </div>
-                            </div>
-        -->
-                            <div class="col-6">
-                                <?php
-                                $stmt = $connect->prepare("SELECT * FROM emplyees
+                                <div class="col-6">
+                                    <?php
+                                    if (isset($_SESSION['emp_id'])) {
+                                        $stmt = $connect->prepare("SELECT * FROM emplyees
             INNER JOIN presentions ON presentions.id = emplyees.pres_id
             WHERE emplyees.id=?");
-                                $stmt->execute(array($_SESSION['emp_id']));
-                                $emp_data = $stmt->fetch();
-                                ?>
-                                <div class="form-group">
-                                    <label for="Company-2" class="block"> Supplier Name </label>
-                                    <input readonly type="text" id="" name="supp_name" class="form-control" value="<?php echo $emp_data['name']; ?>">
-                                    <input type="hidden" id="" name="supp_id" class="form-control" value="<?php echo $emp_data['pres_id']; ?>">
+                                        $stmt->execute(array($_SESSION['emp_id']));
+                                        $emp_data = $stmt->fetch();
+                                    ?>
+                                        <div class="form-group">
+                                            <label for="Company-2" class="block"> Supplier Name </label>
+                                            <input readonly type="text" id="" name="supp_name" class="form-control" value="<?php echo $emp_data['name']; ?>">
+                                            <input type="hidden" id="" name="supp_id" class="form-control" value="<?php echo $emp_data['pres_id']; ?>">
+                                        </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    <?php } ?>
                 </div>
                 <div class="row main_menu">
                     <div class="col-lg-12">
@@ -114,9 +112,15 @@ function getitems($cat_id)
                         </div>
                     </div>
                 </div>
-                <div class="flex text-center">
-                    <button type="submit" class="btn btn-primary" name="save1"> save Order <i class="fa fa-save"></i> </button>
-                </div>
+                <?php
+                if (isset($_SESSION['emp_id'])) { ?>
+                    <div class="flex text-center">
+                        <button type="submit" class="btn btn-primary" name="save1"> save Order <i class="fa fa-save"></i> </button>
+                    </div>
+                <?php
+                }
+                ?>
+
                 <br>
                 <br>
             </form>

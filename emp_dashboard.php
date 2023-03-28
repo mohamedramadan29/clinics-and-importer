@@ -11,9 +11,9 @@
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Dashboard</li>
             </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
+          </div>
+        </div>
+      </div>
     </div>
     <!-- /.content-header -->
 
@@ -26,8 +26,8 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
-                <p> Orders  </p>
+                <h3></h3>
+                <p class="text-bold"> Orders  </p>
               </div>
               <div class="icon">
                 <i class="fa fa-cart-plus"></i>
@@ -40,9 +40,9 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3></h3>
 
-                <p>Add Order</p>
+                <p class="text-bold">Add Order</p>
               </div>
               <div class="icon">
                 <i class="fa fa-plus-square"></i>
@@ -55,9 +55,9 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>2</h3>
+                <h3></h3>
 
-                <p>Clients</p>
+                <p class="text-bold">Clients</p>
               </div>
               <div class="icon">
                 <i class="fa fa-users"></i>
@@ -70,9 +70,9 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3></h3>
 
-                <p> Goals </p>
+                <p class="text-bold"> Goals </p>
               </div>
               <div class="icon">
                 <i class="fa fa-golf-ball"></i>
@@ -80,13 +80,8 @@
               <a href="main.php?dir=goals&page=report" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <!-- ./col -->
         </div>
-        <!-- /.row -->
-        <!-- Main row -->
-        
-        <!-- /.row (main row) -->
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
     <!-- /.content -->
   </div>

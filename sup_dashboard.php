@@ -25,8 +25,8 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
-                <p> Orders  </p>
+                <h3></h3>
+                <p class="text-bold"> Orders  </p>
               </div>
               <div class="icon">
                 <i class="fa fa-cart-plus"></i>
