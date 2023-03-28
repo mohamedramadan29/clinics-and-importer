@@ -221,6 +221,12 @@ if (isset($_SESSION['admin_id'])) {
     } elseif ($dir == 'supp_dash' && $page == 'print_order') {
         include "supp_dash/print_order.php";
     }
+    // START USER PROFILE
+    if ($dir == 'profile' && $page == 'report') {
+        include "profile/report.php";
+    }elseif ($dir == 'profile' && $page == 'edit') {
+        include "profile/edit.php";
+    }
     ?>
 
 </div>
