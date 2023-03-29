@@ -61,11 +61,11 @@
          <img src="uploads/avatar.gif" class="img-circle elevation-2" alt="User Image">
        </div>
        <div class="info">
-        <?php
-        $stmt = $connect->prepare("SELECT * FROM admin WHERE id=?");
-        $stmt->execute(array($_SESSION['admin_id']));
-        $data = $stmt->fetch();
-        ?>
+         <?php
+          $stmt = $connect->prepare("SELECT * FROM admin WHERE id=?");
+          $stmt->execute(array($_SESSION['admin_id']));
+          $data = $stmt->fetch();
+          ?>
          <a href="main.php?dir=profile&page=report" class="d-block"> <?php echo $data['user_name']; ?> </a>
        </div>
      </div>
@@ -195,16 +195,27 @@
            <a href="#" class="nav-link">
              <i class="nav-icon fa fa-audio-description"></i>
              <p>
-               Items
+               Food & Drug
                <i class="fas fa-angle-left right"></i>
              </p>
            </a>
            <ul class="nav nav-treeview">
              <li class="nav-item">
-               <a href="main.php?dir=items_desc&page=report" class="nav-link">
-                 <i class="far fa-circle nav-icon"></i>
-                 <p> All Items </p>
-               </a>
+
+               <?php
+                $stmt = $connect->prepare("SELECT * FROM items_desc");
+                $stmt->execute();
+                $allitem = $stmt->fetchAll();
+                foreach ($allitem as $item) {
+                ?>
+                 <a href="main.php?dir=items_desc&page=report&item_id=<?php echo $item['id']; ?>" class="nav-link">
+                   <i class="far fa-circle nav-icon"></i>
+                   <p> <?php echo $item['item_name']; ?> </p>
+                 </a>
+               <?php
+                }
+                ?>
+
              </li>
            </ul>
          </li>
@@ -238,7 +249,7 @@
              <li class="nav-item">
                <a href="main.php?dir=profile&page=report" class="nav-link">
                  <i class="far fa-circle nav-icon"></i>
-                 <p> Profile  </p>
+                 <p> Profile </p>
                </a>
              </li>
            </ul>

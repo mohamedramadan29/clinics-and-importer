@@ -9,30 +9,56 @@
      <!-- Right navbar links -->
      <ul class="navbar-nav ml-auto">
          <!-- Notifications Dropdown Menu -->
+         <!-- START Goal NOTIFICATION  -->
+         <?php
+            $emp_id = $_SESSION['emp_id'];
+            $date = date("Y-m-d");
+            $stmt = $connect->prepare("SELECT * FROM  goals WHERE client_id=? AND date = ? AND status = 0");
+            $stmt->execute(array($emp_id, $date));
+            $data = $stmt->fetch();
+            $count = $stmt->rowCount();
+            if ($count > 0) {
+                $stmt = $connect->prepare("SELECT * FROM notification WHERE emp_id=? AND noti_desc=? AND date=?");
+                $stmt->execute(array($emp_id, "Remmber Goals Notification",$date));
+                $count_noti_goal = $stmt->rowCount();
+                if ($count_noti_goal > 0) {
+                } else {
+                    $stmt = $connect->prepare("INSERT INTO notification (emp_id, noti_desc,date) VALUES (:zemp_id,:znoti_desc,:zdate)");
+                    $stmt->execute(array(
+                        'zemp_id' => $emp_id,
+                        "znoti_desc" => "Remmber Goals Notification",
+                        'zdate'=>$date
+                    ));
+                }
+            }
+            ?>
+         <!-- END Goal NOTIFICATION -->
          <li class="nav-item dropdown">
+             <?php
+                $stmt = $connect->prepare("SELECT * FROM notification WHERE emp_id=? AND status = 0");
+                $stmt->execute(array($emp_id));
+                $allnoti = $stmt->fetchAll();
+                $allnoti_count = $stmt->rowCount();
+                ?>
              <a class="nav-link" data-toggle="dropdown" href="#">
                  <i class="far fa-bell"></i>
-                 <span class="badge badge-warning navbar-badge">15</span>
+                 <span class="badge badge-warning navbar-badge"><?php echo $allnoti_count; ?></span>
              </a>
              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                 <span class="dropdown-item dropdown-header">15 Notifications</span>
-                 <div class="dropdown-divider"></div>
-                 <a href="#" class="dropdown-item">
-                     <i class="fas fa-envelope mr-2"></i> 4 new messages
-                     <span class="float-right text-muted text-sm">3 mins</span>
-                 </a>
-                 <div class="dropdown-divider"></div>
-                 <a href="#" class="dropdown-item">
-                     <i class="fas fa-users mr-2"></i> 8 friend requests
-                     <span class="float-right text-muted text-sm">12 hours</span>
-                 </a>
-                 <div class="dropdown-divider"></div>
-                 <a href="#" class="dropdown-item">
-                     <i class="fas fa-file mr-2"></i> 3 new reports
-                     <span class="float-right text-muted text-sm">2 days</span>
-                 </a>
-                 <div class="dropdown-divider"></div>
-                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                 <?php
+                    foreach ($allnoti as $noti) {
+                        if ($noti['noti_desc'] == "Remmber Goals Notification") {
+                    ?>
+                         <div class="dropdown-divider"></div>
+                         <a href="main.php?dir=goals&page=report&goal_noti=<?php echo $noti['id']; ?>" class="dropdown-item">
+                             <i class="fas fa-file mr-2"></i> <?php echo $noti['noti_desc'] ?>
+                         </a>
+                 <?php
+                        }
+                    }
+
+                    ?>
+
              </div>
          </li>
          <li class="nav-item">
@@ -83,7 +109,7 @@
                      <a href="#" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
-                             Orders Tool 
+                             Orders Tool
                              <i class="fas fa-angle-left right"></i>
                          </p>
                      </a>
@@ -180,7 +206,33 @@
                          </li>
                      </ul>
                  </li>
+                 <li class="nav-item">
+                     <a href="#" class="nav-link">
+                         <i class="nav-icon fa fa-audio-description"></i>
+                         <p>
+                             Food & Drug
+                             <i class="fas fa-angle-left right"></i>
+                         </p>
+                     </a>
+                     <ul class="nav nav-treeview">
+                         <li class="nav-item">
+                             <?php
+                                $stmt = $connect->prepare("SELECT * FROM items_desc");
+                                $stmt->execute();
+                                $allitem = $stmt->fetchAll();
+                                foreach ($allitem as $item) {
+                                ?>
+                                 <a href="main.php?dir=items_desc&page=report&item_id=<?php echo $item['id']; ?>" class="nav-link">
+                                     <i class="far fa-circle nav-icon"></i>
+                                     <p> <?php echo $item['item_name']; ?> </p>
+                                 </a>
+                             <?php
+                                }
+                                ?>
 
+                         </li>
+                     </ul>
+                 </li>
                  <li class="nav-item">
                      <a href="#" class="nav-link">
                          <i class="nav-icon fas fa-edit"></i>
