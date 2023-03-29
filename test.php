@@ -1,43 +1,52 @@
-<?php
-header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment; filename="data.xlsx"');
-readfile('data.xlsx');
-?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+<script>
+    function exportToExcel(tableID, filename = '') {
+        var downloadLink;
+        var dataType = 'application/vnd.ms-excel';
+        var tableSelect = document.getElementById(tableID);
+        var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
 
-<table id="data-table">
+        filename = filename ? filename + '.xls' : 'excel_data.xls';
+
+        downloadLink = document.createElement("a");
+
+        document.body.appendChild(downloadLink);
+
+        if (navigator.msSaveOrOpenBlob) {
+            var blob = new Blob(['\ufeff', tableHTML], {
+                type: dataType
+            });
+            navigator.msSaveOrOpenBlob(blob, filename);
+        } else {
+            downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+            downloadLink.download = filename;
+
+            downloadLink.click();
+        }
+    }
+</script>
+
+<button onclick="exportToExcel('myTable', 'myExcelFile')">Export to Excel</button>
+
+<table id="myTable" class="" style="border: 1px solid #ccc;">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>John Doe</td>
-            <td>john@example.com</td>
-            <td>1234567890</td>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
         </tr>
         <tr>
-            <td>Jane Doe</td>
-            <td>jane@example.com</td>
-            <td>0987654321</td>
+            <td>Data 4</td>
+            <td>Data 5</td>
+            <td>Data 6</td>
         </tr>
     </tbody>
 </table>
-<button onclick="exportTableToExcel('data-table')">Export to Excel</button>
-
-<script src="https://cdn.jsdelivr.net/npm/table-to-excel/dist/tableToExcel.min.js"></script>
-<script>
-    function exportTableToExcel(tableId) {
-        var fileName = 'data.xlsx';
-        var sheetName = 'Sheet1';
-        var table = document.getElementById(tableId);
-        TableToExcel.convert(table, {
-            name: sheetName,
-            sheet: {
-                name: sheetName
-            }
-        });
-    }
-</script>

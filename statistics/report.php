@@ -124,7 +124,8 @@
                         $month = $_POST['month'];
                         $month = sprintf('%02d', $month);
                     ?>
-                        <div id="print">
+                        <!--<div id="print">-->
+                            <div id="table-to-export"> 
                             <div class="row">
                                 <div class="col-6">
                                     <table class="table table-bordered">
@@ -305,8 +306,8 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-primary text-center" id="print_Button" onclick="printDiv()"> <i class="fa fa-print"></i> Export As Pdf  </button>
-                        <button class="btn btn-warning text-center" id="print_Button" onclick="printDiv()"> <i class="fa fa-print"></i> Export As Excel  </button>
+                        <button class="btn btn-primary text-center" id="print_Button" onclick="printDiv()"> <i class="fa fa-print"></i> Export As Pdf </button>
+                        <button id="export-btn" class="btn btn-warning text-center"> <i class="fa fa-file-excel"></i> Export to Excel </button>
                 </div>
             </div>
             <!-- /.col -->
@@ -316,11 +317,48 @@
 
     <script type="text/javascript">
         function printDiv() {
-            var printContents = document.getElementById('print').innerHTML;
+            var printContents = document.getElementById('table-to-export').innerHTML;
             var originalContents = document.body.innerHTML;
             document.body.innerHTML = printContents;
             window.print();
             document.body.innerHTML = originalContents;
             location.reload();
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script>
+        document.getElementById("export-btn").addEventListener("click", exportToExcel);
+
+        function exportToExcel() {
+            // Get the HTML table element
+            var table = document.getElementById("table-to-export");
+
+            // Convert the HTML table to a workbook object
+            var workbook = XLSX.utils.table_to_book(table);
+
+            // Convert the workbook object to a binary Excel file
+            var binaryFile = XLSX.write(workbook, {
+                bookType: "xlsx",
+                type: "binary"
+            });
+
+            // Download the binary file as an Excel file
+            saveAs(
+                new Blob([s2ab(binaryFile)], {
+                    type: "application/octet-stream"
+                }),
+                "export.xlsx"
+            );
+        }
+
+        // Utility function to convert a string to an ArrayBuffer
+        function s2ab(s) {
+            var buf = new ArrayBuffer(s.length);
+            var view = new Uint8Array(buf);
+            for (var i = 0; i < s.length; i++) {
+                view[i] = s.charCodeAt(i) & 0xff;
+            }
+            return buf;
         }
     </script>
