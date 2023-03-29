@@ -60,3 +60,6 @@ margin-top: 40px;
     background-color: #e0612a;
     color: #fff;
 }
+.dropdown-menu-lg{
+    max-width: 500px !important;
+}

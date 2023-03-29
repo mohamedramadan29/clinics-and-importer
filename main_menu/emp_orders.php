@@ -1,4 +1,9 @@
-        <!-- Content Header (Page header) -->
+<?php
+$stmt = $connect->prepare("UPDATE notification SET status = 1 WHERE emp_id=? AND name='accept_order' OR name='reject_order'");
+$stmt->execute(array($_SESSION['emp_id']));
+?>
+
+<!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">

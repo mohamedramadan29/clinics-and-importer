@@ -19,7 +19,7 @@
             $count = $stmt->rowCount();
             if ($count > 0) {
                 $stmt = $connect->prepare("SELECT * FROM notification WHERE emp_id=? AND noti_desc=? AND date=?");
-                $stmt->execute(array($emp_id, "Remmber Goals Notification",$date));
+                $stmt->execute(array($emp_id, "Remmber Goals Notification", $date));
                 $count_noti_goal = $stmt->rowCount();
                 if ($count_noti_goal > 0) {
                 } else {
@@ -27,7 +27,7 @@
                     $stmt->execute(array(
                         'zemp_id' => $emp_id,
                         "znoti_desc" => "Remmber Goals Notification",
-                        'zdate'=>$date
+                        'zdate' => $date
                     ));
                 }
             }
@@ -51,6 +51,20 @@
                     ?>
                          <div class="dropdown-divider"></div>
                          <a href="main.php?dir=goals&page=report&goal_noti=<?php echo $noti['id']; ?>" class="dropdown-item">
+                             <i class="fas fa-file mr-2"></i> <?php echo $noti['noti_desc'] ?>
+                         </a>
+                     <?php
+                        } elseif ($noti['name'] == "accept_order") {
+                        ?>
+                         <div class="dropdown-divider"></div>
+                         <a href="main.php?dir=main_menu&page=emp_orders" class="dropdown-item">
+                             <i class="fas fa-file mr-2"></i> <?php echo $noti['noti_desc'] ?>
+                         </a>
+                     <?php
+                        } elseif ($noti['name'] == "reject_order") {
+                        ?>
+                         <div class="dropdown-divider"></div>
+                         <a href="main.php?dir=main_menu&page=emp_orders" class="dropdown-item">
                              <i class="fas fa-file mr-2"></i> <?php echo $noti['noti_desc'] ?>
                          </a>
                  <?php

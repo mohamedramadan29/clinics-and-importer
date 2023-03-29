@@ -22,10 +22,21 @@ if (isset($_GET["id"]) && is_numeric($_GET['id'])) {
             <div class="container-fluid">
                 <div class="row">
                     <?php
+                    $date = date('Y-m-d');
                     if (isset($_POST['accept_order'])) {
                         $stmt = $connect->prepare("UPDATE breakfast_order SET status = 1 WHERE id=?");
                         $stmt->execute(array($day_id));
                         if ($stmt) {
+                            $stmt = $connect->prepare("INSERT INTO notification (emp_id,name,noti_desc,date,order_id)
+                            VALUE(:zemp_id,:zname,:znoti_desc,:zdate,:zorder_id)
+                            ");
+                            $stmt->execute(array(
+                                'zemp_id'=>$day_details['emp_id'],
+                                'zname'=>"accept_order",
+                                'znoti_desc'=>"Supplier Accepted For ".$day_details['date_day']." Request",
+                                "zdate"=>$date,
+                                "zorder_id"=>$day_id
+                            ));
                     ?>
                             <div class="alert alert-success alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -40,6 +51,17 @@ if (isset($_GET["id"]) && is_numeric($_GET['id'])) {
                         $stmt = $connect->prepare("UPDATE breakfast_order SET status = 2 ,  reject_reason = ?  WHERE id=?");
                         $stmt->execute(array($reason, $day_id));
                         if ($stmt) {
+                            $stmt = $connect->prepare("INSERT INTO notification (emp_id,name,noti_desc,date,order_id,reject_reason)
+                            VALUE(:zemp_id,:zname,:znoti_desc,:zdate,:zorder_id,:zreject_reason)
+                            ");
+                            $stmt->execute(array(
+                                'zemp_id'=>$day_details['emp_id'],
+                                'zname'=>"reject_order",
+                                'znoti_desc'=>"Supplier Reject Order In  ".$day_details['date_day']." Request",
+                                "zdate"=>$date,
+                                "zorder_id"=>$day_id,
+                                "zreject_reason"=>$reason
+                            ));
                         ?>
                             <div class="alert alert-success alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -241,7 +263,6 @@ if (isset($_GET["id"]) && is_numeric($_GET['id'])) {
                                                 } else {
                                                     echo "No Options";
                                                 }
-
                                                 ?>
                                             </td>
                                             <td>
