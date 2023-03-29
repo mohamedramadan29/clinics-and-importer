@@ -48,8 +48,13 @@
                                         </thead>
                                         <tbody>
                                             <?php
+                                            if(isset($_SESSION['supp_id'])){
+                                                $supp_id = $_SESSION['supp_id'];
+                                            }elseif(isset($_GET['supp_id'])){
+                                                $supp_id = $_GET['supp_id'];
+                                            }
                                             $stmt = $connect->prepare("SELECT order_date_from,order_date_to, menu_num,pres_id FROM breakfast_order  WHERE pres_id=? AND pres_show = 1 GROUP BY order_date_from,order_date_to,menu_num,pres_id");
-                                            $stmt->execute(array($_SESSION['supp_id']));
+                                            $stmt->execute(array($supp_id));
                                             $allorders = $stmt->fetchAll();
                                             $i = 0;
                                             foreach ($allorders as $order) {

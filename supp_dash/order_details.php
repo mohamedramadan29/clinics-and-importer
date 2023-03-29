@@ -97,7 +97,7 @@
 
                                                     ?> </td>
                                                     <td>
-                                                        <a href="main.php?dir=supp_dash&page=day_details&id=<?php echo $order['id']; ?>" class="btn btn-info btn-sm"> Day Details <i class='fa fa-eye'></i> </a>
+                                                        <a href="main.php?dir=supp_dash&page=day_details&id=<?php echo $order['id']; ?>&supp_id=<?php echo $sup_id; ?>" class="btn btn-info btn-sm"> Day Details <i class='fa fa-eye'></i> </a>
                                                     </td>
                                                 </tr>
                                             <?php

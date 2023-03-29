@@ -6,6 +6,11 @@
     }
 </style>
 <?php
+if(isset($_SESSION['supp_id'])){
+    $supp_id = $_SESSION['supp_id'];
+}elseif(isset($_GET['supp_id'])){
+    $supp_id = $_GET['supp_id'];
+}
 if (isset($_GET["id"]) && is_numeric($_GET['id'])) {
     $day_id = $_GET['id'];
     $stmt = $connect->prepare("SELECT * FROM  breakfast_order WHERE id = ?");
@@ -65,9 +70,8 @@ if (isset($_GET["id"]) && is_numeric($_GET['id'])) {
         </section>
         <!-- DOM/Jquery table start -->
         <?php
-
         $stmt = $connect->prepare("SELECT * FROM presentions WHERE id = ? ");
-        $stmt->execute(array($_SESSION['supp_id']));
+        $stmt->execute(array($supp_id));
         $sup_data = $stmt->fetch();
 
 
