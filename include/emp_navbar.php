@@ -6,10 +6,8 @@
              <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
          </li>
      </ul>
-
      <!-- Right navbar links -->
      <ul class="navbar-nav ml-auto">
-
          <!-- Notifications Dropdown Menu -->
          <li class="nav-item dropdown">
              <a class="nav-link" data-toggle="dropdown" href="#">
@@ -85,9 +83,8 @@
                      <a href="#" class="nav-link">
                          <i class="nav-icon fas fa-copy"></i>
                          <p>
-                             Orders
+                             Orders Tool 
                              <i class="fas fa-angle-left right"></i>
-                             <span class="badge badge-info right">6</span>
                          </p>
                      </a>
                      <ul class="nav nav-treeview">

@@ -13,7 +13,6 @@ if (isset($_SESSION['admin_id'])) {
     include 'include/navbar.php';
 }
 ?>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <?php
@@ -28,10 +27,9 @@ if (isset($_SESSION['admin_id'])) {
     // STRAT DASHBAORD
     if ($dir == 'dashboard' && $page == 'dashboard') {
         include 'dashboard.php';
-    }elseif($dir == 'dashboard' && $page == 'emp_dashboard'){
+    } elseif ($dir == 'dashboard' && $page == 'emp_dashboard') {
         include 'emp_dashboard.php';
-    }
-    elseif($dir == 'dashboard' && $page == 'sup_dashboard'){
+    } elseif ($dir == 'dashboard' && $page == 'sup_dashboard') {
         include 'sup_dashboard.php';
     }
     // END DASHBAORD
@@ -70,6 +68,8 @@ if (isset($_SESSION['admin_id'])) {
     // START Main Menu 
     if ($dir == 'main_menu' && $page == 'add') {
         include "main_menu/add.php";
+    } elseif ($dir == 'main_menu' && $page == 'add_menu2') {
+        include "main_menu/add_menu2.php";
     } elseif ($dir == 'main_menu' && $page == 'edit') {
         include "main_menu/edit.php";
     } elseif ($dir == 'main_menu' && $page == 'delete') {
@@ -81,12 +81,13 @@ if (isset($_SESSION['admin_id'])) {
     } elseif ($dir == 'main_menu' && $page == 'send_order') {
         include "main_menu/send_order.php";
     }
-
     // EMPLOYEER
     elseif ($dir == 'main_menu' && $page == 'emp_orders') {
         include "main_menu/emp_orders.php";
     } elseif ($dir == 'main_menu' && $page == 'emp_edit_order') {
         include "main_menu/emp_edit_order.php";
+    } elseif ($dir == 'main_menu' && $page == 'emp_edit_order2') {
+        include "main_menu/emp_edit_order2.php";
     } elseif ($dir == 'main_menu' && $page == 'edit_order') {
         include "main_menu/edit_order.php";
     } elseif ($dir == 'main_menu' && $page == 'delete_order') {
@@ -224,7 +225,7 @@ if (isset($_SESSION['admin_id'])) {
     // START USER PROFILE
     if ($dir == 'profile' && $page == 'report') {
         include "profile/report.php";
-    }elseif ($dir == 'profile' && $page == 'edit') {
+    } elseif ($dir == 'profile' && $page == 'edit') {
         include "profile/edit.php";
     }
     ?>

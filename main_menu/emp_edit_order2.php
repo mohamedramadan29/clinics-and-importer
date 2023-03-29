@@ -22,7 +22,7 @@ function getdaydata($date_from, $date_to, $day)
 function getoptions($day, $meal_type, $option_type)
 {
     include 'connect.php';
-    $stmt = $connect->prepare("SELECT * FROM options WHERE day = ? AND meal_type = ? AND option_type= ? AND menu_num = 1");
+    $stmt = $connect->prepare("SELECT * FROM options WHERE day = ? AND meal_type = ? AND option_type= ? AND menu_num = 2");
     $stmt->execute(array($day, $meal_type, $option_type));
     $alldata = $stmt->fetchAll();
     $count = $stmt->rowCount();
@@ -68,18 +68,16 @@ function getitems($cat_id)
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-check"></i><?php echo $message; ?></th5>
                 </div>
-
             <?php
             }
             ?>
-            <h2 class="bg bg-info" style="font-size: 30px; font-weight:bold; padding:5px"> Menu 1 </h2>
+            <h2 class="bg bg-info" style="font-size: 30px; font-weight:bold; padding:5px"> Menu 2 </h2>
             <form action="main.php?dir=main_menu&page=edit_order&emp_id=<?php echo $emp_id; ?>" method="post" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-group">
-                                    <input type="hidden" name="emp_id" value="<?php echo $emp_id; ?>">
                                     <label for="Company-2" class="block">Date From</label>
                                     <input type="text" disabled id="" name="date_from" class="datepicker form-control" value="<?php echo $date_from ?>">
                                     <input type="hidden" id="" name="date_from" class="datepicker form-control" value="<?php echo $date_from ?>">

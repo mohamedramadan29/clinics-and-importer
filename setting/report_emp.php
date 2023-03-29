@@ -47,7 +47,8 @@
                                                 <th>clinic_name</th>
                                                 <th>clinic_code</th>
                                                 <th>Presentation</th>
-                                                <th>status</th>
+                                                <th> Orders </th>
+                                                <!--<th>status</th> -->
                                                 <th>Action </th>
                                             </tr>
                                         </thead>
@@ -67,22 +68,25 @@
                                                     <td> <?php echo  $emp['emp_phone']; ?> </td>
                                                     <td> <?php echo  $emp['clinic_name']; ?> </td>
                                                     <td> <?php echo  $emp['clinic_code']; ?> </td>
+
                                                     <td> <?php
                                                             $stmt = $connect->prepare("SELECT * FROM presentions WHERE id=?");
                                                             $stmt->execute(array($emp['pres_id']));
                                                             $presdata = $stmt->fetch();
                                                             echo  $presdata['name']; ?> </td>
-                                                    <td> <?php
-                                                            if ($emp['status'] == 0) {
-                                                            ?>
+                                                    <td> <a href="main.php?dir=main_menu&page=emp_orders&emp_id=<?php echo $emp['id']; ?>" class="btn btn-success btn-sm"> View Orders </a> </td>
+                                                    <!--  <td> <?php
+                                                                if ($emp['status'] == 0) {
+                                                                ?>
                                                             <span class="bg bg-danger rounded"> Not Active </span>
                                                         <?php
-                                                            } else { ?>
+                                                                } else { ?>
                                                             <span class="bg bg-success rounded"> Active </span>
                                                         <?php
-                                                            }
+                                                                }
                                                         ?>
                                                     </td>
+                                                        -->
                                                     <td>
                                                         <button type="button" class="btn btn-success btn-sm waves-effect" data-toggle="modal" data-target="#edit-Modal_<?php echo $emp['id']; ?>"> Edit <i class='fa fa-pen'></i> </button>
                                                         <a href="main.php?dir=setting&page=delete_emp&emp_id=<?php echo $emp['id']; ?>" class="confirm btn btn-danger btn-sm"> Delete <i class='fa fa-trash'></i> </a>
@@ -131,12 +135,10 @@
                                                                             $alldata = $stmt->fetchAll();
                                                                             foreach ($alldata as $data) {
                                                                             ?>
-                                                                                <option <?php if($data['id'] == $emp['pres_id']) echo 'selected' ?> value="<?php echo $data['id']; ?>"> <?php echo $data['name']; ?> </option>
+                                                                                <option <?php if ($data['id'] == $emp['pres_id']) echo 'selected' ?> value="<?php echo $data['id']; ?>"> <?php echo $data['name']; ?> </option>
                                                                             <?php
                                                                             }
-
                                                                             ?>
-
                                                                         </select>
                                                                     </div>
                                                                     <div class="form-group">
@@ -147,8 +149,8 @@
                                                                         <label for="Company-2" class="block">Status</label>
                                                                         <select name="status" id="" class="form-control select2">
                                                                             <option value=""> -- Select Status -- </option>
-                                                                            <option <?php if($emp['status'] == 1) echo 'selected'; ?> value="1"> Active </option>
-                                                                            <option <?php if($emp['status'] == 0) echo 'selected'; ?> value="0"> Not Active </option>
+                                                                            <option <?php if ($emp['status'] == 1) echo 'selected'; ?> value="1"> Active </option>
+                                                                            <option <?php if ($emp['status'] == 0) echo 'selected'; ?> value="0"> Not Active </option>
                                                                         </select>
                                                                     </div>
                                                                 </div>

@@ -62,7 +62,7 @@ function getitems($cat_id)
             </div>
             <br>
             <h2 class="bg bg-success" style="font-size: 30px; font-weight:bold; padding:5px"> Menu 2 </h2>
-            <form autocomplete="off" action="main.php?dir=main_menu&page=add" method="post" enctype="multipart/form-data">
+            <form autocomplete="off" action="main.php?dir=main_menu&page=add_menu2" method="post" enctype="multipart/form-data">
                 <div class="card">
                     <?php
                     if (isset($_SESSION['emp_id'])) {

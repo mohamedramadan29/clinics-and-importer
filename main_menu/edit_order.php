@@ -8,8 +8,7 @@ if (isset($_POST['save1'])) {
     //$date_from = date('Y-m-d', strtotime($_POST['date_from']));
     //$date_to = date('Y-m-d', strtotime($_POST['date_to']));
     $supp_id = isset($_POST['supp_id']) ? $_POST['supp_id'] : '';
-    $emp_id = isset($_SESSION['emp_id']) ? $_SESSION['emp_id'] : '';
-
+    $emp_id = isset($_GET['emp_id']) ? $_GET['emp_id'] : '';
     if (empty($emp_id)) {
         echo "Employee ID is not set";
         exit;
@@ -63,7 +62,7 @@ if (isset($_POST['save1'])) {
     }
     if ($stmt) {
         $_SESSION['success_message'] = " Order Updated ";
-         header('Location:main?dir=main_menu&page=emp_orders');
+         header('Location: main?dir=main_menu&page=emp_orders&emp_id=' . $emp_id);
     }
     //header("location:main.php?dir=main_menu&page=report");
 }
