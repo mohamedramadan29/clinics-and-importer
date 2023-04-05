@@ -1,3 +1,8 @@
+        <?php
+        $stmt = $connect->prepare("UPDATE notification SET status = 1 WHERE emp_id = ? AND name = ? AND status = 0");
+        $stmt->execute(array($_SESSION['emp_id'],"goal_progress"));
+        ?>
+        
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
@@ -14,8 +19,6 @@
                 </div>
             </div><!-- /.container-fluid -->
         </section>
-
-
         <!-- DOM/Jquery table start -->
         <section class="content">
             <div class="container-fluid">
@@ -34,7 +37,6 @@
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                     <h5><i class="icon fas fa-check"></i><?php echo $message; ?></th5>
                                 </div>
-
                             <?php
                             }
                             ?>
@@ -86,16 +88,39 @@
                                                     </td>
                                                     <td>
                                                         <?php
+                                                        $start_date = $client['start_date'];
+                                                        $end_date = $client['goal_end_date'];
+                                                        $today_date = date("Y-m-d"); // التاريخ الحالي
+                                                        $total_days = abs(strtotime($end_date) - strtotime($start_date)) / 86400; // عدد الأيام الإجمالي
+                                                        $remaining_days = abs(strtotime($end_date) - strtotime($today_date)) / 86400; // عدد الأيام المتبقية
+                                                        $percentage = round((($total_days - $remaining_days) / $total_days) * 100); // نسبة التقدم
                                                         $days_required = $client['days_required'];
-                                                        $average = 100  / $days_required;
-                                                        $step = $average;
-                                                        for($i = 1; $i<= $days_required;$i++){
-                                                            $newrecord = $i * $step;
-                                                        } 
+                                                        if ($percentage == 100) {
+                                                            $stmt = $connect->prepare("UPDATE clients SET percentage = 1 WHERE id=?");
+                                                            $stmt->execute(array($client['id']));
+                                                            if ($stmt) {
+                                                                $stmt = $connect->prepare("SELECT * FROM notification WHERE name=? AND order_id=?");
+                                                                $stmt->execute(array("goal_progress", $client['id']));
+                                                                $count = $stmt->rowCount();
+                                                                if ($count > 0) {
+                                                                } else {
+                                                                    $stmt = $connect->prepare("INSERT INTO notification (emp_id,name,noti_desc ,order_id, date)
+                                                                VALUES(:zemp_id,:zname,:znoti_desc ,:zorder_id, :zdate)
+                                                                ");
+                                                                    $stmt->execute(array(
+                                                                        "zname" => "goal_progress",
+                                                                        "zemp_id" => $_SESSION['emp_id'],
+                                                                        "znoti_desc" => "Client " . $client['patient_name'] . " Complete Goal Progress",
+                                                                        "zorder_id" => $client['id'],
+                                                                        "zdate" => date("Y-m-d")
+                                                                    ));
+                                                                }
+                                                            }
+                                                        }
                                                         ?>
-                                                        <span style="font-weight: bold;"><?php echo $step; ?> % </span>
+                                                        <span style="font-weight: bold;"><?php echo $percentage; ?> % </span>
                                                         <div class="progress">
-                                                            <div class="progress-bar bg-warning progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $step; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $step; ?>%">
+                                                            <div class="progress-bar bg-warning progress-bar-striped" role="progressbar" aria-valuenow="<?php echo $percentage; ?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percentage; ?>%">
                                                                 <span class="sr-only">70% Complete (success)</span>
                                                             </div>
                                                         </div>
@@ -131,7 +156,6 @@
                                                                             <option <?php if ($client['artifation_measure'] == "Level 3 ( The patient taking action )") echo "selected"; ?> value="Level 3 ( The patient taking action )"> Level 3 ( The patient taking action ) </option>
                                                                             <option <?php if ($client['artifation_measure'] == "Level 4 ( Maintaning behaviours and pushing further )") echo "selected"; ?> value="Level 4 ( Maintaning behaviours and pushing further )"> Level 4 ( Maintaning behaviours and pushing further ) </option>
                                                                         </select>
-
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="Company-2" class="block">Statement Of Willingness To Change </label>
@@ -142,7 +166,6 @@
                                                                             <option <?php if ($client['willingness'] == "The patient in stage 3 ( Preparation )") echo "selected"; ?> value="The patient in stage 3 ( Preparation )"> The patient in stage 3 ( Preparation ) </option>
                                                                             <option <?php if ($client['willingness'] == "The patient in stage 4 ( Acion & maintenance )") echo "selected"; ?> value="The patient in stage 4 ( Acion & maintenance )"> The patient in stage 4 ( Acion & maintenance ) </option>
                                                                         </select>
-
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="Company-2" class="block">Days Required To Achieve Goal</label>

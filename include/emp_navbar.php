@@ -46,29 +46,44 @@
              </a>
              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                  <?php
-                    foreach ($allnoti as $noti) {
-                        if ($noti['noti_desc'] == "Remmber Goals Notification") {
+                    if ($allnoti_count > 0) {
+                        foreach ($allnoti as $noti) {
+                            if ($noti['noti_desc'] == "Remmber Goals Notification") {
                     ?>
-                         <div class="dropdown-divider"></div>
-                         <a href="main.php?dir=goals&page=report&goal_noti=<?php echo $noti['id']; ?>" class="dropdown-item">
-                             <i class="fas fa-file mr-2"></i> <?php echo $noti['noti_desc'] ?>
-                         </a>
+                             <div class="dropdown-divider"></div>
+                             <a href="main.php?dir=goals&page=report&goal_noti=<?php echo $noti['id']; ?>" class="dropdown-item">
+                                 <i class="fas fa-file mr-2"></i> <?php echo $noti['noti_desc'] ?>
+                             </a>
+                         <?php
+                            } elseif ($noti['name'] == "accept_order") {
+                            ?>
+                             <div class="dropdown-divider"></div>
+                             <a href="main.php?dir=main_menu&page=emp_orders" class="dropdown-item">
+                                 <i class="fas fa-file mr-2"></i> <?php echo $noti['noti_desc'] ?>
+                             </a>
+                         <?php
+                            } elseif ($noti['name'] == "reject_order") {
+                            ?>
+                             <div class="dropdown-divider"></div>
+                             <a href="main.php?dir=main_menu&page=emp_orders" class="dropdown-item">
+                                 <i class="fas fa-file mr-2"></i> <?php echo $noti['noti_desc'] ?>
+                             </a>
+                         <?php
+                            } elseif ($noti['name'] == 'goal_progress') { ?>
+                             <div class="dropdown-divider"></div>
+                             <a href="main.php?dir=clients&page=report" class="dropdown-item">
+                                 <i class="fas fa-file mr-2"></i> <?php echo $noti['noti_desc'] ?>
+                             </a>
                      <?php
-                        } elseif ($noti['name'] == "accept_order") {
-                        ?>
-                         <div class="dropdown-divider"></div>
-                         <a href="main.php?dir=main_menu&page=emp_orders" class="dropdown-item">
-                             <i class="fas fa-file mr-2"></i> <?php echo $noti['noti_desc'] ?>
-                         </a>
-                     <?php
-                        } elseif ($noti['name'] == "reject_order") {
-                        ?>
-                         <div class="dropdown-divider"></div>
-                         <a href="main.php?dir=main_menu&page=emp_orders" class="dropdown-item">
-                             <i class="fas fa-file mr-2"></i> <?php echo $noti['noti_desc'] ?>
-                         </a>
-                 <?php
+                            }
                         }
+                    } else {
+                        ?>
+                     <div class="dropdown-divider"></div>
+                     <a class="dropdown-item">
+                         <i class="fas fa-file mr-2"></i> There are no notifications
+                     </a>
+                 <?php
                     }
 
                     ?>
