@@ -1,6 +1,6 @@
 <footer class="main-footer">
-  <strong>Copyright &copy; 2023 <a href="">Clinic System </a>.</strong>
-  All rights reserved.
+  <strong>Created by Dietitian: <a> SULAIMAN ALHARBI </a>.</strong>
+  Under the supervision of Ms. Hanaa Noor, Head of Nutrition Care
 
 </footer>
 
