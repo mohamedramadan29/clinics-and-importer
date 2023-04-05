@@ -1,12 +1,3 @@
-<style>
-    @media print {
-        #print_Button {
-            display: none;
-        }
-    }
-</style>
-
-
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -61,6 +52,7 @@
                     <?php
                     if (isset($_POST['select_year_month'])) {
                         $month = $_POST['month'];
+                        $numDays = cal_days_in_month(CAL_GREGORIAN, $month, date('Y'));
                         $emp_id = $_SESSION['emp_id'];
                         $stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE MONTH(STR_TO_DATE(date_day, '%W %d %M %Y')) = ? AND emp_id=?");
                         $stmt->execute(array($month, $emp_id));
@@ -79,20 +71,20 @@
                             <div id="print">
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th style="text-align: center;"> <img style="height: 90px;" src="uploads/pres_logo/<?php echo $sup_data['logo']; ?>" alt=""> </th>
-                                        <th style="text-align: center; padding-top: 45px;"> <?php echo  $emp_data['clinic_name']; ?> </th>
-                                        <th style="text-align: center;"> <img style="height: 90px;" src="uploads/pres_logo/diavare.png" alt=""> </th>
+                                        <th style="text-align: center; background-color:#fbfbfb !important; border: none !important;"> <img style="height: 90px;" src="uploads/pres_logo/<?php echo $sup_data['logo']; ?>" alt=""> </th>
+                                        <th style="text-align: center; padding-top: 45px; background-color:#fbfbfb !important;border: none !important;"> <?php echo  $emp_data['clinic_name']; ?> </th>
+                                        <th style="text-align: center; background-color:#fbfbfb !important; border: none !important;"> <img style="height: 90px;" src="uploads/pres_logo/diavare.png" alt=""> </th>
                                     </tr>
                                 </table>
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th> Date </th>
-                                            <th> Day </th>
-                                            <th> breakfast </th>
-                                            <th> lunch </th>
-                                            <th> dinner </th>
-                                            <th> Comments </th>
+                                            <th style="background-color:#fbfbfb !important;"> DATE </th>
+                                            <th style="background-color:#fbfbfb !important;"> DAY </th>
+                                            <th style="background-color:#fbfbfb !important;"> Breakfast </th>
+                                            <th style="background-color:#fbfbfb !important;"> Lunch </th>
+                                            <th style="background-color:#fbfbfb !important;"> Dinner </th>
+                                            <th style="background-color:#fbfbfb !important;"> Comments </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -100,55 +92,85 @@
                                         $total_breakfast = 0;
                                         $total_lunch = 0;
                                         $total_dinner = 0;
-                                        foreach ($result as $row) {
-                                            // Retrieve the date, day, breakfast, lunch, dinner, and comments for each row
-                                            $date = $row['date_day'];
-                                            $day = date('l', strtotime($date));
-                                            $option1_qt = intval($row['option1_qt']);
-                                            $option2_qt = intval($row['option2_qt']);
-                                            $option3_qt = intval($row['option3_qt']);
-                                            $option4_qt = intval($row['option4_qt']);
-                                            $option5_qt = intval($row['option5_qt']);
-                                            $option6_qt = intval($row['option6_qt']);
-                                            $option7_qt = intval($row['option7_qt']);
-                                            $option8_qt = intval($row['option8_qt']);
-                                            $option9_qt = intval($row['option9_qt']);
-                                            $breakfast = $option1_qt + $option2_qt + $option3_qt;
-                                            $lunch = $option4_qt + $option5_qt + $option6_qt;
-                                            $dinner = $option7_qt + $option8_qt + $option9_qt;
-                                            $total_breakfast += $breakfast;
-                                            $total_lunch += $lunch;
-                                            $total_dinner += $dinner;
+                                        for ($i = 1; $i <= $numDays; $i++) {
+                                            $month_date = sprintf('%04d-%02d-%02d', date('Y'), $month, $i);
+                                            $new_date = date("j-M-Y", strtotime($month_date));
+                                            $new_date_name = date("D", strtotime($month_date));
+                                            $found_data = false;
+                                            foreach ($result as $row) {
+                                                $date = $row['date_day'];
+                                                $date =  date("j-M-Y", strtotime($date));
+                                                if ($date == $new_date) {
+                                                    $found_data = true;
+                                                    $day = date('l', strtotime($date));
+                                                    $option1_qt = intval($row['option1_qt']);
+                                                    $option2_qt = intval($row['option2_qt']);
+                                                    $option3_qt = intval($row['option3_qt']);
+                                                    $option4_qt = intval($row['option4_qt']);
+                                                    $option5_qt = intval($row['option5_qt']);
+                                                    $option6_qt = intval($row['option6_qt']);
+                                                    $option7_qt = intval($row['option7_qt']);
+                                                    $option8_qt = intval($row['option8_qt']);
+                                                    $option9_qt = intval($row['option9_qt']);
+                                                    $breakfast = $option1_qt + $option2_qt + $option3_qt;
+                                                    $lunch = $option4_qt + $option5_qt + $option6_qt;
+                                                    $dinner = $option7_qt + $option8_qt + $option9_qt;
+                                                    $total_breakfast += $breakfast;
+                                                    $total_lunch += $lunch;
+                                                    $total_dinner += $dinner;
                                         ?>
-                                            <tr>
-                                                <td> <?php echo $date; ?> </td>
-                                                <td> <?php echo $day; ?> </td>
-                                                <td> <?php echo $breakfast; ?> </td>
-                                                <td> <?php echo $lunch; ?> </td>
-                                                <td> <?php echo $dinner; ?> </td>
-                                                <td> </td>
-                                            </tr>
+                                                    <tr>
+                                                        <td style="background-color:#fbfbfb !important; font-weight: bold"> <?php echo $new_date; ?> </td>
+                                                        <td style="background-color:#fbfbfb !important;"> <?php echo   date("D", strtotime($day)); ?> </td>
+                                                        <td style="background-color:#fbfbfb !important;"> <?php echo $breakfast; ?> </td>
+                                                        <td style="background-color:#fbfbfb !important;"> <?php echo $lunch; ?> </td>
+                                                        <td style="background-color:#fbfbfb !important;"> <?php echo $dinner; ?> </td>
+                                                        <td style="background-color:#fbfbfb !important;"> </td>
+                                                    </tr>
+                                                <?php
+                                                }
+                                            }
+                                            if (!$found_data) {
+                                                ?>
+                                                <tr>
+                                                    <td style="background-color:#fbfbfb !important; font-weight: bold"> <?php echo $new_date; ?></td>
+                                                    <td <?php if ($new_date_name === 'Fri') {
+                                                        ?> style="background-color: #e67e22 !important;" <?php
+                                                                                                        } ?>> <?php echo $new_date_name; ?> </td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            <?php
+                                            }
+                                            // Retrieve the date, day, breakfast, lunch, dinner, and comments for each row
+
+
+                                            ?>
 
                                         <?php
+
                                         }
                                         ?>
                                         <tr>
                                             <td></td>
-                                            <td style="background-color: #e74c3c; font-weight:bold"> Total </td>
+                                            <td style="background-color: #e74c3c !important; font-weight:bold"> Total </td>
                                             <td style="  font-weight:bold"> <?php echo $total_breakfast; ?> </td>
                                             <td style="  font-weight:bold"> <?php echo $total_lunch; ?> </td>
                                             <td style="  font-weight:bold"> <?php echo $total_dinner; ?> </td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <br>
+                                <br>
                                 <div class="row">
                                     <div class="col-6">
-                                        <p class="text-center text-bold"> Dietition </p>
+                                        <p class="text-center text-bold" style="font-size: 18px"> Dietition </p>
                                     </div>
                                     <div class="col-6">
-                                        <p class="text-center text-bold"> Signature </p>
+                                        <p class="text-center text-bold" style="font-size: 18px"> Signature </p>
                                     </div>
-
                                 </div>
                             </div>
                             <button class="btn btn-primary text-center" id="print_Button" onclick="printDiv()"> <i class="fa fa-print"></i>Print</button>
@@ -181,3 +203,33 @@
         location.reload();
     }
 </script>
+
+
+<style>
+    .table tr td,
+    .table tr th {
+        background-color: #fbfbfb !important;
+    }
+
+    @media print {
+        body {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        #print_Button {
+            display: none;
+        }
+
+        .card #print {
+            background-color: #e74c3c !important;
+
+        }
+
+        .table tr td,
+        .table tr th {
+            background-color: #fbfbfb !important;
+        }
+
+    }
+</style>
