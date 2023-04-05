@@ -10,6 +10,9 @@ if (isset($_POST['save1'])) {
     $date_to = $new_date;
     $supp_id = $_POST['supp_id'];
     $emp_id = $_SESSION['emp_id'];
+    $stmt = $connect->prepare("SELECT * FROM emplyees WHERE id=?");
+    $stmt->execute(array($emp_id));
+    $emp_new_data = $stmt->fetch();
     $new_date = $date_from;
     foreach ($days as $day) {
         // $new_date = date('Y-m-d', strtotime($new_date . ' +1 day'));

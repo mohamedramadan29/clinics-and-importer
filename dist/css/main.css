@@ -40,12 +40,12 @@ margin-top: 40px;
 
 }
 .report2 table{
-    padding: 0;
-    margin: 0;
+   /* padding: 0;
+    margin: 0;*/
 }
 .report2 .col-4{
-    padding: 0;
-    margin: 0;
+   /* padding: 0;
+    margin: 0;*/
 }
 .report2 .card-header{
     border: none;

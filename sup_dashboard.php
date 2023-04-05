@@ -31,7 +31,7 @@
               <div class="icon">
                 <i class="fa fa-cart-plus"></i>
               </div>
-              <a href="main.php?dir=supp_dash&page=report" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="main.php?dir=supp_dash&page=all_emp" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>

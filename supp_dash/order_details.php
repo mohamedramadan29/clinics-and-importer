@@ -1,4 +1,7 @@
         <?php
+        $stmt = $connect->prepare("UPDATE sup_notification SET status = 1 WHERE status = 0 AND supp_id = ? AND name = ?");
+        $stmt->execute(array($_SESSION['supp_id'], "Edit Order"));
+
         $from = $_GET['from'];
         $to = $_GET['to'];
         $sup_id = $_GET['sup_id'];
@@ -69,7 +72,7 @@
                                         <tbody>
                                             <?php
                                             $stmt = $connect->prepare("SELECT * FROM breakfast_order  WHERE emp_id = ? AND pres_id=? AND order_date_from =? AND order_date_to=?");
-                                            $stmt->execute(array($emp_id,$sup_id, $from, $to));
+                                            $stmt->execute(array($emp_id, $sup_id, $from, $to));
                                             $allorders = $stmt->fetchAll();
                                             $i = 0;
                                             foreach ($allorders as $order) {
@@ -79,24 +82,25 @@
                                                     <?php  ?>
                                                     <td> <?php echo $i; ?> </td>
                                                     <td> <?php echo $order['day']; ?> </td>
-                                                    <td> <?php echo $order['date_day']; ?>  </td>
+                                                    <td> <?php echo $order['date_day']; ?> </td>
                                                     <td> <?php
-                                                    if($order['status'] == 0){
-                                                        ?>
-                                                        <button class="btn btn-warning btn-sm"> Not approved yet </button>
+                                                            if ($order['status'] == 0) {
+                                                            ?>
+                                                            <button class="btn btn-warning btn-sm"> Not approved yet </button>
                                                         <?php
-                                                    }elseif($order['status'] == 1){?>
-                                                    <button class="btn btn-success btn-sm"> approved </button>
-                                                    <?php
-                                                    }else{
+                                                            } elseif ($order['status'] == 1) { ?>
+                                                            <button class="btn btn-success btn-sm"> approved </button>
+                                                        <?php
+                                                            } else {
                                                         ?>
-                                                    <button class="btn btn-danger btn-sm"> Rejected </button>
-                                                    <p> <?php echo $order['reject_reason']; ?> </p>
+                                                            <button class="btn btn-danger btn-sm"> Rejected </button>
+                                                            <p> <?php echo $order['reject_reason']; ?> </p>
 
                                                         <?php
-                                                    }
+                                                            }
 
-                                                    ?> </td>
+                                                        ?>
+                                                    </td>
                                                     <td>
                                                         <a href="main.php?dir=supp_dash&page=day_details&id=<?php echo $order['id']; ?>&supp_id=<?php echo $sup_id; ?>" class="btn btn-info btn-sm"> Day Details <i class='fa fa-eye'></i> </a>
                                                     </td>

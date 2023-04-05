@@ -1,5 +1,27 @@
 <!-- START FUNCTION  -->
 <?php
+$stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE emp_id = ? ORDER BY id DESC LIMIT 6");
+$stmt->execute(array($_SESSION['emp_id']));
+$break_data = $stmt->fetchAll();
+$count = $stmt->rowCount();
+if ($count > 0) {
+    foreach ($break_data as $break) {
+        if ($break['day'] == 'saturday') {
+            echo $break['option1'];
+            echo $break['day'];
+            echo "</br>";
+        }
+    }
+}
+
+function getdaydata($date_from, $date_to, $day)
+{
+    include "connect.php";
+    $stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE order_date_from=? AND order_date_to=? AND day= ?");
+    $stmt->execute(array($date_from, $date_to, $day));
+    $option_data = $stmt->fetch();
+    return $option_data;
+}
 function getoptions($day, $meal_type, $option_type)
 {
     include 'connect.php';
@@ -51,7 +73,6 @@ function getitems($cat_id)
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fas fa-check"></i><?php echo $message; ?></th5>
                 </div>
-
             <?php
             }
             ?>
@@ -95,23 +116,57 @@ function getitems($cat_id)
                         </div>
                     <?php } ?>
                 </div>
-                <div class="row main_menu">
-                    <div class="col-lg-12">
-                        <div class="card card-row ">
-                            <?php include "breakfast.php"; ?>
+                <!-- START FUNCTION  -->
+                <?php
+                $stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE emp_id = ? ORDER BY id DESC LIMIT 6");
+                $stmt->execute(array($_SESSION['emp_id']));
+                $break_data = $stmt->fetchAll();
+                $count = $stmt->rowCount();
+                if ($count > 0) {
+                ?>
+                    <div class="row main_menu">
+                        <div class="col-lg-12">
+                            <div class="card card-row ">
+                                <?php include "old_breakfast.php"; ?>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="col-lg-12">
+                            <div class="card card-row ">
+                                <?php include "lunch.php"; ?>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card card-row ">
+                                <?php include "dinner.php"; ?>
+                            </div>
+                        </div>
+                -->
+                    </div>
+                <?php
+                } else {
+                ?>
+                    <div class="row main_menu">
+                        <div class="col-lg-12">
+                            <div class="card card-row ">
+                                <?php include "breakfast.php"; ?>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card card-row ">
+                                <?php include "lunch.php"; ?>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card card-row ">
+                                <?php include "dinner.php"; ?>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="card card-row ">
-                            <?php include "lunch.php"; ?>
-                        </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="card card-row ">
-                            <?php include "dinner.php"; ?>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                }
+                ?>
+
                 <?php
                 if (isset($_SESSION['emp_id'])) { ?>
                     <div class="flex text-center">

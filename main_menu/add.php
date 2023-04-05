@@ -9,7 +9,9 @@ if (isset($_POST['save1'])) {
     $new_date = date("l j F Y", $new_date_timestamp); // إعادة تنسيق التاريخ بالصيغة المطلوبة
     $date_to = $new_date;
     $supp_id = $_POST['supp_id'];
+
     $emp_id = $_SESSION['emp_id'];
+
     $new_date = $date_from;
     foreach ($days as $day) {
         // $new_date = date('Y-m-d', strtotime($new_date . ' +1 day'));
@@ -82,6 +84,7 @@ if (isset($_POST['save1'])) {
         ]);
     }
     if ($stmt) {
+    
         $_SESSION['success_message'] = " Order Added ";
         header('Location:main?dir=main_menu&page=report');
     }

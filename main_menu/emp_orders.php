@@ -1,6 +1,9 @@
 <?php
-$stmt = $connect->prepare("UPDATE notification SET status = 1 WHERE emp_id=? AND name='accept_order' OR name='reject_order'");
-$stmt->execute(array($_SESSION['emp_id']));
+if (isset($_SESSION['emp_id'])) {
+    $stmt = $connect->prepare("UPDATE notification SET status = 1 WHERE emp_id=? AND name='accept_order' OR name='reject_order'");
+    $stmt->execute(array($_SESSION['emp_id']));
+}
+
 ?>
 
 <!-- Content Header (Page header) -->
@@ -25,9 +28,17 @@ $stmt->execute(array($_SESSION['emp_id']));
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        <a href="main.php?dir=main_menu&page=report" class="btn btn-primary"> Add New Order <i class="fa fa-plus"></i> </a>
-                    </div>
+                    <?php
+                    if (isset($_SESSION['emp_id'])) {
+                    ?>
+                        <div class="card-header">
+                            <a href="main.php?dir=main_menu&page=report" class="btn btn-primary"> Add New Order <i class="fa fa-plus"></i> </a>
+                        </div>
+                    <?php
+                    }
+
+                    ?>
+
                     <?php
                     if (isset($_SESSION['success_message'])) {
                         $message = $_SESSION['success_message'];

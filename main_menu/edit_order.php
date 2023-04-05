@@ -4,11 +4,13 @@ $days = array("saturday", "sunday", "monday", "tuesday", "wednesday", "thursday"
 if (isset($_POST['save1'])) {
     $date_from = $_POST['date_from'];
     $date_to = $_POST['date_to'];
-
     //$date_from = date('Y-m-d', strtotime($_POST['date_from']));
     //$date_to = date('Y-m-d', strtotime($_POST['date_to']));
     $supp_id = isset($_POST['supp_id']) ? $_POST['supp_id'] : '';
     $emp_id = isset($_GET['emp_id']) ? $_GET['emp_id'] : '';
+    $stmt = $connect->prepare("SELECT * FROM emplyees WHERE id=?");
+    $stmt->execute(array($emp_id));
+    $emp_new_data = $stmt->fetch();
     if (empty($emp_id)) {
         echo "Employee ID is not set";
         exit;
@@ -49,9 +51,6 @@ if (isset($_POST['save1'])) {
         } else {
             $special = $current_special_value; // Use the existing value if there's no input
         }*/
-
-
-
         $stmt = $connect->prepare("UPDATE breakfast_order SET option1=?,option1_qt=?,option2=?,option2_qt=?,option3=?,option3_qt=?,special=?,option4=?,option4_qt=?,option5=?,option5_qt=?,option6=?,option6_qt=?,special2=?
         ,option7=?,option7_qt=?,option8=?,option8_qt=?,option9=?,option9_qt=?,special3=? WHERE order_date_from=? AND order_date_to=? AND day=? AND emp_id=?");
         $stmt->execute([
@@ -61,8 +60,11 @@ if (isset($_POST['save1'])) {
         ]);
     }
     if ($stmt) {
+        $stmt = $connect->prepare("INSERT INTO sup_notification (supp_id, emp_id, name , noti_desc , date , from_date , to_date)
+        value(?, ? , ? , ? , ? , ? , ?)");
+        $stmt->execute(array($emp_new_data['pres_id'], $emp_id, "Edit Order", "Have Order Edit  By => " . $emp_new_data['emp_name'], date("Y-m-d"), $date_from, $date_to));
         $_SESSION['success_message'] = " Order Updated ";
-         header('Location: main?dir=main_menu&page=emp_orders&emp_id=' . $emp_id);
+        header('Location: main?dir=main_menu&page=emp_orders&emp_id=' . $emp_id);
     }
     //header("location:main.php?dir=main_menu&page=report");
 }

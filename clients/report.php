@@ -1,8 +1,8 @@
         <?php
         $stmt = $connect->prepare("UPDATE notification SET status = 1 WHERE emp_id = ? AND name = ? AND status = 0");
-        $stmt->execute(array($_SESSION['emp_id'],"goal_progress"));
+        $stmt->execute(array($_SESSION['emp_id'], "goal_progress"));
         ?>
-        
+
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <div class="container-fluid">
@@ -169,7 +169,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="Company-2" class="block">Days Required To Achieve Goal</label>
-                                                                        <input required id="Company-2" name="days_required" type="number" class="form-control required" value="<?php echo $client['days_required']; ?>">
+                                                                        <input readonly required id="Company-2" name="days_required" type="number" class="form-control required" value="<?php echo $client['days_required']; ?>">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="Company-2" class="block"> smart goals progress </label>

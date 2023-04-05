@@ -8,7 +8,7 @@ if (isset($_POST['add_cat'])) {
     $goal_progress = $_POST['goal_progress'];
     $emp_id = $_SESSION['emp_id'];
     $start_date = date("Y-m-d");
-    $end_date = date("Y-m-d", strtotime($today_date . " +".$days_required." days"));
+    $end_date = date("Y-m-d", strtotime($today_date . " +" . $days_required . " days"));
     $formerror = [];
     if (
         empty($patient_name) || empty($smart_goals) || empty($artifation_measure) ||
