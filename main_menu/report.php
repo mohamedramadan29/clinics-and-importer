@@ -1,18 +1,6 @@
 <!-- START FUNCTION  -->
 <?php
-$stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE emp_id = ? ORDER BY id DESC LIMIT 6");
-$stmt->execute(array($_SESSION['emp_id']));
-$break_data = $stmt->fetchAll();
-$count = $stmt->rowCount();
-if ($count > 0) {
-    foreach ($break_data as $break) {
-        if ($break['day'] == 'saturday') {
-            echo $break['option1'];
-            echo $break['day'];
-            echo "</br>";
-        }
-    }
-}
+
 
 function getdaydata($date_from, $date_to, $day)
 {
@@ -118,7 +106,7 @@ function getitems($cat_id)
                 </div>
                 <!-- START FUNCTION  -->
                 <?php
-                $stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE emp_id = ? ORDER BY id DESC LIMIT 6");
+                $stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE emp_id = ? AND menu_num=1 ORDER BY id DESC LIMIT 6");
                 $stmt->execute(array($_SESSION['emp_id']));
                 $break_data = $stmt->fetchAll();
                 $count = $stmt->rowCount();
@@ -130,18 +118,16 @@ function getitems($cat_id)
                                 <?php include "old_breakfast.php"; ?>
                             </div>
                         </div>
-                        <!--
                         <div class="col-lg-12">
                             <div class="card card-row ">
-                                <?php include "lunch.php"; ?>
+                                <?php include "old_lunch.php"; ?>
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="card card-row ">
-                                <?php include "dinner.php"; ?>
+                                <?php include "old_dinner.php"; ?>
                             </div>
                         </div>
-                -->
                     </div>
                 <?php
                 } else {

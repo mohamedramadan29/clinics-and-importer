@@ -95,23 +95,55 @@ function getitems($cat_id)
                         </div>
                     <?php } ?>
                 </div>
-                <div class="row main_menu">
-                    <div class="col-lg-12">
-                        <div class="card card-row ">
-                            <?php include "breakfast.php"; ?>
+                <!-- START FUNCTION  -->
+                <?php
+                $stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE emp_id = ? AND menu_num=2 ORDER BY id DESC LIMIT 6");
+                $stmt->execute(array($_SESSION['emp_id']));
+                $break_data = $stmt->fetchAll();
+                $count = $stmt->rowCount();
+                if ($count > 0) {
+                ?>
+                    <div class="row main_menu">
+                        <div class="col-lg-12">
+                            <div class="card card-row ">
+                                <?php include "old_breakfast2.php"; ?>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card card-row ">
+                                <?php include "old_lunch2.php"; ?>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card card-row ">
+                                <?php include "old_dinner2.php"; ?>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="card card-row ">
-                            <?php include "lunch.php"; ?>
+                <?php
+                } else {
+                ?>
+                    <div class="row main_menu">
+                        <div class="col-lg-12">
+                            <div class="card card-row ">
+                                <?php include "breakfast.php"; ?>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card card-row ">
+                                <?php include "lunch.php"; ?>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="card card-row ">
+                                <?php include "dinner.php"; ?>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="card card-row ">
-                            <?php include "dinner.php"; ?>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                }
+                ?>
+
                 <?php
                 if (isset($_SESSION['emp_id'])) { ?>
                     <div class="flex text-center">

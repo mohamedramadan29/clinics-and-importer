@@ -1,5 +1,5 @@
 <?php
-$stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE emp_id = ? AND menu_num=1 ORDER BY id DESC LIMIT 6");
+$stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE emp_id = ? AND menu_num=2 ORDER BY id DESC LIMIT 6");
 $stmt->execute(array($_SESSION['emp_id']));
 $allbreak = $stmt->fetchAll();
 $count = $stmt->rowCount();

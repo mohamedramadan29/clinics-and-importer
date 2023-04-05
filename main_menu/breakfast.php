@@ -1,18 +1,4 @@
-<?php
-$stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE emp_id = ? ORDER BY id DESC LIMIT 6");
-$stmt->execute(array($_SESSION['emp_id']));
-$break_data = $stmt->fetchAll();
-$count = $stmt->rowCount();
-if ($count > 0) {
-    foreach ($break_data as $break) {
-        if ($break['day'] == 'saturday') {
-            echo $break['option1'];
-            echo $break['day'];
-            echo "</br>";
-        }
-    }
-}
-?>
+
 <div class="table1 table-responsive">
     <div class="card-header bg bg-secondary">
         <p class="card-title"> Breakfast</p>
