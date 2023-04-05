@@ -125,7 +125,7 @@
                         $month = sprintf('%02d', $month);
                     ?>
                         <!--<div id="print">-->
-                            <div id="table-to-export"> 
+                        <div id="table-to-export">
                             <div class="row">
                                 <div class="col-6">
                                     <table class="table table-bordered">
