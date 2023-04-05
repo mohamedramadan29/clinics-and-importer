@@ -98,7 +98,7 @@
                      </a>
                      <ul class="nav nav-treeview">
                          <li class="nav-item">
-                             <a href="main.php?dir=supp_dash&page=report" class="nav-link">
+                             <a href="main.php?dir=supp_dash&page=all_emp" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
                                  <p>All Orders</p>
                              </a>

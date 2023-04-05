@@ -16,6 +16,7 @@ if (isset($_GET["id"]) && is_numeric($_GET['id'])) {
     $stmt = $connect->prepare("SELECT * FROM  breakfast_order WHERE id = ?");
     $stmt->execute(array($day_id));
     $day_details = $stmt->fetch();
+    echo $day_details['emp_id'];
     $count = $stmt->rowCount();
     if ($count > 0) { ?>
         <section class="content">
@@ -97,9 +98,10 @@ if (isset($_GET["id"]) && is_numeric($_GET['id'])) {
         $sup_data = $stmt->fetch();
 
 
-        $stmt = $connect->prepare("SELECT * FROM emplyees WHERE pres_id = ? ");
-        $stmt->execute(array($sup_data['id']));
+        $stmt = $connect->prepare("SELECT * FROM emplyees WHERE id = ?  ");
+        $stmt->execute(array($day_details['emp_id']));
         $emp_data = $stmt->fetch();
+        echo $emp_data['emp_name'];
         ?>
         <section class="content">
             <div class="container-fluid">

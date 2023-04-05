@@ -28,10 +28,11 @@
                     if (count($getoption) > 0) {
                         foreach ($alldata as $data) {
                     ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php
+                                    if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="saturday_option1[]" id="" class="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="saturday_option1[]" id="" class="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -48,7 +49,7 @@
                             echo "</br>";
                         }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option1_qt" value="<?php echo $daydata['option1_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option1_qt" value="<?php echo $daydata['option1_qt']; ?>">
                     <?php
                     }
                     ?>
@@ -66,10 +67,10 @@
                     if (count($getoption) > 0) {
                         foreach ($alldata as $data) {
                     ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="saturday_option2[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="saturday_option2[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -86,7 +87,7 @@
                             echo "</br>";
                         }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option2_qt" value="<?php echo $daydata['option2_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option2_qt" value="<?php echo $daydata['option2_qt']; ?>">
                     <?php
                     } ?>
                 </td>
@@ -103,10 +104,10 @@
                     if (count($getoption) > 0) {
                         foreach ($alldata as $data) {
                     ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="saturday_option3[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="saturday_option3[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -123,11 +124,11 @@
                             echo "</br>";
                         }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option3_qt" value="<?php echo $daydata['option3_qt'] ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="saturday_option3_qt" value="<?php echo $daydata['option3_qt'] ?>">
                     <?php } ?>
                 </td>
                 <td>
-                    <textarea <?php if($status == 1 || $status == 2) echo "readonly"; ?> name="saturday_special" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special']; ?></textarea>
+                    <textarea <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> name="saturday_special" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special']; ?></textarea>
                 </td>
             </tr>
             <tr>
@@ -145,10 +146,10 @@
                     if (count($getoption) > 0) {
                         foreach ($alldata as $data) {
                     ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="sunday_option1[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="sunday_option1[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -166,7 +167,7 @@
                             echo "</br>";
                         }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="sunday_option1_qt" value="<?php echo $daydata['option1_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="sunday_option1_qt" value="<?php echo $daydata['option1_qt']; ?>">
                     <?php
                     }
                     ?>
@@ -184,10 +185,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> <?php
-                                                                } ?> name="sunday_option2[]" id="" class="select2 form-control">
+                                                                    } else { ?> <?php
+                                                                        } ?> name="sunday_option2[]" id="" class="select2 form-control">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -204,7 +205,7 @@
                                 echo "</br>";
                             }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="sunday_option2_qt" value="<?php echo $daydata['option2_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="sunday_option2_qt" value="<?php echo $daydata['option2_qt']; ?>">
                     <?php }
                     ?>
                 </td>
@@ -221,10 +222,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="sunday_option3[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="sunday_option3[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -241,13 +242,13 @@
                                 echo "</br>";
                             }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="sunday_option3_qt" value="<?php echo $daydata['option3_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="sunday_option3_qt" value="<?php echo $daydata['option3_qt']; ?>">
                     <?php
                         }
                     ?>
                 </td>
                 <td>
-                    <textarea <?php if($status == 1 || $status == 2) echo "readonly"; ?> name="sunday_special" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special']; ?></textarea>
+                    <textarea <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> name="sunday_special" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special']; ?></textarea>
                 </td>
             </tr>
             <tr>
@@ -265,10 +266,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="monday_option1[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="monday_option1[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -285,7 +286,7 @@
                                 echo "</br>";
                             }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="monday_option1_qt" value="<?php echo $daydata['option1_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="monday_option1_qt" value="<?php echo $daydata['option1_qt']; ?>">
                     <?php
                         }
                     ?>
@@ -303,10 +304,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="monday_option2[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="monday_option2[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -323,7 +324,7 @@
 
                             }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="monday_option2_qt" value="<?php echo $daydata['option2_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="monday_option2_qt" value="<?php echo $daydata['option2_qt']; ?>">
                     <?php }
                     ?>
                 </td>
@@ -340,10 +341,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="monday_option3[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="monday_option3[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -360,7 +361,7 @@
                                 echo "</br>";
                             }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="monday_option3_qt" value="<?php echo $daydata['option3_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="monday_option3_qt" value="<?php echo $daydata['option3_qt']; ?>">
                     <?php
                         }
                     ?>
@@ -385,10 +386,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="tuesday_option1[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="tuesday_option1[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -404,7 +405,7 @@
                         <?php
                             }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="tuesday_option1_qt" value="<?php echo $daydata['option1_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="tuesday_option1_qt" value="<?php echo $daydata['option1_qt']; ?>">
                     <?php
                         }
                     ?>
@@ -419,13 +420,12 @@
                         $getoption = getoptions('tuesday', 'breakfast', 'option2');
                         $alldata =  $getoption;
                         if (count($getoption) > 0) {
-
                             foreach ($alldata as $data) {
                         ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="tuesday_option2[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="tuesday_option2[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -442,7 +442,7 @@
                                 echo "</br>";
                             }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="tuesday_option2_qt" value="<?php echo $daydata['option2_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="tuesday_option2_qt" value="<?php echo $daydata['option2_qt']; ?>">
                     <?php }
                     ?>
                 </td>
@@ -459,10 +459,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="tuesday_option3[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="tuesday_option3[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -478,11 +478,11 @@
                         <?php
                             }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="tuesday_option3_qt" value="<?php echo $daydata['option3_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="tuesday_option3_qt" value="<?php echo $daydata['option3_qt']; ?>">
                     <?php } ?>
                 </td>
                 <td>
-                    <textarea <?php if($status == 1 || $status == 2) echo "readonly"; ?> name="tuesday_special" placeholder="Enter Special Order" class="form-control"> <?php echo $daydata['special']; ?> </textarea>
+                    <textarea <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> name="tuesday_special" placeholder="Enter Special Order" class="form-control"> <?php echo $daydata['special']; ?> </textarea>
                 </td>
             </tr>
 
@@ -501,10 +501,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="wednesday_option1[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="wednesday_option1[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -521,7 +521,7 @@
                                 echo "</br>";
                             }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="wednesday_option1_qt" value="<?php echo $daydata['option1_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="wednesday_option1_qt" value="<?php echo $daydata['option1_qt']; ?>">
                     <?php } ?>
                 </td>
                 <td> <?php
@@ -537,10 +537,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="wednesday_option2[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="wednesday_option2[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -557,7 +557,7 @@
                                 echo "</br>";
                             }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="wednesday_option2_qt" value="<?php echo $daydata['option2_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="wednesday_option2_qt" value="<?php echo $daydata['option2_qt']; ?>">
                     <?php } ?>
                 </td>
                 <td> <?php
@@ -573,10 +573,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="wednesday_option3[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="wednesday_option3[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -593,11 +593,11 @@
 
                             }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="wednesday_option3_qt" value="<?php echo $daydata['option3_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="wednesday_option3_qt" value="<?php echo $daydata['option3_qt']; ?>">
                     <?php } ?>
                 </td>
                 <td>
-                    <textarea <?php if($status == 1 || $status == 2) echo "readonly"; ?> name="wednesday_special" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special']; ?></textarea>
+                    <textarea <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> name="wednesday_special" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special']; ?></textarea>
                 </td>
             </tr>
             <tr>
@@ -615,10 +615,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="thursday_option1[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="thursday_option1[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -634,7 +634,7 @@
                         <?php
                             }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="thursday_option1_qt" value="<?php echo $daydata['option1_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="thursday_option1_qt" value="<?php echo $daydata['option1_qt']; ?>">
                     <?php } ?>
                 </td>
                 <td> <?php
@@ -649,10 +649,10 @@
                         if (count($getoption) > 0) {
                             foreach ($alldata as $data) {
                         ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="thursday_option2[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="thursday_option2[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -668,7 +668,7 @@
                         <?php
                             }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="thursday_option2_qt" value="<?php echo $daydata['option2_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="thursday_option2_qt" value="<?php echo $daydata['option2_qt']; ?>">
                     <?php } ?>
                 </td>
                 <td> <?php
@@ -684,10 +684,10 @@
 
                             foreach ($alldata as $data) {
                         ?>
-                            <select <?php if ($status == 1 || $status == 2) {
+                            <select <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) {
                                     ?> class="form-control read_only" <?php
-                                                                } else { ?> class="form-control select2" <?php
-                                                                } ?> name="thursday_option3[]" id="">
+                                                                    } else { ?> class="form-control select2" <?php
+                                                                                                        } ?> name="thursday_option3[]" id="">
                                 <option value=""> -- Select --</option>
                                 <?php
                                 $getitems =  getitems($data['cat']);
@@ -703,11 +703,11 @@
                         <?php
                             }
                         ?>
-                        <input <?php if($status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="thursday_option3_qt" value="<?php echo $daydata['option3_qt']; ?>">
+                        <input <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> placeholder="Enter Quantity" type="number" class="form-control" name="thursday_option3_qt" value="<?php echo $daydata['option3_qt']; ?>">
                     <?php } ?>
                 </td>
                 <td>
-                    <textarea <?php if($status == 1 || $status == 2) echo "readonly"; ?> name="thursday_special" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special']; ?></textarea>
+                    <textarea <?php if (!isset($_SESSION['admin_id']) &&  $status == 1 || $status == 2) echo "readonly"; ?> name="thursday_special" placeholder="Enter Special Order" class="form-control"><?php echo $daydata['special']; ?></textarea>
                 </td>
             </tr>
         </tbody>

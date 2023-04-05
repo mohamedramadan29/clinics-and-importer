@@ -94,9 +94,9 @@
                                     ?>
                                         <tr>
                                             <td>
-                                                <input type="text" name="day_name[]" class="form-control" value="<?php echo $dayName ?>">
+                                                <input readonly type="text" name="day_name[]" class="form-control" value="<?php echo $dayName ?>">
                                             </td>
-                                            <td> <input type="text" name="date_day[]" class="form-control" value="<?php echo $dateDay ?>"> </td>
+                                            <td> <input readonly type="text" name="date_day[]" class="form-control" value="<?php echo $dateDay ?>"> </td>
                                             <td> <input type="text" name="break_session[]" class="form-control"> </td>
                                             <td> <input type="text" name="lunch_session[]" class="form-control"> </td>
                                             <td> <input type="text" name="dinner_session[]" class="form-control"> </td>

@@ -2,6 +2,7 @@
         $from = $_GET['from'];
         $to = $_GET['to'];
         $sup_id = $_GET['sup_id'];
+        $emp_id = $_GET['emp_id'];
         ?>
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -67,8 +68,8 @@
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $stmt = $connect->prepare("SELECT * FROM breakfast_order  WHERE pres_id=? AND order_date_from =? AND order_date_to=?");
-                                            $stmt->execute(array($sup_id, $from, $to));
+                                            $stmt = $connect->prepare("SELECT * FROM breakfast_order  WHERE emp_id = ? AND pres_id=? AND order_date_from =? AND order_date_to=?");
+                                            $stmt->execute(array($emp_id,$sup_id, $from, $to));
                                             $allorders = $stmt->fetchAll();
                                             $i = 0;
                                             foreach ($allorders as $order) {
