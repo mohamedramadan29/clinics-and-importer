@@ -62,7 +62,15 @@ if (isset($_SESSION['emp_id'])) {
                                         <th>Supplier</th>
                                         <th>Date From</th>
                                         <th>Date to</th>
+                                        <?php
+                                        if(!isset($_SESSION['super_id'])){
+                                            ?>
                                         <th>Action </th>
+
+                                            <?php
+                                        }
+                                        
+                                        ?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -87,38 +95,46 @@ if (isset($_SESSION['emp_id'])) {
                                             <td> <?php echo  $order['pres_id']; ?> </td>
                                             <td> <?php echo  $order['order_date_from']; ?> </td>
                                             <td> <?php echo  $order['order_date_to']; ?> </td>
-                                            <td>
-                                                <?php
-                                                if ($order['pres_show'] == 0) {
-                                                ?>
-                                                    <a href="main.php?dir=main_menu&page=send_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>" class="btn btn-primary btn-sm">
-                                                        Send Order <i class='fa fa-plane'></i> </a>
-                                                <?php
-                                                } else {
-                                                ?>
-                                                    <button class="btn btn-success btn-sm"> Success Send <i class="fa fa-check"></i> </button>
-                                                <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if ($order['menu_num'] == 1) {
-                                                ?>
-                                                    <a href="main.php?dir=main_menu&page=emp_edit_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>&emp_id=<?php echo $emp_id; ?>" class="btn btn-warning btn-sm"> Edit Order <i class='fa fa-pen'></i> </a>
-                                                <?php
-                                                } elseif ($order['menu_num'] == 2) {
-                                                ?>
-                                                    <a href="main.php?dir=main_menu&page=emp_edit_order2&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>&emp_id=<?php echo $emp_id; ?>" class="btn btn-warning btn-sm"> Edit Order <i class='fa fa-pen'></i> </a>
-                                                <?php
-                                                }
-                                                ?>
-                                                <?php
-                                                if (isset($_SESSION['admin_id'])) {
-                                                ?>
-                                                    <a href="main.php?dir=main_menu&page=delete_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>&emp_id=<?php echo $emp_id; ?>" class="btn btn-danger btn-sm"> Delete Order <i class='fa fa-trash'></i> </a>
-                                                <?php
-                                                }
-                                                ?>
-                                            </td>
+                                            <?php
+                                            if (!isset($_SESSION['super_id'])) {
+                                            ?>
+                                                <td>
+                                                    <?php
+                                                    if ($order['pres_show'] == 0) {
+                                                    ?>
+                                                        <a href="main.php?dir=main_menu&page=send_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>" class="btn btn-primary btn-sm">
+                                                            Send Order <i class='fa fa-plane'></i> </a>
+                                                    <?php
+                                                    } else {
+                                                    ?>
+                                                        <button class="btn btn-success btn-sm"> Success Send <i class="fa fa-check"></i> </button>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    if ($order['menu_num'] == 1) {
+                                                    ?>
+                                                        <a href="main.php?dir=main_menu&page=emp_edit_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>&emp_id=<?php echo $emp_id; ?>" class="btn btn-warning btn-sm"> Edit Order <i class='fa fa-pen'></i> </a>
+                                                    <?php
+                                                    } elseif ($order['menu_num'] == 2) {
+                                                    ?>
+                                                        <a href="main.php?dir=main_menu&page=emp_edit_order2&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>&emp_id=<?php echo $emp_id; ?>" class="btn btn-warning btn-sm"> Edit Order <i class='fa fa-pen'></i> </a>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                    <?php
+                                                    if (isset($_SESSION['admin_id'])) {
+                                                    ?>
+                                                        <a href="main.php?dir=main_menu&page=delete_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>&emp_id=<?php echo $emp_id; ?>" class="btn btn-danger btn-sm"> Delete Order <i class='fa fa-trash'></i> </a>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </td>
+                                            <?php
+                                            }
+
+                                            ?>
+
                                         </tr>
                                     <?php
                                     }

@@ -22,9 +22,16 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
-                                    <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#add-Modal"> Add New Item <i class="fa fa-plus"></i> </button>
-                                </div>
+                                <?php if (isset($_SESSION['super_id'])) {
+                                } else {
+                                ?>
+                                    <div class="card-header">
+                                        <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#add-Modal"> Add New Item <i class="fa fa-plus"></i> </button>
+                                    </div>
+                                <?php
+                                }
+                                ?>
+
                                 <?php
                                 if (isset($_SESSION['success_message'])) {
                                     $message = $_SESSION['success_message'];
@@ -71,8 +78,13 @@
                                                                 echo  $data['cat_name']; ?> </td>
                                                         <td> <?php echo  $item['item_desc']; ?> </td>
                                                         <td>
-                                                            <button type="button" class="btn btn-success btn-sm waves-effect" data-toggle="modal" data-target="#edit-Modal_<?php echo $item['id'] ?>"> Edit <i class="fa fa-pen"></i> </button>
-                                                            <a href="main.php?dir=items&page=delete&item_id=<?php echo $item['id']; ?>" class="confirm btn btn-danger btn-sm"> Delete <i class="fa fa-trash"></i> </a>
+                                                            <?php if (isset($_SESSION['super_id'])) {
+                                                            } else { ?>
+                                                                <button type="button" class="btn btn-success btn-sm waves-effect" data-toggle="modal" data-target="#edit-Modal_<?php echo $item['id'] ?>"> Edit <i class="fa fa-pen"></i> </button>
+                                                                <a href="main.php?dir=items&page=delete&item_id=<?php echo $item['id']; ?>" class="confirm btn btn-danger btn-sm"> Delete <i class="fa fa-trash"></i> </a>
+                                                            <?php
+                                                            } ?>
+
                                                         </td>
                                                     </tr>
                                                     <!-- EDIT NEW CATEGORY MODAL   -->

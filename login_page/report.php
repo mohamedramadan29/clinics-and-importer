@@ -60,7 +60,15 @@
                                                         <img style="width: 150px; height:150px" src="uploads/<?php echo $cat['login_image']; ?>" alt="">
                                                     </td>
                                                     <td>
-                                                        <button type="button" class="btn btn-success btn-sm waves-effect" data-toggle="modal" data-target="#edit-Modal"> Edit <i class='fa fa-pen'></i> </button>
+                                                        <?php
+                                                        if (!isset($_SESSION['super_id'])) {
+                                                        ?>
+                                                            <button type="button" class="btn btn-success btn-sm waves-effect" data-toggle="modal" data-target="#edit-Modal"> Edit <i class='fa fa-pen'></i> </button>
+
+                                                        <?php
+                                                        }
+
+                                                        ?>
                                                     </td>
                                                 </tr>
                                                 <!-- EDIT NEW CATEGORY MODAL   -->

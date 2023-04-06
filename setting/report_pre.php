@@ -20,9 +20,17 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                                <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#add-Modal"> Add New pre <i class="fa fa-plus"></i> </button>
-                            </div>
+                            <?php
+                            if (!isset($_SESSION['super_id'])) {
+                            ?>
+                                <div class="card-header">
+                                    <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#add-Modal"> Add New pre <i class="fa fa-plus"></i> </button>
+                                </div>
+                            <?php
+                            }
+
+                            ?>
+
                             <?php
                             if (isset($_SESSION['success_message'])) {
                                 $message = $_SESSION['success_message'];
@@ -44,8 +52,8 @@
                                                 <th>Name</th>
                                                 <th>email</th>
                                                 <th>phone</th>
-                                               <!-- <th>status</th> -->
-                                               <th> Orders </th>
+                                                <!-- <th>status</th> -->
+                                                <th> Orders </th>
                                                 <th> Logo </th>
                                                 <th>Action </th>
                                             </tr>
@@ -90,8 +98,15 @@
                                                         ?>
                                                     </td>
                                                     <td>
-                                                        <button type="button" class="btn btn-success btn-sm waves-effect" data-toggle="modal" data-target="#edit-Modal_<?php echo $emp['id']; ?>"> Edit <i class='fa fa-pen'></i> </button>
-                                                        <a href="main.php?dir=setting&page=delete_pre&pre_id=<?php echo $emp['id']; ?>" class="confirm btn btn-danger btn-sm"> Delete <i class='fa fa-trash'></i> </a>
+                                                        <?php
+
+                                                        if (!isset($_SESSION['super_id'])) {
+                                                        ?>
+                                                            <button type="button" class="btn btn-success btn-sm waves-effect" data-toggle="modal" data-target="#edit-Modal_<?php echo $emp['id']; ?>"> Edit <i class='fa fa-pen'></i> </button>
+                                                            <a href="main.php?dir=setting&page=delete_pre&pre_id=<?php echo $emp['id']; ?>" class="confirm btn btn-danger btn-sm"> Delete <i class='fa fa-trash'></i> </a>
+                                                        <?php
+                                                        } ?>
+
                                                     </td>
                                                 </tr>
                                                 <!-- EDIT NEW CATEGORY MODAL   -->

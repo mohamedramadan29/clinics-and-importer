@@ -20,9 +20,15 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                                <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#add-Modal"> Add New file <i class="fa fa-plus"></i> </button>
-                            </div>
+                            <?php if (isset($_SESSION['super_id'])) {
+                            } else {
+                            ?>
+                                <div class="card-header">
+                                    <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#add-Modal"> Add New file <i class="fa fa-plus"></i> </button>
+                                </div>
+                            <?php
+                            } ?>
+
                             <?php
                             if (isset($_SESSION['success_message'])) {
                                 $message = $_SESSION['success_message'];
@@ -63,11 +69,11 @@
 
                                                         <a href="uploads/files/<?php echo $file['file']; ?>" target="_blank" class="btn btn-warning btn-sm"> View <i class='fa fa-eye'></i> </a>
                                                         <!--<a href="main.php?dir=pdf_file&page=download&file=<?php echo urlencode($file['file']); ?>" class="btn btn-success btn-sm">Download <i class="fa fa-download"></i></a>-->
-                                                        <?php 
-                                                        if(isset($_SESSION['admin_id'])){
-                                                            ?>
-                                                        <a href="main.php?dir=goals&page=delete&goal_id=<?php echo $goal['id']; ?>" class="confirm btn btn-danger btn-sm"> Delete <i class='fa fa-trash'></i> </a>
-                                                            <?php
+                                                        <?php
+                                                        if (isset($_SESSION['admin_id'])) {
+                                                        ?>
+                                                            <a href="main.php?dir=goals&page=delete&goal_id=<?php echo $goal['id']; ?>" class="confirm btn btn-danger btn-sm"> Delete <i class='fa fa-trash'></i> </a>
+                                                        <?php
                                                         }
                                                         ?>
                                                     </td>

@@ -55,6 +55,28 @@
                                             <button type="submit" name="edit_admin" class="btn btn-primary waves-effect waves-light ">Save</button>
                                         </form>
                                     <?php
+                                    } elseif (isset($_SESSION['super_id'])) {
+                                        $stmt = $connect->prepare("SELECT * FROM supervisor WHERE id = ?");
+                                        $stmt->execute(array($_SESSION['super_id']));
+                                        $data = $stmt->fetch();
+                                    ?>
+                                        <form action="main.php?dir=profile&page=edit" method="post" enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                <label for="Company-2" class="block"> Name </label>
+                                                <input type="hidden" name="id" value="<?php echo $_SESSION['super_id']; ?>">
+                                                <input required id="Company-2" name="name" type="text" class="form-control required" value="<?php echo $data['name']; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Company-2" class="block"> Email </label>
+                                                <input required id="Company-2" name="email" type="text" class="form-control required" value="<?php echo $data['email']; ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="Company-2" class="block"> Password </label>
+                                                <input required id="Company-2" name="password" type="password" class="form-control required" value="<?php echo $data['password']; ?>">
+                                            </div>
+                                            <button type="submit" name="edit_super" class="btn btn-primary waves-effect waves-light ">Save</button>
+                                        </form>
+                                    <?php
                                     } elseif (isset($_SESSION['emp_id'])) {
                                         $stmt = $connect->prepare("SELECT * FROM emplyees WHERE id = ?");
                                         $stmt->execute(array($_SESSION['emp_id']));
@@ -79,7 +101,7 @@
                                                 <input readonly id="Company-2" name="clinic_name" type="text" class="form-control required" value="<?php echo $data['clinic_name']; ?>">
                                             </div>
                                             <div class="form-group">
-                                                <label for="Company-2" class="block"> Clinic Code  </label>
+                                                <label for="Company-2" class="block"> Clinic Code </label>
                                                 <input readonly id="Company-2" name="clinic_code" type="text" class="form-control required" value="<?php echo $data['clinic_code']; ?>">
                                             </div>
                                             <div class="form-group">
@@ -89,11 +111,11 @@
                                             <button type="submit" name="edit_emp" class="btn btn-primary waves-effect waves-light ">Save</button>
                                         </form>
                                     <?php
-                                    }elseif (isset($_SESSION['supp_id'])){
+                                    } elseif (isset($_SESSION['supp_id'])) {
                                         $stmt = $connect->prepare("SELECT * FROM presentions WHERE id =? ");
                                         $stmt->execute(array($_SESSION['supp_id']));
-                                        $data = $stmt->fetch();?>
-                                                <form action="main.php?dir=profile&page=edit" method="post" enctype="multipart/form-data">
+                                        $data = $stmt->fetch(); ?>
+                                        <form action="main.php?dir=profile&page=edit" method="post" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label for="Company-2" class="block"> Name </label>
                                                 <input type="hidden" name="id" value="<?php echo $_SESSION['supp_id']; ?>">
@@ -113,7 +135,7 @@
                                             </div>
                                             <button type="submit" name="edit_supp" class="btn btn-primary waves-effect waves-light ">Save</button>
                                         </form>
-                                        <?php
+                                    <?php
                                     }
                                     ?>
                                 </div>

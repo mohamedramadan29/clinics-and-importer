@@ -12,6 +12,9 @@ if (isset($_SESSION['supp_id'])) {
 if (isset($_SESSION['admin_id'])) {
     include 'include/navbar.php';
 }
+if (isset($_SESSION['super_id'])) {
+    include 'include/super_navbar.php';
+}
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

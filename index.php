@@ -45,6 +45,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['select_permision'] == 'admin
         header('Location:main.php?dir=dashboard&page=sup_dashboard');
         exit();
     }
+} elseif ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['select_permision'] == 'super') {
+    $username = $_POST['user_name'];
+    $password = $_POST['password'];
+    $stmt = $connect->prepare(
+        'SELECT * FROM supervisor WHERE name=? AND password=?'
+    );
+    $stmt->execute([$username, $password]);
+    $data = $stmt->fetch();
+    $count = $stmt->rowCount();
+    if ($count > 0) {
+        $_SESSION['super_id'] = $data['id'];
+        header('Location:main.php?dir=dashboard&page=dashboard');
+        exit();
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -82,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['select_permision'] == 'admin
                 <div class="login-box">
                     <div class="card card-outline card-primary" style="border-top-color: #e0612a;">
                         <img style="width: 100px; margin:auto" src="uploads/new_logo.png" alt="">
-                       <!-- <div class="card-header text-center">
+                        <!-- <div class="card-header text-center">
                             <a href="index" class="h1"><b>Di-</b>Tech</a>
                         </div>
 -->
@@ -108,8 +122,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['select_permision'] == 'admin
                                     <select name="select_permision" id="" class="form-control select2">
                                         <option value=""> -- Select Permission -- </option>
                                         <option value="admin"> Admin </option>
+                                        <option value="super"> supervisor </option>
                                         <option value="emp"> Employee </option>
                                         <option value="supp"> Supplier </option>
+
                                     </select>
                                 </div>
                                 <div class="row">

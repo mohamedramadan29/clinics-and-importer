@@ -60,7 +60,12 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <?php if(!isset($_SESSION['super_id'])){
+                                        ?>
                                     <button type="submit" name="meal_price" class="btn btn-primary btn-sm"> Save & Update <i class="fa fa-save"></i> </button>
+
+                                        <?php
+                                    } ?>
                                 </form>
                                 <?php
                                 if (isset($_POST['meal_price'])) {
@@ -327,7 +332,14 @@
                         <div>
                             <button class="btn btn-primary text-center" id="print_Button" onclick="printDiv()"> <i class="fa fa-print"></i> Export As Pdf </button>
                             <button id="export-btn" class="btn btn-warning text-center"> <i class="fa fa-file-excel"></i> Export to Excel </button>
+                           <?php 
+                           if(!isset($_SESSION['super_id'])){
+                            ?>
                             <a class="btn btn-danger text-center" href="main.php?dir=statistics&page=delete_month&emp_id=<?php echo $emp_id; ?>&month=<?php echo $month; ?>"> <i class="fa fa-trash"></i> Delete Month Data </a>
+
+                            <?php
+                           }
+                           ?>
                         </div>
                     <?php
                     }

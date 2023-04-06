@@ -22,9 +22,15 @@
 
                     <!-- DOM/Jquery table start -->
                     <div class="card">
-                        <div class="card-header">
-                            <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#add-Modal"> Add Option <i class="fa fa-plus"></i> </button>
-                        </div>
+                        <?php if (isset($_SESSION['super_id'])) {
+                        } else { ?>
+                            <div class="card-header">
+                                <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#add-Modal"> Add Option <i class="fa fa-plus"></i> </button>
+                            </div>
+                        <?php
+
+                        } ?>
+
                         <?php
                         if (isset($_SESSION['success_message'])) {
                             $message = $_SESSION['success_message'];
@@ -78,8 +84,14 @@
                                                         echo  $data['cat_name']; ?> </td>
                                                 <td> <?php echo  $option['special_desc']; ?> </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-success btn-sm waves-effect" data-toggle="modal" data-target="#edit-Modal_<?php echo $option['id']; ?>"> Edit <i class="fa fa-pen"></i> </button>
-                                                    <a href="main.php?dir=menus&page=delete&option_id=<?php echo $option['id']; ?>" class="confirm btn btn-danger btn-sm"> Delete <i class="fa fa-trash"></i> </a>
+                                                    <?php if (isset($_SESSION['super_id'])) {
+                                                    } else { ?>
+                                                        <button type="button" class="btn btn-success btn-sm waves-effect" data-toggle="modal" data-target="#edit-Modal_<?php echo $option['id']; ?>"> Edit <i class="fa fa-pen"></i> </button>
+                                                        <a href="main.php?dir=menus&page=delete&option_id=<?php echo $option['id']; ?>" class="confirm btn btn-danger btn-sm"> Delete <i class="fa fa-trash"></i> </a>
+                                                    <?php
+
+                                                    } ?>
+
                                                 </td>
                                             </tr>
                                             <!-- EDIT NEW CATEGORY MODAL   -->
