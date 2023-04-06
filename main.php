@@ -117,7 +117,7 @@ if (isset($_SESSION['super_id'])) {
         include 'statistics/delete.php';
     } elseif ($dir == 'statistics' && $page == 'report') {
         include "statistics/report.php";
-    }elseif ($dir == 'statistics' && $page == 'delete_month') {
+    } elseif ($dir == 'statistics' && $page == 'delete_month') {
         include "statistics/delete_month.php";
     }
     // START REPORT 
@@ -226,9 +226,10 @@ if (isset($_SESSION['super_id'])) {
         include "supp_dash/day_details.php";
     } elseif ($dir == 'supp_dash' && $page == 'print_order') {
         include "supp_dash/print_order.php";
-    }
-    elseif ($dir == 'supp_dash' && $page == 'all_emp') {
+    } elseif ($dir == 'supp_dash' && $page == 'all_emp') {
         include "supp_dash/all_emp.php";
+    } elseif ($dir == 'supp_dash' && $page == 'today_orders') {
+        include "supp_dash/today_orders.php";
     }
     // START USER PROFILE
     if ($dir == 'profile' && $page == 'report') {
