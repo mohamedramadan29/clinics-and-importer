@@ -181,7 +181,7 @@
            <a href="#" class="nav-link">
              <i class="nav-icon fa fa-book"></i>
              <p>
-               Pdf Files
+             Dietition Library
                <i class="fas fa-angle-left right"></i>
              </p>
            </a>
@@ -196,33 +196,14 @@
          </li>
 
          <li class="nav-item">
-           <a href="#" class="nav-link">
-             <i class="nav-icon fa fa-audio-description"></i>
-             <p>
-               Food & Drug
-               <i class="fas fa-angle-left right"></i>
-             </p>
-           </a>
-           <ul class="nav nav-treeview">
-             <li class="nav-item">
-
-               <?php
-                $stmt = $connect->prepare("SELECT * FROM items_desc");
-                $stmt->execute();
-                $allitem = $stmt->fetchAll();
-                foreach ($allitem as $item) {
-                ?>
-                 <a href="main.php?dir=items_desc&page=report&item_id=<?php echo $item['id']; ?>" class="nav-link">
-                   <i class="far fa-circle nav-icon"></i>
-                   <p> <?php echo $item['item_name']; ?> </p>
-                 </a>
-               <?php
-                }
-                ?>
-
-             </li>
-           </ul>
-         </li>
+                     <a href="main.php?dir=items_desc&page=report" class="nav-link">
+                         <i class="nav-icon fa fa-audio-description"></i>
+                         <p>
+                             Food & Drug Interaction Cheacker
+                             <i class="fas fa-angle-left right"></i>
+                         </p>
+                     </a>
+                 </li>
          <li class="nav-item">
            <a href="#" class="nav-link">
              <i class="nav-icon fas fa-edit"></i>

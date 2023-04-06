@@ -172,13 +172,13 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="Company-2" class="block">Proten Needs (g/day)</label>
+                                            <label for="Company-2" class="block">Protein Needs (g/day)</label>
                                             <input type="number" name="proten_need" class="form-control" id="proten_need" value="<?php echo number_format($equation2,2) ?>">
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="Company-2" class="block">colories Need (colors/ day)</label>
+                                            <label for="Company-2" class="block">calories Need (Kcal/ day)</label>
                                             <input type="number" name="colors" class="form-control" id="colors" value="<?php echo $equation3; ?>">
                                         </div>
                                     </div>
@@ -198,7 +198,7 @@
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="Company-2" class="block"> Adg.BW (KG)</label>
+                                            <label for="Company-2" class="block"> ADJ.BW (KG)</label>
                                             <input type="number" name="adg" class="form-control" id="adg" value="<?php echo $equation5; ?>">
                                         </div>
                                     </div>
@@ -207,7 +207,7 @@
                                     <div class="col-4">
                                         <div class="form-group">
                                             <label for="Company-2" class="block"> Weight Loss (%)</label>
-                                            <input type="number" name="loss" class="form-control" id="loss" value="<?php echo $equation6; ?>">
+                                            <input type="number" name="loss" class="form-control" id="loss" value="<?php echo number_format($equation6,2) ?>">
                                         </div>
                                     </div>
                                     <div class="col-4">

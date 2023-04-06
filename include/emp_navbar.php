@@ -159,7 +159,7 @@
                      <a href="#" class="nav-link">
                          <i class="nav-icon fas fa-chart-pie"></i>
                          <p>
-                             statistics
+                             statistics & Reports
                              <i class="right fas fa-angle-left"></i>
                          </p>
                      </a>
@@ -173,7 +173,7 @@
                          <li class="nav-item">
                              <a href="main.php?dir=statistics&page=report" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
-                                 <p>Month satistics </p>
+                                 <p> Daily Tracker </p>
                              </a>
                          </li>
                          <li class="nav-item">
@@ -188,7 +188,7 @@
                      <a href="#" class="nav-link">
                          <i class="nav-icon fas fa-users"></i>
                          <p>
-                             Clients
+                             Behavior Changes Tool
                              <i class="fas fa-angle-left right"></i>
                          </p>
                      </a>
@@ -196,7 +196,7 @@
                          <li class="nav-item">
                              <a href="main.php?dir=clients&page=report" class="nav-link">
                                  <i class="far fa-circle nav-icon"></i>
-                                 <p>Clients </p>
+                                 <p> All Patients </p>
                              </a>
                          </li>
                      </ul>
@@ -205,7 +205,7 @@
                      <a href="#" class="nav-link">
                          <i class="nav-icon fa fa-bell"></i>
                          <p>
-                             Goals
+                             Dietition Reminders
                              <i class="fas fa-angle-left right"></i>
                          </p>
                      </a>
@@ -222,7 +222,7 @@
                      <a href="#" class="nav-link">
                          <i class="nav-icon fa fa-book"></i>
                          <p>
-                             Pdf Files
+                             Dietition Library
                              <i class="fas fa-angle-left right"></i>
                          </p>
                      </a>
@@ -239,7 +239,7 @@
                      <a href="main.php?dir=items_desc&page=report" class="nav-link">
                          <i class="nav-icon fa fa-audio-description"></i>
                          <p>
-                             Food & Drug
+                             Food & Drug Interaction Cheacker
                              <i class="fas fa-angle-left right"></i>
                          </p>
                      </a>

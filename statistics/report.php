@@ -1,11 +1,11 @@
     <style>
-        @media print{
-            #export-btn{
+        @media print {
+            #export-btn {
                 display: none !important;
             }
         }
     </style>
-    
+
     <?php
     if (isset($_SESSION['emp_id'])) {
         $emp_id = $_SESSION['emp_id'];
@@ -151,15 +151,15 @@
                                         <tbody>
                                             <tr>
                                                 <th> Clinic Name : </th>
-                                                <th> <?php echo $emp_data['clinic_name']; ?> </th>
+                                                <th style="background-color: #2ff382 !important;"> <?php echo $emp_data['clinic_name']; ?> </th>
                                             </tr>
                                             <tr>
                                                 <th> Code : </th>
-                                                <th> <?php echo $emp_data['clinic_code']; ?> </th>
+                                                <th style="background-color: #2ff382 !important;"> <?php echo $emp_data['clinic_code']; ?> </th>
                                             </tr>
                                             <tr>
                                                 <th> Month : </th>
-                                                <th> <?php echo $month; ?> </th>
+                                                <th style="background-color: #2ff382 !important;"> <?php echo $month; ?> </th>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -169,15 +169,15 @@
                                         <tbody>
                                             <tr>
                                                 <th> Breakfast : </th>
-                                                <th> <?php echo $price['break_value']; ?> </th>
+                                                <th style="background-color: #2ff382 !important;"> <?php echo $price['break_value']; ?> </th>
                                             </tr>
                                             <tr>
                                                 <th> Lunch : </th>
-                                                <th> <?php echo $price['lunch_value']; ?> </th>
+                                                <th style="background-color: #2ff382 !important;"> <?php echo $price['lunch_value']; ?> </th>
                                             </tr>
                                             <tr>
                                                 <th> Dinner : </th>
-                                                <th> <?php echo $price['dinner_value']; ?> </th>
+                                                <th style="background-color: #2ff382 !important;"> <?php echo $price['dinner_value']; ?> </th>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -185,21 +185,21 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive dt-responsive">
-                                    <table id="" class="table table-striped table-bordered">
+                                    <table id="" class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th> # </th>
-                                                <th> Day </th>
-                                                <th> Sum Breakfast Num </th>
-                                                <th> Sum Morning Session </th>
-                                                <th> Sum Lunch Num </th>
-                                                <th> Sum Noo Sessions </th>
-                                                <th> Sum Dinner Num </th>
-                                                <th> Sum Dinner Sessions</th>
-                                                <th> Sum Meal </th>
-                                                <th> Sum Sessions</th>
-                                                <th> Total </th>
-                                                <th> Gap </th>
+                                                <th style="background-color: #f1f1f1 !important;"> Date </th>
+                                                <th style="background-color: #f1f1f1 !important;"> Day </th>
+                                                <th style="background-color: #f1f1f1 !important;"> Breakfast Meals </th>
+                                                <th style="background-color: #f1f1f1 !important;"> Shift 1 Tx. </th>
+                                                <th style="background-color: #f1f1f1 !important;"> Lunch Meals </th>
+                                                <th style="background-color: #f1f1f1 !important;"> Shift 2 Tx. </th>
+                                                <th style="background-color: #f1f1f1 !important;"> Dinner Meals </th>
+                                                <th style="background-color: #f1f1f1 !important;"> Shift 3 Tx. </th>
+                                                <th style="background-color: #f1f1f1 !important;"> Meals total.</th>
+                                                <th style="background-color: #f1f1f1 !important;"> Tx. Total </th>
+                                                <th style="background-color: #f1f1f1 !important;"> Total cost </th>
+                                                <th style="background-color: #f1f1f1 !important;"> Gap </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -232,8 +232,11 @@
                                                 $i++;
                                             ?>
                                                 <tr>
-                                                    <td><?php echo $i; ?></td>
-                                                    <td><?php echo $option['day_date']; ?></td>
+                                                    <td style="background-color: #f1f1f1 !important;"><?php echo $i; ?></td>
+                                                    <td style="background-color: #f1f1f1 !important;"><?php
+                                                                                                        $date = new DateTime($option['day_date']);
+                                                                                                        $dayName = $date->format('D');
+                                                                                                        echo $dayName ?></td>
                                                     <?php
                                                     // عرض نتائج الطلبات في الصف الحالي إذا تطابق التاريخ
                                                     $found_data = false; // تعيين متغير لتحديد ما إذا كانت هناك بيانات في الصف الحالي
@@ -273,7 +276,12 @@
                                                             <td><?php echo $sum_meal; ?></td>
                                                             <td><?php echo $sum_session ?></td>
                                                             <td><?php echo $all_price; ?></td>
-                                                            <td><?php echo $gpa; ?></td>
+                                                            <td <?php if ($gpa == 0) { ?> style="background-color: #f1c40f !important;" <?php
+                                                                                                                                    } elseif ($gpa > 0) {
+                                                                                                                                        ?> style="background-color: #e74c3c !important;" <?php
+                                                                                                                                                                                        } elseif ($gpa < 0) {
+                                                                                                                                                                                            ?> style="background-color: #27ae60 !important;" <?php
+                                                                                                                                                                                                                                            } ?>><?php echo $gpa; ?></td>
                                                         <?php
                                                         }
                                                     }
@@ -311,18 +319,19 @@
                                                 <td style="font-weight: bold;"><?php echo $all_price_total; ?></td>
                                                 <td style="font-weight: bold;"><?php echo $gpa_total; ?></td>
                                             </tr>
-                                  
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                        <div>
                             <button class="btn btn-primary text-center" id="print_Button" onclick="printDiv()"> <i class="fa fa-print"></i> Export As Pdf </button>
                             <button id="export-btn" class="btn btn-warning text-center"> <i class="fa fa-file-excel"></i> Export to Excel </button>
                             <a class="btn btn-danger text-center" href="main.php?dir=statistics&page=delete_month&emp_id=<?php echo $emp_id; ?>&month=<?php echo $month; ?>"> <i class="fa fa-trash"></i> Delete Month Data </a>
                         </div>
-                        <?php
-                                    }
-                                        ?>
+                    <?php
+                    }
+                    ?>
 
                 </div>
             </div>
