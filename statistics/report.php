@@ -1,3 +1,18 @@
+    <style>
+        @media print{
+            #export-btn{
+                display: none !important;
+            }
+        }
+    </style>
+    
+    <?php
+    if (isset($_SESSION['emp_id'])) {
+        $emp_id = $_SESSION['emp_id'];
+    } elseif (isset($_GET['emp_id'])) {
+        $emp_id = $_GET['emp_id'];
+    }
+    ?>
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
@@ -23,10 +38,9 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="info">
-
                                 <?php
                                 $stmt = $connect->prepare("SELECT * FROM meal_value WHERE emp_id=?");
-                                $stmt->execute(array($_SESSION['emp_id']));
+                                $stmt->execute(array($emp_id));
                                 $price = $stmt->fetch();
                                 ?>
                                 <form action="" method="post">
@@ -54,12 +68,12 @@
                                     $lunch_value = $_POST['lunch_value'];
                                     $dinner_value = $_POST['dinner_value'];
                                     $stm = $connect->prepare('SELECT * FROM meal_value WHERE emp_id=?');
-                                    $stmt->execute(array($_SESSION['emp_id']));
+                                    $stmt->execute(array($emp_id));
                                     $meal_data = $stmt->fetch();
                                     $count = $stmt->rowCount();
                                     if ($count > 0) {
                                         $stmt = $connect->prepare("UPDATE meal_value SET break_value=?, lunch_value=?, dinner_value=? WHERE emp_id=?");
-                                        $stmt->execute(array($break_value, $lunch_value, $dinner_value, $_SESSION['emp_id']));
+                                        $stmt->execute(array($break_value, $lunch_value, $dinner_value, $emp_id));
                                     } else {
                                         $stmt = $connect->prepare("INSERT INTO meal_value (break_value, lunch_value, dinner_value , emp_id) 
                                         VALUES (:zbreak,:zlunch,:zdinner,:zemp_id)");
@@ -67,7 +81,7 @@
                                             'zbreak' => $break_value,
                                             'zlunch' => $lunch_value,
                                             'zdinner' => $dinner_value,
-                                            'zemp_id' => $_SESSION['emp_id'],
+                                            'zemp_id' => $emp_id,
                                         ));
                                     }
                                     if ($stmt) {
@@ -131,7 +145,7 @@
                                     <table class="table table-bordered">
                                         <?php
                                         $stmt = $connect->prepare("SELECT * FROM emplyees WHERE id=?");
-                                        $stmt->execute(array($_SESSION['emp_id']));
+                                        $stmt->execute(array($emp_id));
                                         $emp_data = $stmt->fetch();
                                         ?>
                                         <tbody>
@@ -206,12 +220,12 @@
                                             $lunch_value = $price['lunch_value'];
                                             $dinner_value = $price['dinner_value'];
                                             // END MEAL VALUE 
-                                            $emp_id = $_SESSION['emp_id'];
+                                            $emp_id = $emp_id;
                                             $stmt = $connect->prepare("SELECT * FROM breakfast_order WHERE MONTH(STR_TO_DATE(date_day, '%W %d %M %Y')) = ? AND emp_id=?");
                                             $stmt->execute(array($month, $emp_id));
                                             $result = $stmt->fetchAll();
-                                            $stmt = $connect->prepare("SELECT * FROM sessions WHERE session_month=? AND year = ? ");
-                                            $stmt->execute(array($month, $year));
+                                            $stmt = $connect->prepare("SELECT * FROM sessions WHERE session_month=? AND year = ? AND emp_id = ?");
+                                            $stmt->execute(array($month, $year, $emp_id));
                                             $alloption = $stmt->fetchAll();
                                             $i = 0;
                                             foreach ($alloption as $option) {
@@ -297,17 +311,19 @@
                                                 <td style="font-weight: bold;"><?php echo $all_price_total; ?></td>
                                                 <td style="font-weight: bold;"><?php echo $gpa_total; ?></td>
                                             </tr>
-                                        <?php
-                                    }
-                                        ?>
-
+                                  
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+                            <button class="btn btn-primary text-center" id="print_Button" onclick="printDiv()"> <i class="fa fa-print"></i> Export As Pdf </button>
+                            <button id="export-btn" class="btn btn-warning text-center"> <i class="fa fa-file-excel"></i> Export to Excel </button>
+                            <a class="btn btn-danger text-center" href="main.php?dir=statistics&page=delete_month&emp_id=<?php echo $emp_id; ?>&month=<?php echo $month; ?>"> <i class="fa fa-trash"></i> Delete Month Data </a>
                         </div>
-                        <button class="btn btn-primary text-center" id="print_Button" onclick="printDiv()"> <i class="fa fa-print"></i> Export As Pdf </button>
-                        <button id="export-btn" class="btn btn-warning text-center"> <i class="fa fa-file-excel"></i> Export to Excel </button>
+                        <?php
+                                    }
+                                        ?>
+
                 </div>
             </div>
             <!-- /.col -->

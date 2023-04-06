@@ -61,7 +61,7 @@ $stmt->execute(array($_SESSION['supp_id'], "Add New Order"));
                                         $supp_id = $_GET['supp_id'];
                                     }
                                     $emp_id = $_GET['emp_id'];
-                                    $stmt = $connect->prepare("SELECT order_date_from,order_date_to, menu_num,pres_id,emp_id FROM breakfast_order  WHERE emp_id = ? AND  pres_id=? AND pres_show = 1 GROUP BY order_date_from,order_date_to,menu_num,pres_id,emp_id");
+                                    $stmt = $connect->prepare("SELECT order_date_from,order_date_to, menu_num,pres_id,emp_id FROM breakfast_order  WHERE emp_id = ? AND  pres_id=? AND pres_show = 1 AND archieve = 0 GROUP BY order_date_from,order_date_to,menu_num,pres_id,emp_id");
                                     $stmt->execute(array($emp_id, $supp_id));
                                     $allorders = $stmt->fetchAll();
                                     $i = 0;

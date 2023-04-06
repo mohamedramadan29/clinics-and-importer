@@ -114,6 +114,8 @@ if (isset($_SESSION['admin_id'])) {
         include 'statistics/delete.php';
     } elseif ($dir == 'statistics' && $page == 'report') {
         include "statistics/report.php";
+    }elseif ($dir == 'statistics' && $page == 'delete_month') {
+        include "statistics/delete_month.php";
     }
     // START REPORT 
     if ($dir == 'reports' && $page == 'report') {

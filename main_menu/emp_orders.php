@@ -73,7 +73,7 @@ if (isset($_SESSION['emp_id'])) {
                                         $emp_id = $_GET['emp_id'];
                                     }
 
-                                    $stmt = $connect->prepare("SELECT order_date_from,order_date_to, menu_num,pres_id,pres_show FROM breakfast_order WHERE emp_id=? GROUP BY order_date_from,order_date_to,menu_num,pres_id,pres_show");
+                                    $stmt = $connect->prepare("SELECT order_date_from,order_date_to, menu_num,pres_id,pres_show FROM breakfast_order WHERE emp_id=? AND archieve =0 GROUP BY order_date_from,order_date_to,menu_num,pres_id,pres_show");
 
                                     $stmt->execute(array($emp_id));
                                     $allorders = $stmt->fetchAll();
@@ -114,7 +114,7 @@ if (isset($_SESSION['emp_id'])) {
                                                 <?php
                                                 if (isset($_SESSION['admin_id'])) {
                                                 ?>
-                                                    <a href="main.php?dir=main_menu&page=delete_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>" class="btn btn-danger btn-sm"> Delete Order <i class='fa fa-trash'></i> </a>
+                                                    <a href="main.php?dir=main_menu&page=delete_order&from=<?php echo $order['order_date_from']; ?>&to=<?php echo $order['order_date_to']; ?>&emp_id=<?php echo $emp_id; ?>" class="btn btn-danger btn-sm"> Delete Order <i class='fa fa-trash'></i> </a>
                                                 <?php
                                                 }
                                                 ?>

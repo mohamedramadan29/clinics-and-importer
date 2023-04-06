@@ -48,7 +48,7 @@
                                                 <th>clinic_code</th>
                                                 <th>Presentation</th>
                                                 <th> Orders </th>
-                                                <!--<th>status</th> -->
+                                                <th>Statistics</th>
                                                 <th>Action </th>
                                             </tr>
                                         </thead>
@@ -75,18 +75,7 @@
                                                             $presdata = $stmt->fetch();
                                                             echo  $presdata['name']; ?> </td>
                                                     <td> <a href="main.php?dir=main_menu&page=emp_orders&emp_id=<?php echo $emp['id']; ?>" class="btn btn-success btn-sm"> View Orders </a> </td>
-                                                    <!--  <td> <?php
-                                                                if ($emp['status'] == 0) {
-                                                                ?>
-                                                            <span class="bg bg-danger rounded"> Not Active </span>
-                                                        <?php
-                                                                } else { ?>
-                                                            <span class="bg bg-success rounded"> Active </span>
-                                                        <?php
-                                                                }
-                                                        ?>
-                                                    </td>
-                                                        -->
+                                                    <td> <a href="main.php?dir=statistics&page=report&emp_id=<?php echo $emp['id']; ?>" class="btn btn-primary btn-sm"> Statistics </a> </td>
                                                     <td>
                                                         <button type="button" class="btn btn-success btn-sm waves-effect" data-toggle="modal" data-target="#edit-Modal_<?php echo $emp['id']; ?>"> Edit <i class='fa fa-pen'></i> </button>
                                                         <a href="main.php?dir=setting&page=delete_emp&emp_id=<?php echo $emp['id']; ?>" class="confirm btn btn-danger btn-sm"> Delete <i class='fa fa-trash'></i> </a>
