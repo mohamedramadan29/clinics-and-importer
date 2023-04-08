@@ -5,7 +5,6 @@
             }
         }
     </style>
-
     <?php
     if (isset($_SESSION['emp_id'])) {
         $emp_id = $_SESSION['emp_id'];
@@ -31,7 +30,6 @@
     </section>
     <section class="content">
         <div class="container-fluid">
-
             <!-- DOM/Jquery table start -->
             <div class="card">
                 <div class="card-header">
@@ -60,11 +58,11 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <?php if(!isset($_SESSION['super_id'])){
-                                        ?>
-                                    <button type="submit" name="meal_price" class="btn btn-primary btn-sm"> Save & Update <i class="fa fa-save"></i> </button>
+                                    <?php if (!isset($_SESSION['super_id'])) {
+                                    ?>
+                                        <button type="submit" name="meal_price" class="btn btn-primary btn-sm"> Save & Update <i class="fa fa-save"></i> </button>
 
-                                        <?php
+                                    <?php
                                     } ?>
                                 </form>
                                 <?php
@@ -145,9 +143,9 @@
                     ?>
                         <!--<div id="print">-->
                         <div id="table-to-export">
-                            <div class="row">
+                            <div class="row" >
                                 <div class="col-6">
-                                    <table class="table table-bordered">
+                                    <table id="" class="table table-bordered styled-table">
                                         <?php
                                         $stmt = $connect->prepare("SELECT * FROM emplyees WHERE id=?");
                                         $stmt->execute(array($emp_id));
@@ -190,7 +188,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive dt-responsive">
-                                    <table id="" class="table table-bordered">
+                                    <table id="my_table" class="table table-bordered">
                                         <thead>
                                             <tr>
                                                 <th style="background-color: #f1f1f1 !important;"> Date </th>
@@ -332,14 +330,14 @@
                         <div>
                             <button class="btn btn-primary text-center" id="print_Button" onclick="printDiv()"> <i class="fa fa-print"></i> Export As Pdf </button>
                             <button id="export-btn" class="btn btn-warning text-center"> <i class="fa fa-file-excel"></i> Export to Excel </button>
-                           <?php 
-                           if(!isset($_SESSION['super_id'])){
+                            <?php
+                            if (!isset($_SESSION['super_id'])) {
                             ?>
-                            <a class="btn btn-danger text-center" href="main.php?dir=statistics&page=delete_month&emp_id=<?php echo $emp_id; ?>&month=<?php echo $month; ?>"> <i class="fa fa-trash"></i> Delete Month Data </a>
+                                <a class="btn btn-danger text-center" href="main.php?dir=statistics&page=delete_month&emp_id=<?php echo $emp_id; ?>&month=<?php echo $month; ?>"> <i class="fa fa-trash"></i> Delete Month Data </a>
 
                             <?php
-                           }
-                           ?>
+                            }
+                            ?>
                         </div>
                     <?php
                     }
@@ -364,6 +362,9 @@
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <!-- Include the FileSaver.js library (for downloading the Excel file) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
     <script>
         document.getElementById("export-btn").addEventListener("click", exportToExcel);
 
@@ -371,8 +372,42 @@
             // Get the HTML table element
             var table = document.getElementById("table-to-export");
 
-            // Convert the HTML table to a workbook object
-            var workbook = XLSX.utils.table_to_book(table);
+            // Convert the HTML table to a worksheet object
+            var worksheet = XLSX.utils.table_to_sheet(table);
+
+            // Add styling to the worksheet object (optional)
+            worksheet['!cols'] = [{
+                width: 15,
+                
+            }, {
+                width: 15
+            }, {
+                width: 15
+            }, {
+                width: 15
+            }, {
+                width: 15
+            }, {
+                width: 15
+            }, {
+                width: 15
+            }, {
+                width: 15
+            }, {
+                width: 15
+            }, {
+                width: 15
+            }, {
+                width: 15
+            }, {
+                width: 15
+            }];
+
+            // Convert the worksheet object to a workbook object
+            var workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1", {
+                cellStyles: true
+            });
 
             // Convert the workbook object to a binary Excel file
             var binaryFile = XLSX.write(workbook, {
@@ -398,4 +433,5 @@
             }
             return buf;
         }
+
     </script>

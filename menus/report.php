@@ -28,9 +28,7 @@
                                 <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#add-Modal"> Add Option <i class="fa fa-plus"></i> </button>
                             </div>
                         <?php
-
                         } ?>
-
                         <?php
                         if (isset($_SESSION['success_message'])) {
                             $message = $_SESSION['success_message'];
@@ -89,9 +87,7 @@
                                                         <button type="button" class="btn btn-success btn-sm waves-effect" data-toggle="modal" data-target="#edit-Modal_<?php echo $option['id']; ?>"> Edit <i class="fa fa-pen"></i> </button>
                                                         <a href="main.php?dir=menus&page=delete&option_id=<?php echo $option['id']; ?>" class="confirm btn btn-danger btn-sm"> Delete <i class="fa fa-trash"></i> </a>
                                                     <?php
-
                                                     } ?>
-
                                                 </td>
                                             </tr>
                                             <!-- EDIT NEW CATEGORY MODAL   -->
@@ -166,10 +162,12 @@
                                                                         ?>
                                                                     </select>
                                                                 </div>
+                                                                <!-- 
                                                                 <div class="form-group">
                                                                     <label for="Company-2" class="block">Special Description</label>
                                                                     <textarea name="special_desc" id="" class="form-control"><?php echo $option['special_desc']; ?></textarea>
                                                                 </div>
+                                                                    -->
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
@@ -205,16 +203,15 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="Company-2" class="block">Menu Number</label>
-                                            <select required name="menu_num" class="form-control select2" id="">
+                                            <select multiple required name="menu_num" class="form-control select2" id="">
                                                 <option value=""> -- Select Menu Num -- </option>
                                                 <option value="1"> Menu 1 </option>
                                                 <option value="2"> Menu 2 </option>
                                             </select>
-
                                         </div>
                                         <div class="form-group">
                                             <label for="Company-2" class="block">Meal Type</label>
-                                            <select required name="meal_type" class="form-control select2" id="">
+                                            <select multiple required name="meal_type" class="form-control select2" id="">
                                                 <option value=""> -- Select Meal Type -- </option>
                                                 <option value="breakfast"> Breakfast </option>
                                                 <option value="lunch"> Lunch </option>
@@ -240,7 +237,6 @@
                                                 <option value="option1"> Option 1 </option>
                                                 <option value="option2"> Option 2 </option>
                                                 <option value="option3"> Option 3 </option>
-                                                <option value="option4"> Special </option>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -259,10 +255,12 @@
                                                 ?>
                                             </select>
                                         </div>
+                                        <!-- 
                                         <div class="form-group">
                                             <label for="Company-2" class="block">Special Description</label>
                                             <textarea name="special_desc" id="" class="form-control"></textarea>
-                                        </div>
+                                        </div> 
+                                            -->
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default waves-effect " data-dismiss="modal">Close</button>
