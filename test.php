@@ -1,78 +1,129 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <title>Export HTML Table to Excel using PHP and JavaScript</title>
-    <!-- Include DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
-
-    <!-- Include jQuery -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <!-- Include DataTables JS -->
-    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-
-    <!-- Include PHPSpreadsheet and its dependencies -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js"></script>
+    <title>Ajax Tab Container</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var tableToExcel = (function() {
+            var uri = 'data:application/vnd.ms-excel;base64,',
+                template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
+                base64 = function(s) {
+                    return window.btoa(unescape(encodeURIComponent(s)))
+                },
+                format = function(s, c) {
+                    return s.replace(/{(\w+)}/g, function(m, p) {
+                        return c[p];
+                    })
+                }
+            return function(table, name) {
+                if (!table.nodeType) table = document.getElementById(table)
+                var ctx = {
+                    worksheet: name || 'Worksheet',
+                    table: table.innerHTML
+                }
+                window.location.href = uri + base64(format(template, ctx))
+            }
+        })()
+    </script>
+    <style type="text/css">
+        .green {
+            background-color: green;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Export HTML Table to Excel using PHP and JavaScript</h1>
-    <table id="myTable" class="display">
-        <thead>
+    <input type="button" onclick="tableToExcel('testTable', 'W3C Example Table')" value="Export to Excel" />
+
+    <table style="border: 2px solid #ccc;" id="testTable" summary="Code page support in different versions of MS Windows." rules="groups" frame="hsides" border="2">
+        <caption>
+            CODE-PAGE SUPPORT IN MICROSOFT WINDOWS
+        </caption>
+        <colgroup align="center"></colgroup>
+        <colgroup align="left"></colgroup>
+        <colgroup span="2" align="center"></colgroup>
+        <colgroup span="3" align="center"></colgroup>
+        <thead valign="top">
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone</th>
+                <th>Code-Page<br />ID</th>
+                <th style="background-color: #00f;">Name</th>
+                <th>ACP</th>
+                <th>OEMCP</th>
+                <th>Windows<br />NT 3.1</th>
+                <th>Windows<br />NT 3.51</th>
+                <th>Windows<br />95</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>John</td>
-                <td>Doe</td>
-                <td>john.doe@example.com</td>
-                <td>1234567890</td>
+                <td>1200</td>
+                <td style="background-color: #00f; color: #fff">Unicode (BMP of ISO/IEC-10646)</td>
+                <td></td>
+                <td></td>
+                <td>X</td>
+                <td>X</td>
+                <td>*</td>
             </tr>
             <tr>
-                <td>Jane</td>
-                <td>Doe</td>
-                <td>jane.doe@example.com</td>
-                <td>0987654321</td>
+                <td>1250</td>
+                <td style="font-weight: bold">
+                    <a href="http://www.jquery2dotnet.com/">http://www.jquery2dotnet.com/</a>
+                </td>
+                <td>X</td>
+                <td></td>
+                <td>X</td>
+                <td>X</td>
+                <td>X</td>
+            </tr>
+            <tr>
+                <td class="green">1255</td>
+                <td>Hebrew</td>
+                <td>X</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>X</td>
+            </tr>
+            <tr>
+                <td>437</td>
+                <td>MS-DOS United States</td>
+                <td></td>
+                <td>X</td>
+                <td>X</td>
+                <td>X</td>
+                <td>X</td>
+            </tr>
+            <tr>
+                <td>708</td>
+                <td>Arabic (ASMO 708)</td>
+                <td></td>
+                <td>X</td>
+                <td></td>
+                <td></td>
+                <td>X</td>
+            </tr>
+            <tr>
+                <td>709</td>
+                <td>Arabic (ASMO 449+, BCON V4)</td>
+                <td></td>
+                <td>X</td>
+                <td></td>
+                <td></td>
+                <td>X</td>
+            </tr>
+            <tr>
+                <td>710</td>
+                <td>Arabic (Transparent Arabic)</td>
+                <td></td>
+                <td>X</td>
+                <td></td>
+                <td></td>
+                <td>X</td>
             </tr>
         </tbody>
     </table>
+</body>
 
-    <button id="export-btn">Export to Excel</button>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#myTable').DataTable();
-        });
-
-        document.getElementById("export-btn").addEventListener("click", function() {
-            var table = document.getElementById("myTable");
-            var worksheet = XLSX.utils.table_to_sheet(table);
-            var workbook = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-            var wbout = XLSX.write(workbook, {
-                bookType: 'xlsx',
-                type: 'binary'
-            });
-
-            function s2ab(s) {
-                var buf = new ArrayBuffer(s.length);
-                var view = new Uint8Array(buf);
-                for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
-                return buf;
-            }
-
-            var blob = new Blob([s2ab(wbout)], {
-                type: "application/octet-stream"
-            });
-
-            var fileName = "table.xlsx";
-            saveAs(blob, fileName);
-        });
-    </script>
+</html>

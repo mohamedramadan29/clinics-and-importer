@@ -36,7 +36,7 @@
                         ?>
                             <div class="alert alert-success alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                <h5><i class="icon fas fa-check"></i><?php echo $message; ?></th5>
+                                <h5><i class="icon fas fa-check"></i><?php echo $message; ?></h5>
                             </div>
                         <?php
                         }
@@ -53,7 +53,6 @@
                                             <th> Day </th>
                                             <th> Option Num </th>
                                             <th> Category </th>
-                                            <th> Special desc </th>
                                             <th>Action </th>
                                         </tr>
                                     </thead>
@@ -80,7 +79,6 @@
                                                         $data = $stmt->fetch();
 
                                                         echo  $data['cat_name']; ?> </td>
-                                                <td> <?php echo  $option['special_desc']; ?> </td>
                                                 <td>
                                                     <?php if (isset($_SESSION['super_id'])) {
                                                     } else { ?>
@@ -202,16 +200,17 @@
                                             <input required id="Company-2" name="name" type="text" class="form-control required">
                                         </div>
                                         <div class="form-group">
-                                            <label for="Company-2" class="block">Menu Number</label>
-                                            <select multiple required name="menu_num" class="form-control select2" id="">
-                                                <option value=""> -- Select Menu Num -- </option>
-                                                <option value="1"> Menu 1 </option>
-                                                <option value="2"> Menu 2 </option>
-                                            </select>
+                                            <label for="Company-2" class="block"> Select Menu Number</label>
+                                            <br>
+                                            <label for="menu1"> Menu 1 </label>
+                                            <input id="menu1" type="checkbox" name="menu_num" class="" value="1">
+                                            <label for="menu2"> Menu 2 </label>
+                                            <input id="menu2" type="checkbox" name="menu_num2" class="" value="2">
+
                                         </div>
                                         <div class="form-group">
                                             <label for="Company-2" class="block">Meal Type</label>
-                                            <select multiple required name="meal_type" class="form-control select2" id="">
+                                            <select required name="meal_type" class="form-control select2" id="">
                                                 <option value=""> -- Select Meal Type -- </option>
                                                 <option value="breakfast"> Breakfast </option>
                                                 <option value="lunch"> Lunch </option>

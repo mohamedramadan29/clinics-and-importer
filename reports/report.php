@@ -1,3 +1,36 @@
+<style>
+    .table tr td,
+    .table tr th {
+        background-color: #fbfbfb !important;
+    }
+
+    @media print {
+        body {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+        }
+
+        #print_Button {
+            display: none;
+        }
+
+        .card #print {
+            background-color: #e74c3c !important;
+
+        }
+
+        .table tr td,
+        .table tr th {
+            background-color: #fbfbfb !important;
+            padding: 5px !important;
+        }
+
+    }
+</style>
+
+
+
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <div class="container-fluid">
@@ -71,20 +104,20 @@
                             <div id="print">
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th style="text-align: center; background-color:#fbfbfb !important; border: none !important;"> <img style="height: 90px;" src="uploads/pres_logo/<?php echo $sup_data['logo']; ?>" alt=""> </th>
+                                        <th style="padding: 4px; text-align: center; background-color:#fbfbfb !important; border: none !important;"> <img style="height: 90px;" src="uploads/pres_logo/<?php echo $sup_data['logo']; ?>" alt=""> </th>
                                         <th style="text-align: center; padding-top: 45px; background-color:#fbfbfb !important;border: none !important;"> <?php echo  $emp_data['clinic_name']; ?> </th>
-                                        <th style="text-align: center; background-color:#fbfbfb !important; border: none !important;"> <img style="height: 90px;" src="uploads/pres_logo/diavare.png" alt=""> </th>
+                                        <th style="padding: 4px; text-align: center; background-color:#fbfbfb !important; border: none !important;"> <img style="height: 90px;" src="uploads/pres_logo/diavare.png" alt=""> </th>
                                     </tr>
                                 </table>
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th style="background-color:#fbfbfb !important;"> DATE </th>
-                                            <th style="background-color:#fbfbfb !important;"> DAY </th>
-                                            <th style="background-color:#fbfbfb !important;"> Breakfast </th>
-                                            <th style="background-color:#fbfbfb !important;"> Lunch </th>
-                                            <th style="background-color:#fbfbfb !important;"> Dinner </th>
-                                            <th style="background-color:#fbfbfb !important;"> Comments </th>
+                                            <th style="background-color:#fbfbfb !important; padding: 5px !important;"> DATE </th>
+                                            <th style="background-color:#fbfbfb !important;  padding: 5px !important;"> DAY </th>
+                                            <th style="background-color:#fbfbfb !important;  padding: 5px !important;"> Breakfast </th>
+                                            <th style="background-color:#fbfbfb !important;  padding: 5px !important;"> Lunch </th>
+                                            <th style="background-color:#fbfbfb !important;  padding: 5px !important;"> Dinner </th>
+                                            <th style="background-color:#fbfbfb !important;  padding: 5px !important;"> Comments </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -120,12 +153,12 @@
                                                     $total_dinner += $dinner;
                                         ?>
                                                     <tr>
-                                                        <td style="background-color:#fbfbfb !important; font-weight: bold"> <?php echo $new_date; ?> </td>
-                                                        <td style="background-color:#fbfbfb !important;"> <?php echo   date("D", strtotime($day)); ?> </td>
-                                                        <td style="background-color:#fbfbfb !important;"> <?php echo $breakfast; ?> </td>
-                                                        <td style="background-color:#fbfbfb !important;"> <?php echo $lunch; ?> </td>
-                                                        <td style="background-color:#fbfbfb !important;"> <?php echo $dinner; ?> </td>
-                                                        <td style="background-color:#fbfbfb !important;"> </td>
+                                                        <td style="background-color:#fbfbfb !important;font-weight: bold;padding: 5px !important;"> <?php echo $new_date; ?> </td>
+                                                        <td style="background-color:#fbfbfb !important;padding: 5px !important;"> <?php echo   date("D", strtotime($day)); ?> </td>
+                                                        <td style="background-color:#fbfbfb !important;padding: 5px !important;"> <?php echo $breakfast; ?> </td>
+                                                        <td style="background-color:#fbfbfb !important;padding: 5px !important;"> <?php echo $lunch; ?> </td>
+                                                        <td style="background-color:#fbfbfb !important;padding: 5px !important;"> <?php echo $dinner; ?> </td>
+                                                        <td style="background-color:#fbfbfb !important;padding: 5px !important;"> </td>
                                                     </tr>
                                                 <?php
                                                 }
@@ -135,14 +168,14 @@
                                             if (!$found_data) {
                                                 ?>
                                                 <tr>
-                                                    <td style="background-color:#fbfbfb !important; font-weight: bold"> <?php echo $new_date; ?></td>
+                                                    <td style="background-color:#fbfbfb !important; font-weight: bold;padding: 5px !important;"> <?php echo $new_date; ?></td>
                                                     <td <?php if ($new_date_name === 'Fri') {
-                                                        ?> style="background-color: #e67e22 !important;" <?php
-                                                                                                        } ?>> <?php echo $new_date_name; ?> </td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
+                                                        ?> style="background-color: #e67e22 !important;padding: 5px !important;" <?php
+                                                                                                        }else{?> style="padding: 5px !important;"  <?php } ?>> <?php echo $new_date_name; ?> </td>
+                                                    <td style="padding: 5px !important;"></td>
+                                                    <td style="padding: 5px !important;"></td>
+                                                    <td style="padding: 5px !important;"></td>
+                                                    <td style="padding: 5px !important;"></td>
                                                 </tr>
                                             <?php
                                             }
@@ -156,11 +189,11 @@
                                         }
                                         ?>
                                         <tr>
-                                            <td></td>
-                                            <td style="background-color: #e74c3c !important; font-weight:bold"> Total </td>
-                                            <td style="  font-weight:bold"> <?php echo $total_breakfast; ?> </td>
-                                            <td style="  font-weight:bold"> <?php echo $total_lunch; ?> </td>
-                                            <td style="  font-weight:bold"> <?php echo $total_dinner; ?> </td>
+                                            <td style="padding: 5px !important;"></td>
+                                            <td style="background-color: #e74c3c !important; font-weight:bold;  padding: 5px !important;"> Total </td>
+                                            <td style="  font-weight:bold;  padding: 5px !important;"> <?php echo $total_breakfast; ?> </td>
+                                            <td style="  font-weight:bold;  padding: 5px !important;"> <?php echo $total_lunch; ?> </td>
+                                            <td style="  font-weight:bold;  padding: 5px !important;"> <?php echo $total_dinner; ?> </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -172,6 +205,8 @@
                                     </div>
                                     <div class="col-6">
                                         <p class="text-center text-bold" style="font-size: 18px"> Signature </p>
+                                        <hr>
+                                        <p class="text-center" style="font-size: 18px"> Diaverum ( Stamp ) </p>
                                     </div>
                                 </div>
                             </div>
@@ -207,31 +242,3 @@
 </script>
 
 
-<style>
-    .table tr td,
-    .table tr th {
-        background-color: #fbfbfb !important;
-    }
-
-    @media print {
-        body {
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-
-        #print_Button {
-            display: none;
-        }
-
-        .card #print {
-            background-color: #e74c3c !important;
-
-        }
-
-        .table tr td,
-        .table tr th {
-            background-color: #fbfbfb !important;
-        }
-
-    }
-</style>

@@ -143,7 +143,7 @@
                     ?>
                         <!--<div id="print">-->
                         <div id="table-to-export">
-                            <div class="row" >
+                            <div class="row">
                                 <div class="col-6">
                                     <table id="" class="table table-bordered styled-table">
                                         <?php
@@ -153,7 +153,7 @@
                                         ?>
                                         <tbody>
                                             <tr>
-                                                <th> Clinic Name : </th>
+                                                <th class="clinic_name"> Clinic Name : </th>
                                                 <th style="background-color: #2ff382 !important;"> <?php echo $emp_data['clinic_name']; ?> </th>
                                             </tr>
                                             <tr>
@@ -167,6 +167,7 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <br>
                                 <div class="col-6">
                                     <table class="table table-bordered">
                                         <tbody>
@@ -186,23 +187,24 @@
                                     </table>
                                 </div>
                             </div>
+                            <br>
                             <div class="card-body">
                                 <div class="table-responsive dt-responsive">
                                     <table id="my_table" class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th style="background-color: #f1f1f1 !important;"> Date </th>
-                                                <th style="background-color: #f1f1f1 !important;"> Day </th>
-                                                <th style="background-color: #f1f1f1 !important;"> Breakfast Meals </th>
-                                                <th style="background-color: #f1f1f1 !important;"> Shift 1 Tx. </th>
-                                                <th style="background-color: #f1f1f1 !important;"> Lunch Meals </th>
-                                                <th style="background-color: #f1f1f1 !important;"> Shift 2 Tx. </th>
-                                                <th style="background-color: #f1f1f1 !important;"> Dinner Meals </th>
-                                                <th style="background-color: #f1f1f1 !important;"> Shift 3 Tx. </th>
-                                                <th style="background-color: #f1f1f1 !important;"> Meals total.</th>
-                                                <th style="background-color: #f1f1f1 !important;"> Tx. Total </th>
-                                                <th style="background-color: #f1f1f1 !important;"> Total cost </th>
-                                                <th style="background-color: #f1f1f1 !important;"> Gap </th>
+                                                <th style="background-color: #f1f1f1 !important; padding: 5px !important;"> Date </th>
+                                                <th style="background-color: #f1f1f1 !important; padding: 5px !important;"> Day </th>
+                                                <th style="background-color: #f1f1f1 !important; padding: 5px !important;"> Breakfast Meals </th>
+                                                <th style="background-color: #f1f1f1 !important; padding: 5px !important;"> Shift 1 Tx. </th>
+                                                <th style="background-color: #f1f1f1 !important; padding: 5px !important;"> Lunch Meals </th>
+                                                <th style="background-color: #f1f1f1 !important; padding: 5px !important;"> Shift 2 Tx. </th>
+                                                <th style="background-color: #f1f1f1 !important; padding: 5px !important;"> Dinner Meals </th>
+                                                <th style="background-color: #f1f1f1 !important; padding: 5px !important;"> Shift 3 Tx. </th>
+                                                <th style="background-color: #f1f1f1 !important; padding: 5px !important;"> Meals total.</th>
+                                                <th style="background-color: #f1f1f1 !important; padding: 5px !important;"> Tx. Total </th>
+                                                <th style="background-color: #f1f1f1 !important; padding: 5px !important;"> Total cost </th>
+                                                <th style="background-color: #f1f1f1 !important; padding: 5px !important;"> Gap </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -235,11 +237,11 @@
                                                 $i++;
                                             ?>
                                                 <tr>
-                                                    <td style="background-color: #f1f1f1 !important;"><?php echo $i; ?></td>
-                                                    <td style="background-color: #f1f1f1 !important;"><?php
-                                                                                                        $date = new DateTime($option['day_date']);
-                                                                                                        $dayName = $date->format('D');
-                                                                                                        echo $dayName ?></td>
+                                                    <td style="background-color: #f1f1f1 !important; padding: 5px !important;"><?php echo $i; ?></td>
+                                                    <td style="background-color: #f1f1f1 !important; padding: 5px !important;"><?php
+                                                                                                                                $date = new DateTime($option['day_date']);
+                                                                                                                                $dayName = $date->format('D');
+                                                                                                                                echo $dayName ?></td>
                                                     <?php
                                                     // عرض نتائج الطلبات في الصف الحالي إذا تطابق التاريخ
                                                     $found_data = false; // تعيين متغير لتحديد ما إذا كانت هناك بيانات في الصف الحالي
@@ -270,21 +272,21 @@
                                                             $all_price_total += $all_price;
                                                             $gpa_total += $gpa;
                                                     ?>
-                                                            <td><?php echo $breakfast_sum; ?></td>
-                                                            <td><?php echo $option['break_session']; ?></td>
-                                                            <td><?php echo $lunch_sum; ?></td>
-                                                            <td><?php echo $option['lunch_session']; ?></td>
-                                                            <td><?php echo $dinner_sum; ?></td>
-                                                            <td><?php echo $option['dinner_session']; ?></td>
-                                                            <td><?php echo $sum_meal; ?></td>
-                                                            <td><?php echo $sum_session ?></td>
-                                                            <td><?php echo $all_price; ?></td>
-                                                            <td <?php if ($gpa == 0) { ?> style="background-color: #f1c40f !important;" <?php
-                                                                                                                                    } elseif ($gpa > 0) {
-                                                                                                                                        ?> style="background-color: #e74c3c !important;" <?php
-                                                                                                                                                                                        } elseif ($gpa < 0) {
-                                                                                                                                                                                            ?> style="background-color: #27ae60 !important;" <?php
-                                                                                                                                                                                                                                            } ?>><?php echo $gpa; ?></td>
+                                                            <td style="padding: 5px !important;"><?php echo $breakfast_sum; ?></td>
+                                                            <td style="padding: 5px !important;"><?php echo $option['break_session']; ?></td>
+                                                            <td style="padding: 5px !important;"><?php echo $lunch_sum; ?></td>
+                                                            <td style="padding: 5px !important;"><?php echo $option['lunch_session']; ?></td>
+                                                            <td style="padding: 5px !important;"><?php echo $dinner_sum; ?></td>
+                                                            <td style="padding: 5px !important;"><?php echo $option['dinner_session']; ?></td>
+                                                            <td style="padding: 5px !important;"><?php echo $sum_meal; ?></td>
+                                                            <td style="padding: 5px !important;"><?php echo $sum_session ?></td>
+                                                            <td style="padding: 5px !important;"><?php echo $all_price; ?></td>
+                                                            <td <?php if ($gpa == 0) { ?> style="background-color: #f1c40f !important; padding: 5px !important;" <?php
+                                                                                                                                                                } elseif ($gpa > 0) {
+                                                                                                                                                                    ?> style="background-color: #e74c3c !important; padding: 5px !important;" <?php
+                                                                                                                                                                                                                                            } elseif ($gpa < 0) {
+                                                                                                                                                                                                                                                ?> style="background-color: #27ae60 !important;" <?php
+                                                                                                                                                                                                                                                                                                } ?>><?php echo $gpa; ?></td>
                                                         <?php
                                                         }
                                                     }
@@ -329,7 +331,7 @@
                         </div>
                         <div>
                             <button class="btn btn-primary text-center" id="print_Button" onclick="printDiv()"> <i class="fa fa-print"></i> Export As Pdf </button>
-                            <button id="export-btn" class="btn btn-warning text-center"> <i class="fa fa-file-excel"></i> Export to Excel </button>
+                            <input class="btn btn-warning text-center" type="button" onclick="tableToExcel('table-to-export', 'W3C Example Table')" value="Export to Excel" />
                             <?php
                             if (!isset($_SESSION['super_id'])) {
                             ?>
@@ -361,77 +363,25 @@
         }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-    <!-- Include the FileSaver.js library (for downloading the Excel file) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-
-    <script>
-        document.getElementById("export-btn").addEventListener("click", exportToExcel);
-
-        function exportToExcel() {
-            // Get the HTML table element
-            var table = document.getElementById("table-to-export");
-
-            // Convert the HTML table to a worksheet object
-            var worksheet = XLSX.utils.table_to_sheet(table);
-
-            // Add styling to the worksheet object (optional)
-            worksheet['!cols'] = [{
-                width: 15,
-                
-            }, {
-                width: 15
-            }, {
-                width: 15
-            }, {
-                width: 15
-            }, {
-                width: 15
-            }, {
-                width: 15
-            }, {
-                width: 15
-            }, {
-                width: 15
-            }, {
-                width: 15
-            }, {
-                width: 15
-            }, {
-                width: 15
-            }, {
-                width: 15
-            }];
-
-            // Convert the worksheet object to a workbook object
-            var workbook = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1", {
-                cellStyles: true
-            });
-
-            // Convert the workbook object to a binary Excel file
-            var binaryFile = XLSX.write(workbook, {
-                bookType: "xlsx",
-                type: "binary"
-            });
-
-            // Download the binary file as an Excel file
-            saveAs(
-                new Blob([s2ab(binaryFile)], {
-                    type: "application/octet-stream"
-                }),
-                "export.xlsx"
-            );
-        }
-
-        // Utility function to convert a string to an ArrayBuffer
-        function s2ab(s) {
-            var buf = new ArrayBuffer(s.length);
-            var view = new Uint8Array(buf);
-            for (var i = 0; i < s.length; i++) {
-                view[i] = s.charCodeAt(i) & 0xff;
+    <script type="text/javascript">
+        var tableToExcel = (function() {
+            var uri = 'data:application/vnd.ms-excel;base64,',
+                template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
+                base64 = function(s) {
+                    return window.btoa(unescape(encodeURIComponent(s)))
+                },
+                format = function(s, c) {
+                    return s.replace(/{(\w+)}/g, function(m, p) {
+                        return c[p];
+                    })
+                }
+            return function(table, name) {
+                if (!table.nodeType) table = document.getElementById(table)
+                var ctx = {
+                    worksheet: name || 'Worksheet',
+                    table: table.innerHTML
+                }
+                window.location.href = uri + base64(format(template, ctx))
             }
-            return buf;
-        }
-
+        })()
     </script>
